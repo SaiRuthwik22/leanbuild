@@ -31,15 +31,5 @@ export default defineConfig({
     cssCodeSplit: true,
     // Increase chunk size warning limit for image-heavy sites
     chunkSizeWarningLimit: 1000,
-    rollupOptions: {
-      output: {
-        // Split vendor chunks for better caching
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'animation': ['framer-motion'],
-        },
-      },
-    },
   },
 })
