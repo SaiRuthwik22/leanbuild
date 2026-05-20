@@ -15,14 +15,14 @@ function ContactHero() {
   const parallaxRef = useParallax(0.2)
 
   return (
-    <section className="relative min-h-[60vh] flex items-end pb-20 pt-36 overflow-hidden bg-[#000000]">
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-[#000000]">
       <div className="absolute inset-0 z-0 parallax-container">
         <img ref={parallaxRef} src={contactHeroBg} alt="" aria-hidden="true" className="parallax-img" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
       </div>
 
-      <div className="container-narrow relative z-10">
+      <div className="relative z-10 w-full container-narrow pt-28 pb-32">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="flex items-center gap-3 mb-7">
           <div className="w-12 h-px bg-white/40" />
           <span className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-medium">Get In Touch</span>

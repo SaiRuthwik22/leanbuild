@@ -5,8 +5,8 @@ import OptimizedImage from '../components/OptimizedImage'
 
 // Assets
 import aboutHeroBg from '../assets/about_hero_bg.png'
-import teamPresident from '../assets/team_president.png'
-import teamCVO from '../assets/team_cvo.png'
+import teamPresident from '../assets/president.png'
+import teamCVO from '../assets/cvo.png'
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -193,12 +193,12 @@ function WhyChooseUs() {
               <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
               <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
               <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-              
+
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-6 h-px bg-warm-gray/30 group-hover:bg-charcoal/40 transition-colors duration-300" />
                 <h4 className="text-[0.8rem] uppercase tracking-[0.2em] font-semibold text-charcoal">{item.title}</h4>
               </div>
-              
+
               <p className="text-[0.875rem] text-warm-gray leading-[1.85]">{item.desc}</p>
             </div>
           ))}
@@ -244,10 +244,9 @@ function VisionMission() {
 
 /* ─── Stats ─── */
 const stats = [
-  { value: 350, suffix: '+', label: 'Projects Completed' },
-  { value: 22, suffix: '+', label: 'Years Experience' },
-  { value: 500, suffix: '+', label: 'Happy Clients' },
-  { value: 45, suffix: '', label: 'Awards Won' },
+  { value: 40, suffix: '+', label: 'Years in Market' },
+  { value: 80, suffix: '+', label: 'Loyalty Customers' },
+  { value: 100, suffix: '+', label: 'Completed Projects' },
 ]
 
 function StatItem({ value, suffix, label }) {
@@ -268,7 +267,7 @@ function StatsSection() {
   return (
     <section className="section-padding bg-white">
       <div ref={ref} className="container-narrow">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
           {stats.map((s, i) => <StatItem key={i} {...s} />)}
         </div>
       </div>
@@ -335,17 +334,17 @@ function TestimonialsSection() {
 /* ─── Our Leadership Team ─── */
 const teamMembers = [
   {
-    name: 'Vikram Rangan',
-    role: 'President & Founder',
+    name: 'Gopal Janapureddy',
+    role: 'President',
     img: teamPresident,
-    bio: 'With over 25 years of experience in construction and architecture, Vikram has led LeanBuild from a small firm to one of India\'s most trusted construction companies. His vision for sustainable, innovative building practices has earned numerous industry awards.',
+    bio: 'With over 25 years of experience in construction and architecture, Gopal Janapureddy has led LeanBuild from a small firm to one of India\'s most trusted construction companies.',
     linkedin: '#',
   },
   {
-    name: 'Ananya Deshmukh',
+    name: 'Uday vedre',
     role: 'Chief Value Officer',
     img: teamCVO,
-    bio: 'Ananya brings 18 years of expertise in value engineering and client relations. She ensures every project maximizes value for clients while maintaining the highest standards of quality, sustainability, and design excellence.',
+    bio: 'Uday brings 18 years of expertise in value engineering and client relations. She ensures every project maximizes value for clients while maintaining the highest standards of quality, sustainability, and design excellence.',
     linkedin: '#',
   },
 ]
@@ -435,10 +434,6 @@ function TeamSection() {
                       </span>
                       <span>Connect Profile</span>
                     </a>
-
-                    <span className="text-[9px] font-mono text-light-gray select-none">
-                      LB.SEC-02
-                    </span>
                   </div>
 
                 </div>

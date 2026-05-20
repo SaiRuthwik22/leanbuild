@@ -36,11 +36,28 @@ function App() {
 
   const { isLoaded, progress } = useImagePreloader(imagesToPreload)
 
+  const handleExitComplete = () => {
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1)
+      // Allow React a tick to mount and paint the new DOM elements
+      setTimeout(() => {
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'instant', block: 'center' })
+        } else {
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+        }
+      }, 50)
+      return
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }
+
   return (
     <>
       <PageLoader isLoaded={isLoaded} progress={progress} />
       <Layout>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
