@@ -131,7 +131,7 @@ function ProjectsHero() {
   ]
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#000000]">
       {/* Static image background */}
       <div className="absolute inset-0 z-0">
         <img src={projectsHeroBg} alt="" aria-hidden="true"
@@ -176,7 +176,7 @@ function ProjectsHero() {
               transition={{ duration: 0.7, delay: 1.0 }}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <a href="/contact" className="px-8 py-3.5 bg-white text-[#0a0a0a] text-sm font-heading font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5">
+              <a href="/contact" className="px-8 py-3.5 bg-white text-[#000000] text-sm font-heading font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5">
                 Start Your Project
               </a>
             </motion.div>
@@ -275,11 +275,10 @@ function CategoryNav({ activeCategory, onCategoryClick }) {
             <button
               key={cat.id}
               onClick={() => onCategoryClick(cat.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-heading font-medium whitespace-nowrap transition-all duration-400 ${
-                activeCategory === cat.id
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-heading font-medium whitespace-nowrap transition-all duration-400 ${activeCategory === cat.id
                   ? 'bg-charcoal text-white shadow-lg shadow-charcoal/20'
                   : 'bg-offwhite text-warm-gray hover:bg-light-gray hover:text-dark-slate'
-              }`}
+                }`}
             >
               <span className={`transition-colors duration-300 ${activeCategory === cat.id ? 'text-white/80' : 'text-warm-gray/60'}`}>
                 {cat.icon}
@@ -347,8 +346,8 @@ function CategorySection({ category, index }) {
 
   /* Determine grid layout depending on number of projects */
   const getGridCols = (count) => {
-    if (count === 1) return 'grid-cols-1 max-w-md'
-    if (count === 2) return 'grid-cols-1 sm:grid-cols-2 max-w-3xl'
+    if (count === 1) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+    if (count === 2) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
     if (count <= 3) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
     return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
   }
@@ -382,9 +381,7 @@ function CategorySection({ category, index }) {
         </motion.div>
 
         {/* Project cards grid */}
-        <div className={`grid ${getGridCols(category.projects.length)} gap-6 md:gap-8 ${
-          category.projects.length <= 2 ? 'mx-auto' : ''
-        }`}>
+        <div className={`grid ${getGridCols(category.projects.length)} gap-6 md:gap-8`}>
           {category.projects.map((project, i) => (
             <CategoryProjectCard key={project.title} project={project} index={i} />
           ))}

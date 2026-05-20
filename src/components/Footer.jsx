@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 
 const quickLinks = [
-  { name: 'Home',     path: '/' },
+  { name: 'Home', path: '/' },
   { name: 'About Us', path: '/about' },
   { name: 'Services', path: '/services' },
   { name: 'Projects', path: '/projects' },
-  { name: 'Contact',  path: '/contact' },
+  { name: 'Contact', path: '/contact' },
 ]
 
 const socials = [

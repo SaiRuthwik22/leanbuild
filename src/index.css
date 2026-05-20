@@ -2,18 +2,18 @@
 
 @theme {
   --color-primary: #FFFFFF;
-  --color-offwhite: #F5F5F0;
-  --color-charcoal: #1A1A1A;
-  --color-light-gray: #E8E8E8;
-  --color-medium-gray: #D4D4D4;
-  --color-warm-gray: #9C9C9C;
-  --color-dark-slate: #3D3D3D;
-  --color-stone: #A8A29E;
+  --color-offwhite: #F7F7F7;
+  --color-charcoal: #000000;
+  --color-light-gray: #E5E5E5;
+  --color-medium-gray: #CCCCCC;
+  --color-warm-gray: #737373;
+  --color-dark-slate: #171717;
+  --color-stone: #78716C;
   --color-glass: rgba(255, 255, 255, 0.08);
   --color-glass-border: rgba(255, 255, 255, 0.15);
 
-  --font-heading: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Poppins', sans-serif;
 }
 
 @layer base {

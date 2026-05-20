@@ -4,14 +4,14 @@ import { useEffect, useState, useRef } from 'react'
 import OptimizedImage from '../components/OptimizedImage'
 
 // Assets
-import aboutHeroBg   from '../assets/about_hero_bg.png'
+import aboutHeroBg from '../assets/about_hero_bg.png'
 import teamPresident from '../assets/team_president.png'
-import teamCVO       from '../assets/team_cvo.png'
+import teamCVO from '../assets/team_cvo.png'
 
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, transition: { duration: 0.3 } },
+  exit: { opacity: 0, transition: { duration: 0.3 } },
 }
 
 /* ─────────────────────────────────────────────
@@ -30,7 +30,7 @@ const videoSources = [
 
 function AboutHero() {
   const [videoIdx, setVideoIdx] = useState(0)
-  const [loaded, setLoaded]     = useState(false)
+  const [loaded, setLoaded] = useState(false)
   const videoRef = useRef(null)
 
   // Cycle videos
@@ -41,12 +41,12 @@ function AboutHero() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load()
-      videoRef.current.play().catch(() => {})
+      videoRef.current.play().catch(() => { })
     }
   }, [videoIdx])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#000000]">
 
       {/* ── VIDEO BACKGROUND ── */}
       <div className="absolute inset-0 z-0">
@@ -150,31 +150,56 @@ function AboutHero() {
 
 
 
-/* ─── Why Choose Us ─── */
-const reasons = [
-  { icon: '◷', title: '20+ Years Experience', desc: 'Two decades of delivering excellence in construction and architectural design.' },
-  { icon: '◉', title: 'Unmatched Quality',    desc: 'Premium materials and meticulous craftsmanship in every project we undertake.' },
-  { icon: '◈', title: 'Timely Delivery',      desc: 'Committed to project timelines without compromising on quality standards.' },
-  { icon: '◆', title: 'Innovation Driven',    desc: 'Leveraging cutting-edge technology and modern design methodologies.' },
+/* ─── Leadership Profile ─── */
+const leadershipProfile = [
+  {
+    title: 'Experience',
+    desc: 'Over 40 years of engineering and management experience, encompassing a wide breadth of expertise in electrical, mechanical, civil, warehousing, and industrial construction.'
+  },
+  {
+    title: 'History',
+    desc: 'As president and owner of an electrical control systems manufacturing company and an engineering and construction company, he has personally overseen every aspect of the business, incorporating both technical know-how as well as considerable financial and business management experience.'
+  },
+  {
+    title: 'Skills',
+    desc: 'This experience combined with his critical skill and keen attention to detail has led his advisory and consulting services to be sought out for various real estate ventures including multiple temples in Houston.'
+  },
+  {
+    title: 'Clients',
+    desc: 'Mr. Jannapureddy Managed and Successfully executed numerous multi million-dollar projects across the state of Texas, possesses in-depth planning, estimating, and construction knowledge.'
+  },
+  {
+    title: 'Work',
+    desc: 'Mr. Jannapureddy directly managed hands on several diversified projects totaling over $50 million required several disciplines.'
+  }
 ]
 
 function WhyChooseUs() {
   const headerRef = useScrollReveal({ y: 40 })
-  const gridRef   = useStaggerReveal('.why-card', { stagger: 0.12, y: 50 })
+  const gridRef = useStaggerReveal('.profile-card', { stagger: 0.15, y: 50 })
 
   return (
     <section className="section-padding bg-offwhite">
       <div className="container-narrow">
-        <div ref={headerRef} className="text-center mb-16">
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Why Choose Us</p>
+        <div ref={headerRef} className="text-center mb-16 max-w-2xl mx-auto">
+          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Leadership</p>
           <h2 className="text-balance">Built on Trust, Driven by Excellence</h2>
         </div>
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reasons.map((item, i) => (
-            <div key={i} className="why-card group p-8 rounded-2xl bg-white border border-light-gray/60 transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 cursor-default">
-              <div className="text-2xl mb-5 text-warm-gray group-hover:text-charcoal transition-colors duration-300">{item.icon}</div>
-              <h4 className="text-[0.95rem] font-semibold mb-3 leading-snug">{item.title}</h4>
-              <p className="text-sm text-warm-gray leading-relaxed">{item.desc}</p>
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {leadershipProfile.map((item, i) => (
+            <div key={i} className="profile-card group relative p-8 md:p-10 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] cursor-default">
+              {/* Corner crosshairs */}
+              <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-6 h-px bg-warm-gray/30 group-hover:bg-charcoal/40 transition-colors duration-300" />
+                <h4 className="text-[0.8rem] uppercase tracking-[0.2em] font-semibold text-charcoal">{item.title}</h4>
+              </div>
+              
+              <p className="text-[0.875rem] text-warm-gray leading-[1.85]">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -185,7 +210,7 @@ function WhyChooseUs() {
 
 /* ─── Vision & Mission ─── */
 function VisionMission() {
-  const leftRef  = useScrollReveal({ y: 50 })
+  const leftRef = useScrollReveal({ y: 50 })
   const rightRef = useScrollReveal({ y: 50, delay: 0.25 })
 
   return (
@@ -220,9 +245,9 @@ function VisionMission() {
 /* ─── Stats ─── */
 const stats = [
   { value: 350, suffix: '+', label: 'Projects Completed' },
-  { value: 22,  suffix: '+', label: 'Years Experience' },
+  { value: 22, suffix: '+', label: 'Years Experience' },
   { value: 500, suffix: '+', label: 'Happy Clients' },
-  { value: 45,  suffix: '',  label: 'Awards Won' },
+  { value: 45, suffix: '', label: 'Awards Won' },
 ]
 
 function StatItem({ value, suffix, label }) {
@@ -253,9 +278,9 @@ function StatsSection() {
 
 /* ─── Testimonials ─── */
 const testimonials = [
-  { name: 'Rajesh Kumar',  role: 'Homeowner',              initials: 'RK', text: 'LeanBuild transformed our dream home into reality. Their attention to detail and commitment to timelines was truly exceptional.' },
-  { name: 'Priya Sharma',  role: 'Business Owner',         initials: 'PS', text: "Outstanding work on our commercial complex. The team's professionalism and innovative approach set them apart from any builder we've worked with." },
-  { name: 'Anand Reddy',   role: 'Real Estate Developer',  initials: 'AR', text: 'Partnering with LeanBuild has been a game-changer. Superior quality, on-time delivery, and exceptional design sensibility throughout.' },
+  { name: 'Rajesh Kumar', role: 'Homeowner', initials: 'RK', text: 'LeanBuild transformed our dream home into reality. Their attention to detail and commitment to timelines was truly exceptional.' },
+  { name: 'Priya Sharma', role: 'Business Owner', initials: 'PS', text: "Outstanding work on our commercial complex. The team's professionalism and innovative approach set them apart from any builder we've worked with." },
+  { name: 'Anand Reddy', role: 'Real Estate Developer', initials: 'AR', text: 'Partnering with LeanBuild has been a game-changer. Superior quality, on-time delivery, and exceptional design sensibility throughout.' },
 ]
 
 function TestimonialsSection() {
@@ -327,17 +352,17 @@ const teamMembers = [
 
 function TeamSection() {
   const headerRef = useScrollReveal({ y: 40 })
-  const cardsRef  = useStaggerReveal('.team-card', { stagger: 0.2, y: 60 })
+  const cardsRef = useStaggerReveal('.team-card', { stagger: 0.2, y: 60 })
 
   return (
-    <section className="section-padding bg-[#faf9f6] relative overflow-hidden">
+    <section className="section-padding bg-white relative overflow-hidden">
       {/* Technical Drafting / Stitched Blueprint Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.35]" 
+      <div
+        className="absolute inset-0 opacity-[0.35]"
         style={{
           backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
           backgroundSize: '24px 24px'
-        }} 
+        }}
       />
       {/* Decorative vertical line */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-dashed border-charcoal/10 -translate-x-1/2 hidden lg:block" />
@@ -366,7 +391,7 @@ function TeamSection() {
 
               {/* Asymmetric layout inside card */}
               <div className="flex flex-col md:flex-row gap-8 items-start">
-                
+
                 {/* Image Container with precise framing */}
                 <div className="relative w-full md:w-44 h-56 md:h-64 rounded bg-offwhite overflow-hidden border border-light-gray group-hover:border-charcoal/40 transition-colors duration-500 flex-shrink-0">
                   <OptimizedImage
@@ -410,7 +435,7 @@ function TeamSection() {
                       </span>
                       <span>Connect Profile</span>
                     </a>
-                    
+
                     <span className="text-[9px] font-mono text-light-gray select-none">
                       LB.SEC-02
                     </span>

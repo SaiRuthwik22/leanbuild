@@ -6,19 +6,19 @@ import OptimizedImage from '../components/OptimizedImage'
 
 // Service images
 import imgResidential from '../assets/svc_residential.jpg'
-import imgCommercial  from '../assets/svc_commercial.jpg'
-import imgInterior    from '../assets/svc_interior.jpg'
-import imgRenovation  from '../assets/svc_renovation.jpg'
-import imgDesign      from '../assets/svc_design.png'
+import imgCommercial from '../assets/svc_commercial.jpg'
+import imgInterior from '../assets/svc_interior.jpg'
+import imgRenovation from '../assets/svc_renovation.jpg'
+import imgDesign from '../assets/svc_design.png'
 import imgEngineering from '../assets/svc_engineering.png'
-import imgHorizon     from '../assets/proj_horizon.jpg'
-import imgSerene      from '../assets/proj_serene.jpg'
+import imgHorizon from '../assets/proj_horizon.jpg'
+import imgSerene from '../assets/proj_serene.jpg'
 import servicesHeroBg from '../assets/services_hero_bg.png'
 
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, transition: { duration: 0.3 } },
+  exit: { opacity: 0, transition: { duration: 0.3 } },
 }
 
 /* ─── SERVICES DATA ─── */
@@ -61,16 +61,16 @@ const services = [
 ]
 
 const processSteps = [
-  { step: '01', title: 'Discovery',         desc: 'We listen deeply — understanding your vision, lifestyle, constraints, and aspirations through immersive consultation sessions.',    icon: '🔍' },
-  { step: '02', title: 'Design & Blueprint', desc: 'Our architects create detailed 3D visualizations and blueprints, iterating with you until every line reflects your intent.',     icon: '📐' },
-  { step: '03', title: 'Build & Craft',      desc: 'Skilled artisans and engineers bring the design to life with premium materials, daily quality audits, and transparent progress reports.', icon: '🏗️' },
-  { step: '04', title: 'Handover & Beyond',  desc: 'Final walkthrough, quality certification, and 2-year warranty. We stay connected long after the keys change hands.',           icon: '🔑' },
+  { step: '01', title: 'Discovery', desc: 'We listen deeply — understanding your vision, lifestyle, constraints, and aspirations through immersive consultation sessions.', icon: '🔍' },
+  { step: '02', title: 'Design & Blueprint', desc: 'Our architects create detailed 3D visualizations and blueprints, iterating with you until every line reflects your intent.', icon: '📐' },
+  { step: '03', title: 'Build & Craft', desc: 'Skilled artisans and engineers bring the design to life with premium materials, daily quality audits, and transparent progress reports.', icon: '🏗️' },
+  { step: '04', title: 'Handover & Beyond', desc: 'Final walkthrough, quality certification, and 2-year warranty. We stay connected long after the keys change hands.', icon: '🔑' },
 ]
 
 /* ─── HERO (Same style as landing page, static image) ─── */
 function ServicesHero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#000000]">
       {/* Static image background */}
       <div className="absolute inset-0 z-0">
         <img src={servicesHeroBg} alt="" aria-hidden="true"
@@ -109,7 +109,7 @@ function ServicesHero() {
             className="mt-7 text-white/65 leading-relaxed max-w-xl"
             style={{ fontSize: 'clamp(1rem, 1.5vw, 1.15rem)' }}
           >
-            From the first sketch to the final handover, we deliver end-to-end 
+            From the first sketch to the final handover, we deliver end-to-end
             services crafted to exceed every expectation.
           </motion.p>
 
@@ -137,9 +137,9 @@ function ServicesHero() {
 /* ─── ALTERNATING SERVICE ROWS ─── */
 function ServiceRow({ service, index }) {
   const isReversed = index % 2 === 1
-  const imgRef   = useScrollReveal({ y: 60, delay: 0.1 })
-  const textRef  = useScrollReveal({ y: 50, delay: 0.25 })
-  const listRef  = useStaggerReveal('.feat-item', { stagger: 0.08, y: 20 })
+  const imgRef = useScrollReveal({ y: 60, delay: 0.1 })
+  const textRef = useScrollReveal({ y: 50, delay: 0.25 })
+  const listRef = useStaggerReveal('.feat-item', { stagger: 0.08, y: 20 })
 
   return (
     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center ${isReversed ? 'lg:[direction:rtl]' : ''}`}>
@@ -208,7 +208,7 @@ function CapabilityBanner() {
           <p className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-4">Our Capabilities</p>
           <h2 className="text-white text-balance">End-to-End Construction Expertise</h2>
           <p className="mt-5 text-white/50 max-w-2xl mx-auto leading-relaxed">
-            From foundation to furnishing, we bring deep expertise across every 
+            From foundation to furnishing, we bring deep expertise across every
             phase of construction and design.
           </p>
         </div>
@@ -216,9 +216,9 @@ function CapabilityBanner() {
         <div ref={gridRef} className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { n: '150+', label: 'Residential Projects', desc: 'Luxury homes delivered on time and on budget' },
-            { n: '75+',  label: 'Commercial Builds',   desc: 'Offices, retail, and mixed-use complexes' },
-            { n: '40+',  label: 'Interior Projects',   desc: 'Award-winning interior transformations' },
-            { n: '98%',  label: 'Client Satisfaction',  desc: 'Repeat clients and referrals' },
+            { n: '75+', label: 'Commercial Builds', desc: 'Offices, retail, and mixed-use complexes' },
+            { n: '40+', label: 'Interior Projects', desc: 'Award-winning interior transformations' },
+            { n: '98%', label: 'Client Satisfaction', desc: 'Repeat clients and referrals' },
           ].map((item, i) => (
             <div key={i} className="cap-item p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
               <span className="text-3xl font-heading font-bold text-white">{item.n}</span>
@@ -234,7 +234,7 @@ function CapabilityBanner() {
 
 /* ─── PROCESS TIMELINE ─── */
 function ProcessTimeline() {
-  const headerRef   = useScrollReveal({ y: 40 })
+  const headerRef = useScrollReveal({ y: 40 })
   const timelineRef = useStaggerReveal('.proc-step', { stagger: 0.15, y: 50 })
 
   return (
@@ -267,8 +267,8 @@ function ProcessTimeline() {
 /* ─── FEATURED WORK TEASER ─── */
 function FeaturedWorkTeaser() {
   const headerRef = useScrollReveal({ y: 30 })
-  const card1Ref  = useScrollReveal({ y: 50, delay: 0.1 })
-  const card2Ref  = useScrollReveal({ y: 50, delay: 0.25 })
+  const card1Ref = useScrollReveal({ y: 50, delay: 0.1 })
+  const card2Ref = useScrollReveal({ y: 50, delay: 0.25 })
 
   return (
     <section className="section-padding bg-white">

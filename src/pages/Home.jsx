@@ -5,24 +5,24 @@ import { Link } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
 
 // Assets
-import heroBg          from '../assets/hero_bg.jpg'
-import svcInterior     from '../assets/svc_interior.jpg'
+import heroBg from '../assets/hero_bg.jpg'
+import svcInterior from '../assets/svc_interior.jpg'
 import imgMultifamily1 from '../assets/proj_multifamily_1.png'
-import imgWarehouse1   from '../assets/proj_warehouse_1.png'
-import imgRetail1      from '../assets/proj_retail_1.png'
-import imgTownhome1    from '../assets/proj_townhome_1.png'
-import imgIndustrial1  from '../assets/proj_industrial_1.png'
+import imgWarehouse1 from '../assets/proj_warehouse_1.png'
+import imgRetail1 from '../assets/proj_retail_1.png'
+import imgTownhome1 from '../assets/proj_townhome_1.png'
+import imgIndustrial1 from '../assets/proj_industrial_1.png'
 import imgInstitutional1 from '../assets/proj_institutional_1.png'
-import imgDesign       from '../assets/svc_design.png'
-import imgEngineering  from '../assets/svc_engineering.png'
-import imgInterior     from '../assets/svc_interior.jpg'
-import imgRenovation   from '../assets/svc_renovation.jpg'
-import imgCommercial   from '../assets/svc_commercial.jpg'
+import imgDesign from '../assets/svc_design.png'
+import imgEngineering from '../assets/svc_engineering.png'
+import imgInterior from '../assets/svc_interior.jpg'
+import imgRenovation from '../assets/svc_renovation.jpg'
+import imgCommercial from '../assets/svc_commercial.jpg'
 
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, transition: { duration: 0.3 } },
+  exit: { opacity: 0, transition: { duration: 0.3 } },
 }
 
 /* ─────────────────────────────────────────────
@@ -41,7 +41,7 @@ const videoSources = [
 
 function HeroSection() {
   const [videoIdx, setVideoIdx] = useState(0)
-  const [loaded, setLoaded]     = useState(false)
+  const [loaded, setLoaded] = useState(false)
   const videoRef = useRef(null)
 
   // Cycle videos
@@ -52,12 +52,12 @@ function HeroSection() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load()
-      videoRef.current.play().catch(() => {})
+      videoRef.current.play().catch(() => { })
     }
   }, [videoIdx])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#000000]">
 
       {/* ── VIDEO BACKGROUND ── */}
       <div className="absolute inset-0 z-0">
@@ -136,7 +136,7 @@ function HeroSection() {
           >
             <a
               href="/projects"
-              className="px-8 py-3.5 bg-white text-[#0a0a0a] text-sm font-heading font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5"
+              className="px-8 py-3.5 bg-white text-[#000000] text-sm font-heading font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5"
             >
               View Projects
             </a>
@@ -154,13 +154,12 @@ function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3 }}
-          className="mt-24 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="mt-24 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-6"
         >
           {[
-            { n: '350+', label: 'Projects Completed' },
-            { n: '22+',  label: 'Years Experience' },
-            { n: '500+', label: 'Happy Clients' },
-            { n: '45',   label: 'Awards Won' },
+            { n: '40+', label: 'Years in Market' },
+            { n: '80+', label: 'Loyalty Customers' },
+            { n: '100+', label: 'Completed Projects' },
           ].map(stat => (
             <div key={stat.label}>
               <div className="text-2xl font-heading font-bold text-white">{stat.n}</div>
@@ -202,11 +201,11 @@ function HeroSection() {
 
 /* ─── Who We Are ─── */
 function IntroSection() {
-  const tagRef     = useScrollReveal({ y: 20, delay: 0.05 })
-  const titleRef   = useScrollReveal({ y: 45, delay: 0.15 })
-  const bodyRef    = useScrollReveal({ y: 35, delay: 0.3 })
-  const divRef     = useScrollReveal({ y: 0, delay: 0.45, duration: 0.8 })
-  const imgRef     = useScrollReveal({ y: 30, delay: 0.2 })
+  const tagRef = useScrollReveal({ y: 20, delay: 0.05 })
+  const titleRef = useScrollReveal({ y: 45, delay: 0.15 })
+  const bodyRef = useScrollReveal({ y: 35, delay: 0.3 })
+  const divRef = useScrollReveal({ y: 0, delay: 0.45, duration: 0.8 })
+  const imgRef = useScrollReveal({ y: 30, delay: 0.2 })
 
   return (
     <section className="section-padding bg-white">
@@ -294,14 +293,14 @@ function ProjectsSection() {
   return (
     <section className="section-padding bg-offwhite relative overflow-hidden">
       {/* Blueprint grid background */}
-      <div 
-        className="absolute inset-0 opacity-[0.25]" 
+      <div
+        className="absolute inset-0 opacity-[0.25]"
         style={{
           backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
           backgroundSize: '24px 24px'
-        }} 
+        }}
       />
-      
+
       <div className="container-narrow relative z-10">
         <div ref={headerReveal} className="text-center mb-20">
           <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">// SELECT PORTFOLIO</p>
@@ -315,11 +314,10 @@ function ProjectsSection() {
           {projectCategories.map((item, index) => {
             const isReversed = index % 2 === 1
             return (
-              <div 
-                key={item.id} 
-                className={`proj-row grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center ${
-                  isReversed ? 'lg:flex-row-reverse' : ''
-                }`}
+              <div
+                key={item.id}
+                className={`proj-row grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center ${isReversed ? 'lg:flex-row-reverse' : ''
+                  }`}
               >
                 {/* Image side */}
                 <div className={`lg:col-span-7 ${isReversed ? 'lg:order-2' : ''}`}>
@@ -407,17 +405,17 @@ function LeanBuildStatsItem({ value, suffix, label, desc, index }) {
 
 function LeanBuildStatsSection() {
   const headerReveal = useScrollReveal({ y: 40 })
-  const gridReveal   = useStaggerReveal('.why-card', { stagger: 0.15, y: 50 })
+  const gridReveal = useStaggerReveal('.why-card', { stagger: 0.15, y: 50 })
 
   return (
     <section className="section-padding bg-white relative overflow-hidden">
       {/* Drafting grid background */}
-      <div 
-        className="absolute inset-0 opacity-[0.35]" 
+      <div
+        className="absolute inset-0 opacity-[0.35]"
         style={{
           backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
           backgroundSize: '24px 24px'
-        }} 
+        }}
       />
 
       <div className="container-narrow relative z-10">
@@ -475,17 +473,17 @@ const servicesList = [
 
 function ExploreServicesSection() {
   const headerReveal = useScrollReveal({ y: 40 })
-  const gridReveal   = useStaggerReveal('.svc-card', { stagger: 0.1, y: 40 })
+  const gridReveal = useStaggerReveal('.svc-card', { stagger: 0.1, y: 40 })
 
   return (
     <section className="section-padding bg-offwhite relative overflow-hidden border-t border-dashed border-charcoal/10">
       {/* Background drafting grid */}
-      <div 
-        className="absolute inset-0 opacity-[0.25]" 
+      <div
+        className="absolute inset-0 opacity-[0.25]"
         style={{
           backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
           backgroundSize: '24px 24px'
-        }} 
+        }}
       />
 
       <div className="container-narrow relative z-10">
@@ -500,8 +498,8 @@ function ExploreServicesSection() {
         <div ref={gridReveal} className="grid grid-cols-1 md:grid-cols-6 gap-8 max-w-6xl mx-auto">
           {/* Top 3 services */}
           {servicesList.slice(0, 3).map((svc, i) => (
-            <div 
-              key={svc.num} 
+            <div
+              key={svc.num}
               className="svc-card md:col-span-2 group relative p-6 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-lg flex flex-col justify-between"
             >
               {/* Corner crosshairs */}
@@ -536,11 +534,10 @@ function ExploreServicesSection() {
 
           {/* Bottom 2 services */}
           {servicesList.slice(3).map((svc, i) => (
-            <div 
-              key={svc.num} 
-              className={`svc-card md:col-span-2 group relative p-6 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-lg flex flex-col justify-between ${
-                i === 0 ? 'md:col-start-2' : ''
-              }`}
+            <div
+              key={svc.num}
+              className={`svc-card md:col-span-2 group relative p-6 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-lg flex flex-col justify-between ${i === 0 ? 'md:col-start-2' : ''
+                }`}
             >
               {/* Corner crosshairs */}
               <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
@@ -602,9 +599,9 @@ function CTASection() {
 
 /* ─── TESTIMONIALS ─── */
 const testimonials = [
-  { name: 'Rajesh Kumar',  role: 'Homeowner',              initials: 'RK', text: 'LeanBuild transformed our dream home into reality. Their attention to detail and commitment to timelines was truly exceptional.' },
-  { name: 'Priya Sharma',  role: 'Business Owner',         initials: 'PS', text: "Outstanding work on our commercial complex. The team's professionalism and innovative approach set them apart from any builder we've worked with." },
-  { name: 'Anand Reddy',   role: 'Real Estate Developer',  initials: 'AR', text: 'Partnering with LeanBuild has been a game-changer. Superior quality, on-time delivery, and exceptional design sensibility throughout.' },
+  { name: 'Rajesh Kumar', role: 'Homeowner', initials: 'RK', text: 'LeanBuild transformed our dream home into reality. Their attention to detail and commitment to timelines was truly exceptional.' },
+  { name: 'Priya Sharma', role: 'Business Owner', initials: 'PS', text: "Outstanding work on our commercial complex. The team's professionalism and innovative approach set them apart from any builder we've worked with." },
+  { name: 'Anand Reddy', role: 'Real Estate Developer', initials: 'AR', text: 'Partnering with LeanBuild has been a game-changer. Superior quality, on-time delivery, and exceptional design sensibility throughout.' },
 ]
 
 function TestimonialsSection() {
@@ -617,7 +614,7 @@ function TestimonialsSection() {
   }, [])
 
   return (
-    <section className="section-padding bg-[#faf9f6]">
+    <section className="section-padding bg-white">
       <div className="container-narrow max-w-3xl mx-auto text-center">
         <div ref={wrapperRef}>
           <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Testimonials</p>

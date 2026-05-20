@@ -7,7 +7,7 @@ import contactHeroBg from '../assets/contact_hero_bg.png'
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, transition: { duration: 0.3 } },
+  exit: { opacity: 0, transition: { duration: 0.3 } },
 }
 
 /* ─── HERO ─── */
@@ -15,7 +15,7 @@ function ContactHero() {
   const parallaxRef = useParallax(0.2)
 
   return (
-    <section className="relative min-h-[60vh] flex items-end pb-20 pt-36 overflow-hidden bg-[#0a0a0a]">
+    <section className="relative min-h-[60vh] flex items-end pb-20 pt-36 overflow-hidden bg-[#000000]">
       <div className="absolute inset-0 z-0 parallax-container">
         <img ref={parallaxRef} src={contactHeroBg} alt="" aria-hidden="true" className="parallax-img" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/40" />
@@ -42,7 +42,7 @@ function ContactHero() {
           transition={{ duration: 0.7, delay: 0.65 }}
           className="mt-6 max-w-xl text-white/55 leading-relaxed text-[1.05rem]"
         >
-          Whether you have a project in mind or just want to explore possibilities, 
+          Whether you have a project in mind or just want to explore possibilities,
           we'd love to hear from you.
         </motion.p>
       </div>
