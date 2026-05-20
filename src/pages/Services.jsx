@@ -9,6 +9,8 @@ import imgResidential from '../assets/svc_residential.jpg'
 import imgCommercial  from '../assets/svc_commercial.jpg'
 import imgInterior    from '../assets/svc_interior.jpg'
 import imgRenovation  from '../assets/svc_renovation.jpg'
+import imgDesign      from '../assets/svc_design.png'
+import imgEngineering from '../assets/svc_engineering.png'
 import imgHorizon     from '../assets/proj_horizon.jpg'
 import imgSerene      from '../assets/proj_serene.jpg'
 import servicesHeroBg from '../assets/services_hero_bg.png'
@@ -23,31 +25,38 @@ const pageVariants = {
 const services = [
   {
     num: '01',
-    title: 'Residential Construction',
-    desc: 'Bespoke luxury homes designed around how you live — open-plan kitchens that flow into sun-drenched terraces, bedrooms with panoramic views, and smart automation woven invisibly into every room.',
-    features: ['Custom Floor Plans', 'Premium Materials', 'Smart Home Integration', 'Energy-Efficient Design'],
-    img: imgResidential,
+    title: 'Design',
+    desc: 'We assist you in transforming conceptual ideas into detailed blueprints.',
+    features: ['Architectural Drawings', 'Concept Development', '3D Visualizations', 'Blueprint Detailing'],
+    img: imgDesign,
   },
   {
     num: '02',
-    title: 'Commercial Buildings',
-    desc: 'From gleaming corporate headquarters to boutique retail spaces — we engineer environments that elevate brands, boost productivity, and leave lasting impressions on every visitor.',
-    features: ['Office Complexes', 'Retail Spaces', 'Hospitality Venues', 'Mixed-Use Developments'],
-    img: imgCommercial,
+    title: 'Engineering',
+    desc: 'We have an experienced team that can provide customized innovative engineering solutions.',
+    features: ['Structural Engineering', 'MEP Systems', 'Value Engineering', 'Sustainability Analysis'],
+    img: imgEngineering,
   },
   {
     num: '03',
-    title: 'Interior Design',
-    desc: 'Where architecture meets emotion. We curate interiors that are both gallery-worthy and deeply livable — selecting materials, lighting, and furniture that transform spaces into experiences.',
-    features: ['Space Planning & Layout', 'Custom Furniture Design', 'Lighting Architecture', 'Material Curation'],
+    title: 'Space Planning',
+    desc: 'We offer our clients consulting services with our highly qualified and experienced construction specialists.',
+    features: ['Layout Optimization', 'Functional Zoning', 'Traffic Flow Analysis', 'Utilization Studies'],
     img: imgInterior,
   },
   {
     num: '04',
-    title: 'Renovation & Restoration',
-    desc: 'Breathing new life into cherished structures. Whether it\'s modernizing a heritage bungalow or reimagining a dated office floor, we honour the past while building for the future.',
-    features: ['Structural Modernization', 'Heritage Restoration', 'Kitchen & Bath Remodels', 'Adaptive Reuse'],
+    title: 'Re-Modeling',
+    desc: 'Our skilled team of designers help in Re-modeling projects as per client\'s requirements.',
+    features: ['Interior Renovation', 'Structural Upgrades', 'Adaptive Reuse', 'Permit Management'],
     img: imgRenovation,
+  },
+  {
+    num: '05',
+    title: 'Prefabrication Solutions',
+    desc: 'We work with the client needs and pre-fabrication companies to provide the feasibility of the project.',
+    features: ['Modular Construction', 'Offsite Fabrication', 'Cost Feasibility', 'Quality Control'],
+    img: imgCommercial,
   },
 ]
 
@@ -89,7 +98,7 @@ function ServicesHero() {
             className="text-white leading-[1.08] text-balance"
             style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)', letterSpacing: '-0.03em', fontWeight: 700 }}
           >
-            Comprehensive Construction & Design Solutions
+            Full-Service Construction & Design — From Ground Up to Renovation
           </motion.h1>
 
           {/* Subtitle */}
@@ -104,41 +113,7 @@ function ServicesHero() {
             services crafted to exceed every expectation.
           </motion.p>
 
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.0 }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
-            <a href="/contact" className="px-8 py-3.5 bg-white text-[#0a0a0a] text-sm font-heading font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5">
-              Start a Project
-            </a>
-            <a href="/projects" className="px-8 py-3.5 border border-white/30 text-white text-sm font-heading font-medium rounded-full backdrop-blur-sm transition-all duration-300 hover:border-white/70 hover:bg-white/10">
-              View Our Work
-            </a>
-          </motion.div>
         </div>
-
-        {/* Stats bar at bottom */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.3 }}
-          className="mt-24 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6"
-        >
-          {[
-            { n: '4', label: 'Core Services' },
-            { n: '350+', label: 'Projects Done' },
-            { n: '22+', label: 'Years Experience' },
-            { n: '98%', label: 'Satisfaction' },
-          ].map(stat => (
-            <div key={stat.label}>
-              <div className="text-2xl font-heading font-bold text-white">{stat.n}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/40">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}

@@ -1,11 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollReveal, useStaggerReveal, useCountUp } from '../hooks/useScrollAnimations'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import OptimizedImage from '../components/OptimizedImage'
 
 // Assets
 import aboutHeroBg   from '../assets/about_hero_bg.png'
-import svcInterior   from '../assets/svc_interior.jpg'
 import teamPresident from '../assets/team_president.png'
 import teamCVO       from '../assets/team_cvo.png'
 
@@ -16,26 +15,70 @@ const pageVariants = {
 }
 
 /* ─────────────────────────────────────────────
-   ABOUT HERO — static image, not video
-───────────────────────────────────────────── */
+   VIDEO SOURCES
+   Free Pexels architecture / construction videos
+   (multiple clips cycle for interior + exterior)
+   ───────────────────────────────────────────── */
+const videoSources = [
+  // Pexels: luxury modern home exterior
+  'https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_25fps.mp4',
+  // Pexels: modern house interior / living room
+  'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_25fps.mp4',
+  // Pexels: building construction exterior
+  'https://videos.pexels.com/video-files/3252564/3252564-hd_1920_1080_24fps.mp4',
+]
+
 function AboutHero() {
+  const [videoIdx, setVideoIdx] = useState(0)
+  const [loaded, setLoaded]     = useState(false)
+  const videoRef = useRef(null)
+
+  // Cycle videos
+  const handleVideoEnd = () => {
+    setVideoIdx(i => (i + 1) % videoSources.length)
+  }
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load()
+      videoRef.current.play().catch(() => {})
+    }
+  }, [videoIdx])
+
   return (
-    <section className="relative min-h-[75vh] flex items-center overflow-hidden bg-[#0a0a0a]">
-      {/* Background Image */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+
+      {/* ── VIDEO BACKGROUND ── */}
       <div className="absolute inset-0 z-0">
+        {/* Fallback image shown before video loads */}
         <img
           src={aboutHeroBg}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${loaded ? 'opacity-0' : 'opacity-100'}`}
         />
+        <video
+          ref={videoRef}
+          key={videoSources[videoIdx]}
+          muted
+          autoPlay
+          playsInline
+          onCanPlayThrough={() => setLoaded(true)}
+          onEnded={handleVideoEnd}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+          style={{ willChange: 'opacity' }}
+        >
+          <source src={videoSources[videoIdx]} type="video/mp4" />
+        </video>
+
         {/* Multi-layer dark overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
+        {/* Subtle vignette */}
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)' }} />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 w-full container-narrow pt-28 pb-24">
+      {/* ── HERO CONTENT ── */}
+      <div className="relative z-10 w-full container-narrow pt-28 pb-32">
         <div className="max-w-3xl">
           {/* Overline */}
           <motion.div
@@ -79,7 +122,7 @@ function AboutHero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
+        transition={{ delay: 1.8, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
       >
         <span className="text-[9px] uppercase tracking-[0.35em] text-white/35">Scroll</span>
@@ -89,50 +132,23 @@ function AboutHero() {
           className="w-px h-9 bg-white/20"
         />
       </motion.div>
-    </section>
-  )
-}
 
-/* ─── Who We Are ─── */
-function IntroSection() {
-  const tagRef     = useScrollReveal({ y: 20, delay: 0.05 })
-  const titleRef   = useScrollReveal({ y: 45, delay: 0.15 })
-  const bodyRef    = useScrollReveal({ y: 35, delay: 0.3 })
-  const divRef     = useScrollReveal({ y: 0, delay: 0.45, duration: 0.8 })
-  const imgRef     = useScrollReveal({ y: 30, delay: 0.2 })
-
-  return (
-    <section className="section-padding bg-white">
-      <div className="container-narrow grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <p ref={tagRef} className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-5">Who We Are</p>
-          <h2 ref={titleRef} className="text-balance leading-[1.12]">A Legacy of Architectural Excellence</h2>
-          <p ref={bodyRef} className="mt-7 leading-[1.85] text-warm-gray text-[1.025rem]">
-            With over two decades of expertise, we transform ambitious visions into stunning
-            realities. Our commitment to precision engineering, sustainable practices, and
-            timeless aesthetics has made us a trusted name in modern construction.
-          </p>
-          <div ref={divRef} className="mt-10 w-12 h-px bg-light-gray" />
-        </div>
-
-        {/* Interior design image */}
-        <div ref={imgRef} className="relative h-[420px] rounded-2xl overflow-hidden">
-          <OptimizedImage
-            src={svcInterior}
-            alt="Premium interior design by LeanBuild"
-            className="w-full h-full object-cover"
-            wrapperClassName="w-full h-full"
+      {/* Video dot indicators */}
+      <div className="absolute bottom-10 right-8 flex gap-2 z-10">
+        {videoSources.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { setVideoIdx(i); setLoaded(false) }}
+            aria-label={`Video ${i + 1}`}
+            className={`h-1 rounded-full transition-all duration-500 ${videoIdx === i ? 'w-6 bg-white' : 'w-2 bg-white/25 hover:bg-white/50'}`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-          <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3">
-            <p className="text-xs font-semibold text-charcoal">Interior Excellence</p>
-            <p className="text-[10px] text-warm-gray mt-0.5">Precision in every detail</p>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   )
 }
+
+
 
 /* ─── Why Choose Us ─── */
 const reasons = [
@@ -314,72 +330,96 @@ function TeamSection() {
   const cardsRef  = useStaggerReveal('.team-card', { stagger: 0.2, y: 60 })
 
   return (
-    <section className="section-padding bg-white relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, #1A1A1A 1px, transparent 0)',
-        backgroundSize: '40px 40px'
-      }} />
+    <section className="section-padding bg-[#faf9f6] relative overflow-hidden">
+      {/* Technical Drafting / Stitched Blueprint Grid Pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.35]" 
+        style={{
+          backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
+        }} 
+      />
+      {/* Decorative vertical line */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-dashed border-charcoal/10 -translate-x-1/2 hidden lg:block" />
 
       <div className="container-narrow relative z-10">
         <div ref={headerRef} className="text-center mb-20">
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Our Leadership</p>
-          <h2 className="text-balance gradient-text">The Visionaries Behind LeanBuild</h2>
-          <p className="mt-5 max-w-2xl mx-auto text-warm-gray leading-relaxed">
-            Our leadership team combines decades of industry expertise with a passion for 
-            innovation, ensuring every project reflects our commitment to excellence.
+          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">
+            The Minds Building the Future
+          </h2>
+          <p className="mt-5 max-w-xl mx-auto text-warm-gray text-sm leading-relaxed">
+            Our leadership combines architectural imagination with precision engineering. Engineered for high performance, built to endure.
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+        <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
           {teamMembers.map((member, i) => (
             <div
               key={member.name}
-              className={`team-card group relative rounded-3xl overflow-hidden bg-offwhite border border-light-gray/60 transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 ${i % 2 === 0 ? 'tilt-card' : 'tilt-card tilt-card-reverse'}`}
+              className="team-card group relative p-8 md:p-10 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)]"
             >
-              {/* Image area */}
-              <div className="relative h-80 overflow-hidden">
-                <OptimizedImage
-                  src={member.img}
-                  alt={member.name}
-                  className="w-full h-full object-cover object-top transition-transform duration-[1.4s] ease-out group-hover:scale-110"
-                  wrapperClassName="w-full h-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              {/* Corner crosshairs for technical drafting look */}
+              <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+
+              {/* Asymmetric layout inside card */}
+              <div className="flex flex-col md:flex-row gap-8 items-start">
                 
-                {/* Floating role badge */}
-                <div className="absolute top-5 left-5 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-charcoal">
-                    {member.role}
-                  </span>
+                {/* Image Container with precise framing */}
+                <div className="relative w-full md:w-44 h-56 md:h-64 rounded bg-offwhite overflow-hidden border border-light-gray group-hover:border-charcoal/40 transition-colors duration-500 flex-shrink-0">
+                  <OptimizedImage
+                    src={member.img}
+                    alt={member.name}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                    wrapperClassName="w-full h-full"
+                  />
+                  {/* Outer accent "stitch" lines overlay */}
+                  <div className="absolute inset-2 border border-dashed border-white/40 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
-                {/* Name overlay on image */}
-                <div className="absolute bottom-5 left-6 right-6">
-                  <h3 className="text-2xl font-heading font-bold text-white tracking-tight">
-                    {member.name}
-                  </h3>
+                {/* Info and Bio section */}
+                <div className="flex-1 flex flex-col justify-between h-full min-h-[220px]">
+                  <div>
+                    {/* Role Stamp */}
+                    <div className="text-[9px] uppercase tracking-[0.25em] font-mono font-bold text-warm-gray mb-2">
+                      // {member.role}
+                    </div>
+                    {/* Name */}
+                    <h3 className="text-xl font-bold text-charcoal mb-4 tracking-tight group-hover:text-black transition-colors duration-300">
+                      {member.name}
+                    </h3>
+                    {/* Bio */}
+                    <p className="text-xs text-warm-gray leading-[1.85] font-light">
+                      {member.bio}
+                    </p>
+                  </div>
+
+                  {/* Stamp signature / LinkedIn link */}
+                  <div className="mt-8 pt-6 border-t border-dashed border-light-gray flex items-center justify-between">
+                    <a
+                      href={member.linkedin}
+                      className="group/btn flex items-center gap-3 text-[10px] uppercase font-mono tracking-widest text-charcoal hover:text-black transition-colors duration-300"
+                      aria-label={`${member.name} LinkedIn`}
+                    >
+                      <span className="w-6 h-6 rounded-full border border-charcoal/20 flex items-center justify-center group-hover/btn:border-charcoal group-hover/btn:bg-charcoal group-hover/btn:text-white transition-all duration-300">
+                        <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                      </span>
+                      <span>Connect Profile</span>
+                    </a>
+                    
+                    <span className="text-[9px] font-mono text-light-gray select-none">
+                      LB.SEC-02
+                    </span>
+                  </div>
+
                 </div>
+
               </div>
 
-              {/* Content area */}
-              <div className="p-7">
-                <p className="text-sm text-warm-gray leading-[1.85]">
-                  {member.bio}
-                </p>
-                <div className="mt-6 flex items-center gap-3">
-                  <a
-                    href={member.linkedin}
-                    className="w-9 h-9 rounded-full border border-light-gray flex items-center justify-center text-warm-gray hover:text-charcoal hover:border-charcoal transition-all duration-300"
-                    aria-label={`${member.name} LinkedIn`}
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                  </a>
-                  <div className="w-8 h-px bg-light-gray" />
-                </div>
-              </div>
             </div>
           ))}
         </div>
@@ -392,9 +432,8 @@ export default function About() {
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <AboutHero />
-      <IntroSection />
-      <WhyChooseUs />
       <TeamSection />
+      <WhyChooseUs />
       <VisionMission />
       <StatsSection />
       <TestimonialsSection />

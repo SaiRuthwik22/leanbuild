@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useMemo } from 'react'
 import { useScrollReveal, useStaggerReveal, useParallax } from '../hooks/useScrollAnimations'
 import OptimizedImage from '../components/OptimizedImage'
 
+/* Hero images (unchanged) */
 import imgHorizon from '../assets/proj_horizon.jpg'
 import imgSerene from '../assets/proj_serene.jpg'
 import imgMeridian from '../assets/proj_meridian.jpg'
@@ -11,22 +12,113 @@ import imgUrban from '../assets/proj_urban.jpg'
 import imgSkyline from '../assets/proj_skyline.jpg'
 import projectsHeroBg from '../assets/projects_hero_bg.png'
 
+/* ─── Portfolio category images ─── */
+import imgMultifamily1 from '../assets/proj_multifamily_1.png'
+import imgMultifamily2 from '../assets/proj_multifamily_2.png'
+import imgMultifamily3 from '../assets/proj_multifamily_3.png'
+import imgWarehouse1 from '../assets/proj_warehouse_1.png'
+import imgWarehouse2 from '../assets/proj_warehouse_2.png'
+import imgWarehouse3 from '../assets/proj_warehouse_3.png'
+import imgRetail1 from '../assets/proj_retail_1.png'
+import imgRetail2 from '../assets/proj_retail_2.png'
+import imgTownhome1 from '../assets/proj_townhome_1.png'
+import imgIndustrial1 from '../assets/proj_industrial_1.png'
+import imgIndustrial2 from '../assets/proj_industrial_2.png'
+import imgIndustrial3 from '../assets/proj_industrial_3.png'
+import imgIndustrial4 from '../assets/proj_industrial_4.png'
+import imgIndustrial5 from '../assets/proj_industrial_5.png'
+import imgInstitutional1 from '../assets/proj_institutional_1.png'
+
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
   exit: { opacity: 0, transition: { duration: 0.3 } },
 }
 
-const projects = [
-  { title: 'Horizon Tower', location: 'Hyderabad', category: 'Commercial', status: 'Completed', year: '2024', area: '45,000 sq ft', client: 'Skymark Realty', desc: 'A 22-storey commercial landmark redefining Hyderabad\'s financial district, featuring floor-to-ceiling glass and a rooftop observatory.', img: imgHorizon },
-  { title: 'Serene Villas', location: 'Bangalore', category: 'Residential', status: 'Completed', year: '2024', area: '12,000 sq ft', client: 'Private Client', desc: 'Gated community of 16 luxury villas, each with private infinity pool, smart home systems, and biophilic design elements.', img: imgSerene },
-  { title: 'The Meridian', location: 'Mumbai', category: 'Commercial', status: 'Ongoing', year: '2025', area: '78,000 sq ft', client: 'Atlas Group', desc: 'Mixed-use tower integrating Grade-A office space with ground-floor lifestyle retail and underground parking for 450 cars.', img: imgMeridian },
-  { title: 'Lotus Heights', location: 'Chennai', category: 'Residential', status: 'Completed', year: '2023', area: '32,000 sq ft', client: 'Lotus Living', desc: 'Premium 18-storey residential tower with terracotta cladding, co-working amenities, and Chennai\'s first sky garden at 200ft.', img: imgLotus },
-  { title: 'Urban Edge', location: 'Hyderabad', category: 'Mixed-Use', status: 'Ongoing', year: '2025', area: '56,000 sq ft', client: 'EdgeCore Ventures', desc: 'Bold geometric mixed-use campus featuring glass & steel architecture, open-air amphitheatre, and integrated transit connectivity.', img: imgUrban },
-  { title: 'Skyline Residences', location: 'Pune', category: 'Residential', status: 'Completed', year: '2023', area: '28,000 sq ft', client: 'Greenfield Estates', desc: 'Premium gated townhouse community with landscaped parks, children\'s play zones, and 24/7 concierge services.', img: imgSkyline },
+/* ─── Portfolio data organised by category ─── */
+const portfolioCategories = [
+  {
+    id: 'multifamily',
+    title: 'Multifamily',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m7.5 0h2.25" />
+      </svg>
+    ),
+    projects: [
+      { title: 'Landmark @31Apartments, Tyler, Texas', img: imgMultifamily1, location: 'Tyler, TX', status: 'In Design' },
+      { title: 'Florence Mixed Use Apartments, South Carolina', img: imgMultifamily2, location: 'South Carolina', status: 'In Design' },
+      { title: 'Canyon Creek Mixed Use Development, Temple, Texas', img: imgMultifamily3, location: 'Temple, TX', status: 'In Pipeline' },
+    ],
+  },
+  {
+    id: 'warehouses',
+    title: 'Warehouses',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+      </svg>
+    ),
+    projects: [
+      { title: 'Rosenberg Business Center, Rosenberg, Texas', img: imgWarehouse1, location: 'Rosenberg, TX' },
+      { title: 'Deep Sea Technology, Houston, Texas', img: imgWarehouse2, location: 'Houston, TX', status: 'Completed' },
+      { title: 'Asian Completion Tools, Houston, Texas', img: imgWarehouse3, location: 'Houston, TX', status: 'Completed' },
+    ],
+  },
+  {
+    id: 'retail-office',
+    title: 'Retail & Office',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .414.336.75.75.75z" />
+      </svg>
+    ),
+    projects: [
+      { title: 'Hallmark Office Park, Cedar Park, Texas', img: imgRetail1, location: 'Cedar Park, TX', status: 'In Construction' },
+      { title: 'Baghdad Road Office Condo, Cedar Park, Texas', img: imgRetail2, location: 'Cedar Park, TX', status: 'In Design' },
+    ],
+  },
+  {
+    id: 'townhomes',
+    title: 'Townhomes & Single Family',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+      </svg>
+    ),
+    projects: [
+      { title: 'Florence Mixed Use Project, South Carolina', img: imgTownhome1, location: 'South Carolina', status: 'In Design' },
+    ],
+  },
+  {
+    id: 'infra-industrial',
+    title: 'Infra – Industrial',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1M18 4l-8.49 8.49m3.49-3.49l5.1 5.1M6 20l8.49-8.49M3.99 11.01l8.49-8.49M20.01 12.99l-8.49 8.49" />
+      </svg>
+    ),
+    projects: [
+      { title: 'East Water Purification Plant, Houston, Texas', img: imgIndustrial1, location: 'Houston, TX' },
+      { title: 'Flood Gates, Houston, Texas', img: imgIndustrial2, location: 'Houston, TX' },
+      { title: 'Park One Pump Station, Houston, Texas', img: imgIndustrial3, location: 'Houston, TX' },
+      { title: 'Water Plant - City Of Frisco', img: imgIndustrial4, location: 'Frisco, TX' },
+      { title: 'Southwest Water Plant Expansion, Houston, Texas', img: imgIndustrial5, location: 'Houston, TX' },
+    ],
+  },
+  {
+    id: 'institutional',
+    title: 'Institutional',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+      </svg>
+    ),
+    projects: [
+      { title: 'Woodland Temple, Woodland, Texas', img: imgInstitutional1, location: 'Woodland, TX' },
+    ],
+  },
 ]
-
-const categories = ['All', 'Residential', 'Commercial', 'Mixed-Use']
 
 /* ─── HERO (Same style as landing page, static image + mosaic) ─── */
 function ProjectsHero() {
@@ -173,171 +265,196 @@ function ProjectsHero() {
   )
 }
 
-/* ─── FILTERABLE GALLERY ─── */
-function ProjectCard({ project }) {
+/* ─── CATEGORY NAV (sticky top bar) ─── */
+function CategoryNav({ activeCategory, onCategoryClick }) {
+  return (
+    <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-light-gray/50">
+      <div className="container-narrow">
+        <div className="flex items-center gap-1 overflow-x-auto py-4 scrollbar-hide -mx-2 px-2">
+          {portfolioCategories.map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => onCategoryClick(cat.id)}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-heading font-medium whitespace-nowrap transition-all duration-400 ${
+                activeCategory === cat.id
+                  ? 'bg-charcoal text-white shadow-lg shadow-charcoal/20'
+                  : 'bg-offwhite text-warm-gray hover:bg-light-gray hover:text-dark-slate'
+              }`}
+            >
+              <span className={`transition-colors duration-300 ${activeCategory === cat.id ? 'text-white/80' : 'text-warm-gray/60'}`}>
+                {cat.icon}
+              </span>
+              {cat.title}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ─── SINGLE PROJECT CARD (for portfolio grid) ─── */
+function CategoryProjectCard({ project, index }) {
   return (
     <motion.div
-      layout
       initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       className="group cursor-pointer"
     >
       {/* Image */}
-      <div className="relative rounded-2xl overflow-hidden">
+      <div className="relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500">
         <div className="aspect-[4/3] overflow-hidden">
           <OptimizedImage
             src={project.img}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
             wrapperClassName="w-full h-full"
           />
         </div>
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        {/* Hover info */}
+        {/* Gradient overlay — appears on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        {/* Location badge visible on hover */}
         <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-          <p className="text-white text-sm leading-relaxed line-clamp-2">{project.desc}</p>
-        </div>
-        {/* Status badge */}
-        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.15em] font-semibold backdrop-blur-md ${project.status === 'Ongoing' ? 'bg-amber-500/90 text-white' : 'bg-white/90 text-charcoal'
-          }`}>
-          {project.status}
+          <div className="flex items-center gap-2">
+            <svg className="w-3.5 h-3.5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+            <span className="text-white/90 text-sm font-medium">{project.location}</span>
+          </div>
         </div>
       </div>
 
-      {/* Info */}
-      <div className="mt-5">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-warm-gray">{project.category}</span>
-          <span className="text-warm-gray/30 text-xs">•</span>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-warm-gray">{project.year}</span>
-        </div>
-        <h3 className="text-lg font-heading font-semibold group-hover:text-dark-slate transition-colors duration-300">
-          {project.title}
-        </h3>
-        <p className="text-sm text-warm-gray mt-1">{project.location} — {project.area}</p>
+      {/* Text info */}
+      <div className="mt-4 px-1">
+        <h4 className="text-sm font-heading font-semibold text-charcoal leading-snug group-hover:text-dark-slate transition-colors duration-300 line-clamp-2">
+          {project.title}{project.status && <span className="font-normal text-warm-gray"> ({project.status})</span>}
+        </h4>
+        {project.area && (
+          <p className="mt-1.5 text-xs text-warm-gray">{project.area}</p>
+        )}
       </div>
     </motion.div>
   )
 }
 
-function ProjectGallery() {
-  const [activeFilter, setActiveFilter] = useState('All')
-  const headerRef = useScrollReveal({ y: 30 })
-  const filtered = activeFilter === 'All' ? projects : projects.filter(p => p.category === activeFilter)
+/* ─── SINGLE CATEGORY SECTION ─── */
+function CategorySection({ category, index }) {
+  const isEven = index % 2 === 0
+
+  /* Determine grid layout depending on number of projects */
+  const getGridCols = (count) => {
+    if (count === 1) return 'grid-cols-1 max-w-md'
+    if (count === 2) return 'grid-cols-1 sm:grid-cols-2 max-w-3xl'
+    if (count <= 3) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+    return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+  }
 
   return (
-    <section className="section-padding bg-white">
+    <section
+      id={`portfolio-${category.id}`}
+      className={`py-20 md:py-28 ${isEven ? 'bg-white' : 'bg-offwhite'}`}
+    >
       <div className="container-narrow">
-        {/* Header + Filters */}
-        <div ref={headerRef} className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-14">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.4em] text-warm-gray mb-3">Gallery</p>
-            <h2>Explore Our Portfolio</h2>
+        {/* Category header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 md:mb-16"
+        >
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-charcoal/5 flex items-center justify-center text-charcoal">
+              {category.icon}
+            </div>
+            <div className="h-px flex-1 bg-light-gray" />
           </div>
-          <div className="flex gap-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`px-5 py-2 rounded-full text-xs font-medium transition-all duration-400 ${activeFilter === cat
-                  ? 'bg-charcoal text-white shadow-md'
-                  : 'bg-offwhite text-warm-gray hover:bg-light-gray hover:text-dark-slate'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filtered.map(project => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </AnimatePresence>
+          <h2 className="text-2xl md:text-3xl font-heading font-bold text-charcoal tracking-tight">
+            {category.title}
+          </h2>
+          <p className="mt-2 text-sm text-warm-gray">
+            {category.projects.length} {category.projects.length === 1 ? 'Project' : 'Projects'}
+          </p>
         </motion.div>
+
+        {/* Project cards grid */}
+        <div className={`grid ${getGridCols(category.projects.length)} gap-6 md:gap-8 ${
+          category.projects.length <= 2 ? 'mx-auto' : ''
+        }`}>
+          {category.projects.map((project, i) => (
+            <CategoryProjectCard key={project.title} project={project} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
-/* ─── FEATURED PROJECT DEEP DIVE ─── */
-function FeaturedProject() {
+/* ─── PORTFOLIO HEADER + ALL CATEGORIES ─── */
+function PortfolioSection() {
+  const [activeCategory, setActiveCategory] = useState(portfolioCategories[0].id)
   const headerRef = useScrollReveal({ y: 30 })
-  const imgRef = useScrollReveal({ y: 50, delay: 0.1 })
-  const detailRef = useScrollReveal({ y: 50, delay: 0.25 })
+
+  const handleCategoryClick = (id) => {
+    setActiveCategory(id)
+    const el = document.getElementById(`portfolio-${id}`)
+    if (el) {
+      const yOffset = -72 // account for sticky nav height
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
+  }
+
+  /* Track which section is currently most visible */
+  useEffect(() => {
+    const handleScroll = () => {
+      let closestId = portfolioCategories[0].id
+      let closestDist = Infinity
+
+      for (const cat of portfolioCategories) {
+        const el = document.getElementById(`portfolio-${cat.id}`)
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        const dist = Math.abs(rect.top - 80)
+        if (dist < closestDist) {
+          closestDist = dist
+          closestId = cat.id
+        }
+      }
+      setActiveCategory(closestId)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <section className="section-padding bg-offwhite">
-      <div className="container-narrow">
-        <div ref={headerRef} className="mb-14">
-          <p className="text-[10px] uppercase tracking-[0.4em] text-warm-gray mb-3">Featured Project</p>
-          <h2 className="text-balance">Horizon Tower, Hyderabad</h2>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-          {/* Image */}
-          <div ref={imgRef} className="rounded-3xl overflow-hidden">
-            <OptimizedImage
-              src={imgHorizon}
-              alt="Horizon Tower"
-              className="w-full h-auto object-cover"
-              wrapperClassName="w-full"
-            />
-          </div>
-
-          {/* Details */}
-          <div ref={detailRef}>
-            <p className="text-warm-gray leading-[1.85] text-[0.975rem] mb-8">
-              Rising 22 stories above Hyderabad's HITEC City, Horizon Tower is
-              a statement in modern commercial architecture. The double-skin glass
-              curtain wall reduces solar heat gain by 40% while flooding interiors
-              with natural light. Every floor features column-free floorplates,
-              giving tenants complete flexibility in layout design.
+    <>
+      {/* Section header */}
+      <section className="pt-20 md:pt-28 pb-6 bg-white">
+        <div ref={headerRef} className="container-narrow">
+          <div className="max-w-2xl">
+            <p className="text-[10px] uppercase tracking-[0.4em] text-warm-gray mb-3">Portfolio</p>
+            <h2 className="text-balance">Explore Our Portfolio</h2>
+            <p className="mt-4 text-warm-gray leading-relaxed">
+              From multifamily residences to large-scale industrial infrastructure, our work spans every sector of modern construction.
             </p>
-
-            {/* Spec grid */}
-            <div className="grid grid-cols-2 gap-x-8 gap-y-6 mb-10">
-              {[
-                { label: 'Client', value: 'Skymark Realty' },
-                { label: 'Category', value: 'Commercial' },
-                { label: 'Area', value: '45,000 sq ft' },
-                { label: 'Status', value: 'Completed 2024' },
-                { label: 'Location', value: 'HITEC City, Hyderabad' },
-                { label: 'Duration', value: '28 Months' },
-              ].map(spec => (
-                <div key={spec.label}>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-warm-gray mb-1">{spec.label}</p>
-                  <p className="text-sm font-medium text-charcoal">{spec.value}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Highlights */}
-            <div className="border-t border-light-gray pt-8">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-warm-gray mb-4">Key Highlights</p>
-              <ul className="space-y-3">
-                {[
-                  'Double-skin glass curtain wall with 40% solar gain reduction',
-                  'Column-free floorplates for maximum spatial flexibility',
-                  'LEED Gold pre-certified with rainwater harvesting',
-                  'Rooftop observatory lounge and sky garden',
-                ].map((hl, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-dark-slate leading-relaxed">
-                    <div className="w-1.5 h-1.5 rounded-full bg-charcoal mt-1.5 flex-shrink-0" />
-                    {hl}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Sticky category navigation */}
+      <CategoryNav activeCategory={activeCategory} onCategoryClick={handleCategoryClick} />
+
+      {/* All category sections */}
+      {portfolioCategories.map((cat, i) => (
+        <CategorySection key={cat.id} category={cat} index={i} />
+      ))}
+    </>
   )
 }
 
@@ -367,8 +484,7 @@ export default function Projects() {
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <ProjectsHero />
-      <ProjectGallery />
-      <FeaturedProject />
+      <PortfolioSection />
       <CTASection />
     </motion.div>
   )

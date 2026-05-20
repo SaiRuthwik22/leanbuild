@@ -1,13 +1,23 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollReveal, useStaggerReveal, useCountUp } from '../hooks/useScrollAnimations'
 import { useEffect, useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
 
-// AI-generated project images
-import heroBg      from '../assets/hero_bg.jpg'
-import svcInterior from '../assets/svc_interior.jpg'
-import teamPresident from '../assets/team_president.png'
-import teamCVO       from '../assets/team_cvo.png'
+// Assets
+import heroBg          from '../assets/hero_bg.jpg'
+import svcInterior     from '../assets/svc_interior.jpg'
+import imgMultifamily1 from '../assets/proj_multifamily_1.png'
+import imgWarehouse1   from '../assets/proj_warehouse_1.png'
+import imgRetail1      from '../assets/proj_retail_1.png'
+import imgTownhome1    from '../assets/proj_townhome_1.png'
+import imgIndustrial1  from '../assets/proj_industrial_1.png'
+import imgInstitutional1 from '../assets/proj_institutional_1.png'
+import imgDesign       from '../assets/svc_design.png'
+import imgEngineering  from '../assets/svc_engineering.png'
+import imgInterior     from '../assets/svc_interior.jpg'
+import imgRenovation   from '../assets/svc_renovation.jpg'
+import imgCommercial   from '../assets/svc_commercial.jpg'
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -231,31 +241,334 @@ function IntroSection() {
   )
 }
 
-/* ─── Why Choose Us ─── */
-const reasons = [
-  { icon: '◷', title: '20+ Years Experience', desc: 'Two decades of delivering excellence in construction and architectural design.' },
-  { icon: '◉', title: 'Unmatched Quality',    desc: 'Premium materials and meticulous craftsmanship in every project we undertake.' },
-  { icon: '◈', title: 'Timely Delivery',      desc: 'Committed to project timelines without compromising on quality standards.' },
-  { icon: '◆', title: 'Innovation Driven',    desc: 'Leveraging cutting-edge technology and modern design methodologies.' },
+/* ─── PROJECTS SECTORS ─── */
+const projectCategories = [
+  {
+    id: 'multifamily',
+    num: '01',
+    title: 'Multifamily',
+    img: imgMultifamily1,
+    desc: 'High-density residential developments engineered for modern community living.',
+  },
+  {
+    id: 'warehouses',
+    num: '02',
+    title: 'Warehouses',
+    img: imgWarehouse1,
+    desc: 'State-of-the-art logistics and storage facilities optimized for commercial efficiency.',
+  },
+  {
+    id: 'retail-office',
+    num: '03',
+    title: 'Retail & Office',
+    img: imgRetail1,
+    desc: 'Premium commercial spaces designed to inspire collaboration and customer engagement.',
+  },
+  {
+    id: 'townhomes',
+    num: '04',
+    title: 'Townhomes & Single Family',
+    img: imgTownhome1,
+    desc: 'Custom-crafted residential designs that bring architectural character and comfort to life.',
+  },
+  {
+    id: 'infra-industrial',
+    num: '05',
+    title: 'Infra – Industrial',
+    img: imgIndustrial1,
+    desc: 'Heavy-duty infrastructure engineering, purifying systems, and robust structural facilities.',
+  },
+  {
+    id: 'institutional',
+    num: '06',
+    title: 'Institutional',
+    img: imgInstitutional1,
+    desc: 'Community-centric public landmarks and temples built with deep civic pride and longevity.',
+  },
 ]
 
-function WhyChooseUs() {
-  const headerRef = useScrollReveal({ y: 40 })
-  const gridRef   = useStaggerReveal('.why-card', { stagger: 0.12, y: 50 })
+function ProjectsSection() {
+  const headerReveal = useScrollReveal({ y: 40 })
+  const itemsReveal = useStaggerReveal('.proj-row', { stagger: 0.15, y: 50 })
 
   return (
-    <section className="section-padding bg-offwhite">
-      <div className="container-narrow">
-        <div ref={headerRef} className="text-center mb-16">
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Why Choose Us</p>
-          <h2 className="text-balance">Built on Trust, Driven by Excellence</h2>
+    <section className="section-padding bg-offwhite relative overflow-hidden">
+      {/* Blueprint grid background */}
+      <div 
+        className="absolute inset-0 opacity-[0.25]" 
+        style={{
+          backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
+        }} 
+      />
+      
+      <div className="container-narrow relative z-10">
+        <div ref={headerReveal} className="text-center mb-20">
+          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">// SELECT PORTFOLIO</p>
+          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">Our Core Project Sectors</h2>
+          <p className="mt-5 max-w-xl mx-auto text-warm-gray text-sm leading-relaxed">
+            Delivering structural excellence across a diverse spectrum of build typologies. Meticulously designed, structurally sound.
+          </p>
         </div>
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reasons.map((item, i) => (
-            <div key={i} className="why-card group p-8 rounded-2xl bg-white border border-light-gray/60 transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 cursor-default">
-              <div className="text-2xl mb-5 text-warm-gray group-hover:text-charcoal transition-colors duration-300">{item.icon}</div>
-              <h4 className="text-[0.95rem] font-semibold mb-3 leading-snug">{item.title}</h4>
-              <p className="text-sm text-warm-gray leading-relaxed">{item.desc}</p>
+
+        <div ref={itemsReveal} className="space-y-16 md:space-y-24">
+          {projectCategories.map((item, index) => {
+            const isReversed = index % 2 === 1
+            return (
+              <div 
+                key={item.id} 
+                className={`proj-row grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center ${
+                  isReversed ? 'lg:flex-row-reverse' : ''
+                }`}
+              >
+                {/* Image side */}
+                <div className={`lg:col-span-7 ${isReversed ? 'lg:order-2' : ''}`}>
+                  <div className="relative p-3 bg-white border border-dashed border-charcoal/20 rounded-lg group hover:border-charcoal/60 transition-all duration-500 shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.03)]">
+                    {/* Corner drafting marks */}
+                    <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+                    <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+                    <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+                    <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+
+                    <div className="aspect-[16/10] rounded overflow-hidden bg-offwhite border border-light-gray relative">
+                      <OptimizedImage
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1.2s] ease-out"
+                        wrapperClassName="w-full h-full"
+                      />
+                      {/* Technical drafting border stitch overlay on hover */}
+                      <div className="absolute inset-2 border border-dashed border-white/30 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content side */}
+                <div className={`lg:col-span-5 flex flex-col justify-center ${isReversed ? 'lg:order-1' : ''}`}>
+                  <span className="text-[10px] font-mono font-bold text-warm-gray tracking-widest block mb-3">
+                    // {item.num}. {item.id.toUpperCase()}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-charcoal tracking-tight mb-4">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-warm-gray leading-[1.85] font-light mb-8">
+                    {item.desc}
+                  </p>
+                  <div>
+                    <Link
+                      to={`/projects#portfolio-${item.id}`}
+                      className="inline-flex items-center gap-3 text-xs uppercase font-mono tracking-widest text-charcoal hover:text-black transition-colors duration-300 group/btn"
+                    >
+                      <span className="w-8 h-8 rounded-full border border-charcoal/20 flex items-center justify-center group-hover/btn:border-charcoal group-hover/btn:bg-charcoal group-hover/btn:text-white transition-all duration-300">
+                        →
+                      </span>
+                      <span className="border-b border-transparent group-hover/btn:border-charcoal pb-0.5 transition-all">
+                        VIEW WORK
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── LEAN BUILD STATISTICS ─── */
+const leanBuildStats = [
+  { value: 40, suffix: '+', label: 'Years in Market', desc: 'Over four decades of deep industry domain expertise, pioneering engineering solutions and client value.' },
+  { value: 80, suffix: '+', label: 'Loyalty Customers', desc: 'Building long-term partnerships with over eighty percent of clients returning for repeat commercial builds.' },
+  { value: 100, suffix: '+', label: 'Completed Projects', desc: 'Over a hundred iconic projects delivered successfully with architectural integrity and precision craftsmanship.' },
+]
+
+function LeanBuildStatsItem({ value, suffix, label, desc, index }) {
+  const countRef = useCountUp(value, 2.5)
+  return (
+    <div className="why-card group relative p-8 md:p-10 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)]">
+      {/* Corner crosshairs */}
+      <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+      <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+      <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+      <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+
+      <div className="text-[10px] font-mono text-warm-gray tracking-widest mb-4">// METRIC.0{index + 1}</div>
+      <div className="flex items-baseline mb-3">
+        <span ref={countRef} className="text-5xl font-heading font-bold text-charcoal tracking-tight tabular-nums">0</span>
+        <span className="text-4xl font-heading font-bold text-charcoal">{suffix}</span>
+      </div>
+      <h4 className="text-base font-semibold text-charcoal tracking-tight mb-3">{label}</h4>
+      <p className="text-xs text-warm-gray leading-relaxed font-light">{desc}</p>
+    </div>
+  )
+}
+
+function LeanBuildStatsSection() {
+  const headerReveal = useScrollReveal({ y: 40 })
+  const gridReveal   = useStaggerReveal('.why-card', { stagger: 0.15, y: 50 })
+
+  return (
+    <section className="section-padding bg-white relative overflow-hidden">
+      {/* Drafting grid background */}
+      <div 
+        className="absolute inset-0 opacity-[0.35]" 
+        style={{
+          backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
+        }} 
+      />
+
+      <div className="container-narrow relative z-10">
+        <div ref={headerReveal} className="text-center mb-20">
+          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">// LEAN BUILD</p>
+          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">Precision & Performance Metrics</h2>
+          <p className="mt-5 max-w-xl mx-auto text-warm-gray text-sm leading-relaxed">
+            By optimizing resource allocation and eliminating operational waste, we deliver unmatched value without compromising architectural beauty.
+          </p>
+        </div>
+
+        <div ref={gridReveal} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {leanBuildStats.map((item, i) => (
+            <LeanBuildStatsItem key={i} index={i} {...item} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── SERVICES LIST ─── */
+const servicesList = [
+  {
+    num: '01',
+    title: 'Designing',
+    img: imgDesign,
+    desc: 'Transforming custom conceptual ideas into structural blueprints and full 3D visualizations.',
+  },
+  {
+    num: '02',
+    title: 'Engineering',
+    img: imgEngineering,
+    desc: 'Advanced structural calculations, mechanical, electrical, and value-engineering analysis.',
+  },
+  {
+    num: '03',
+    title: 'Space Planning',
+    img: imgInterior,
+    desc: 'Optimization of functional layout zones and structural traffic flow for maximum utility.',
+  },
+  {
+    num: '04',
+    title: 'Re-Modeling',
+    img: imgRenovation,
+    desc: 'Comprehensive structural restoration, interior transformations, and adaptive reuse.',
+  },
+  {
+    num: '05',
+    title: 'Prefabrication Solutions',
+    img: imgCommercial,
+    desc: 'Feasibility analysis, off-site modular prefabrication, and high-efficiency installation.',
+  },
+]
+
+function ExploreServicesSection() {
+  const headerReveal = useScrollReveal({ y: 40 })
+  const gridReveal   = useStaggerReveal('.svc-card', { stagger: 0.1, y: 40 })
+
+  return (
+    <section className="section-padding bg-offwhite relative overflow-hidden border-t border-dashed border-charcoal/10">
+      {/* Background drafting grid */}
+      <div 
+        className="absolute inset-0 opacity-[0.25]" 
+        style={{
+          backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
+        }} 
+      />
+
+      <div className="container-narrow relative z-10">
+        <div ref={headerReveal} className="text-center mb-16">
+          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">// EXPLORE OUR SERVICES</p>
+          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">Our Professional Capabilities</h2>
+          <p className="mt-5 max-w-xl mx-auto text-warm-gray text-sm leading-relaxed">
+            From the initial blueprint to the final modular handover, we deliver tailored building solutions.
+          </p>
+        </div>
+
+        <div ref={gridReveal} className="grid grid-cols-1 md:grid-cols-6 gap-8 max-w-6xl mx-auto">
+          {/* Top 3 services */}
+          {servicesList.slice(0, 3).map((svc, i) => (
+            <div 
+              key={svc.num} 
+              className="svc-card md:col-span-2 group relative p-6 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-lg flex flex-col justify-between"
+            >
+              {/* Corner crosshairs */}
+              <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+
+              <div>
+                <div className="aspect-[4/3] rounded overflow-hidden border border-light-gray relative mb-6">
+                  <OptimizedImage
+                    src={svc.img}
+                    alt={svc.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    wrapperClassName="w-full h-full"
+                  />
+                  <div className="absolute inset-2 border border-dashed border-white/20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                <span className="text-[10px] font-mono text-warm-gray tracking-widest block mb-2">// SERVICE_0{svc.num}</span>
+                <h4 className="text-lg font-bold text-charcoal mb-3">{svc.title}</h4>
+                <p className="text-xs text-warm-gray leading-relaxed font-light">{svc.desc}</p>
+              </div>
+
+              <div className="mt-8 pt-4 border-t border-dashed border-light-gray flex justify-between items-center">
+                <Link to="/services" className="text-[10px] uppercase font-mono tracking-widest text-charcoal hover:underline transition-all">
+                  LEARN MORE
+                </Link>
+                <span className="text-[9px] font-mono text-light-gray">LB.SVC-0{svc.num}</span>
+              </div>
+            </div>
+          ))}
+
+          {/* Bottom 2 services */}
+          {servicesList.slice(3).map((svc, i) => (
+            <div 
+              key={svc.num} 
+              className={`svc-card md:col-span-2 group relative p-6 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-lg flex flex-col justify-between ${
+                i === 0 ? 'md:col-start-2' : ''
+              }`}
+            >
+              {/* Corner crosshairs */}
+              <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+              <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
+
+              <div>
+                <div className="aspect-[4/3] rounded overflow-hidden border border-light-gray relative mb-6">
+                  <OptimizedImage
+                    src={svc.img}
+                    alt={svc.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    wrapperClassName="w-full h-full"
+                  />
+                  <div className="absolute inset-2 border border-dashed border-white/20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                <span className="text-[10px] font-mono text-warm-gray tracking-widest block mb-2">// SERVICE_0{svc.num}</span>
+                <h4 className="text-lg font-bold text-charcoal mb-3">{svc.title}</h4>
+                <p className="text-xs text-warm-gray leading-relaxed font-light">{svc.desc}</p>
+              </div>
+
+              <div className="mt-8 pt-4 border-t border-dashed border-light-gray flex justify-between items-center">
+                <Link to="/services" className="text-[10px] uppercase font-mono tracking-widest text-charcoal hover:underline transition-all">
+                  LEARN MORE
+                </Link>
+                <span className="text-[9px] font-mono text-light-gray">LB.SVC-0{svc.num}</span>
+              </div>
             </div>
           ))}
         </div>
@@ -264,75 +577,30 @@ function WhyChooseUs() {
   )
 }
 
-/* ─── Vision & Mission ─── */
-function VisionMission() {
-  const leftRef  = useScrollReveal({ y: 50 })
-  const rightRef = useScrollReveal({ y: 50, delay: 0.25 })
-
+/* ─── READY TO BUILD CTA ─── */
+function CTASection() {
+  const ref = useScrollReveal({ y: 40 })
   return (
-    <section className="section-padding bg-charcoal text-white">
-      <div className="container-narrow grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-28">
-        <div ref={leftRef}>
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-5">Our Vision</p>
-          <h3 className="text-white text-2xl lg:text-3xl font-semibold mb-6 leading-snug">
-            Shaping the Future of Urban Living
-          </h3>
-          <p className="text-white/55 leading-[1.85] text-[0.975rem]">
-            We envision a world where every structure harmonizes with its environment —
-            where innovation meets sustainability and spaces empower the people who inhabit them.
-          </p>
-        </div>
-        <div ref={rightRef}>
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-5">Our Mission</p>
-          <h3 className="text-white text-2xl lg:text-3xl font-semibold mb-6 leading-snug">
-            Excellence in Every Detail
-          </h3>
-          <p className="text-white/55 leading-[1.85] text-[0.975rem]">
-            To deliver world-class construction solutions through innovative engineering,
-            transparent collaboration, and an unwavering commitment to quality. Every brick,
-            every beam, every finish — crafted with purpose.
-          </p>
+    <section className="section-padding bg-charcoal">
+      <div ref={ref} className="container-narrow text-center max-w-xl mx-auto">
+        <h2 className="text-white text-balance">Ready to Build Your Vision?</h2>
+        <p className="mt-5 text-white/50 leading-relaxed">
+          Let's discuss your project and create something extraordinary together.
+        </p>
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <a href="/contact" className="px-10 py-4 bg-white text-charcoal text-sm font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5">
+            Start a Conversation
+          </a>
+          <Link to="/projects" className="px-10 py-4 border border-white/25 text-white text-sm font-medium rounded-full transition-all duration-300 hover:border-white/60 hover:bg-white/10">
+            View Our Work
+          </Link>
         </div>
       </div>
     </section>
   )
 }
 
-/* ─── Stats ─── */
-const stats = [
-  { value: 350, suffix: '+', label: 'Projects Completed' },
-  { value: 22,  suffix: '+', label: 'Years Experience' },
-  { value: 500, suffix: '+', label: 'Happy Clients' },
-  { value: 45,  suffix: '',  label: 'Awards Won' },
-]
-
-function StatItem({ value, suffix, label }) {
-  const numRef = useCountUp(value, 2.5)
-  return (
-    <div className="text-center">
-      <div className="flex items-end justify-center">
-        <span ref={numRef} className="text-4xl lg:text-5xl font-heading font-bold text-charcoal tabular-nums">0</span>
-        <span className="text-4xl lg:text-5xl font-heading font-bold text-charcoal">{suffix}</span>
-      </div>
-      <p className="mt-3 text-[0.7rem] text-warm-gray uppercase tracking-[0.2em]">{label}</p>
-    </div>
-  )
-}
-
-function StatsSection() {
-  const ref = useScrollReveal({ y: 30 })
-  return (
-    <section className="section-padding bg-white">
-      <div ref={ref} className="container-narrow">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
-          {stats.map((s, i) => <StatItem key={i} {...s} />)}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── Testimonials ─── */
+/* ─── TESTIMONIALS ─── */
 const testimonials = [
   { name: 'Rajesh Kumar',  role: 'Homeowner',              initials: 'RK', text: 'LeanBuild transformed our dream home into reality. Their attention to detail and commitment to timelines was truly exceptional.' },
   { name: 'Priya Sharma',  role: 'Business Owner',         initials: 'PS', text: "Outstanding work on our commercial complex. The team's professionalism and innovative approach set them apart from any builder we've worked with." },
@@ -349,7 +617,7 @@ function TestimonialsSection() {
   }, [])
 
   return (
-    <section className="section-padding bg-offwhite">
+    <section className="section-padding bg-[#faf9f6]">
       <div className="container-narrow max-w-3xl mx-auto text-center">
         <div ref={wrapperRef}>
           <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Testimonials</p>
@@ -388,112 +656,16 @@ function TestimonialsSection() {
   )
 }
 
-/* ─── Our Leadership Team ─── */
-const teamMembers = [
-  {
-    name: 'Vikram Rangan',
-    role: 'President & Founder',
-    img: teamPresident,
-    bio: 'With over 25 years of experience in construction and architecture, Vikram has led LeanBuild from a small firm to one of India\'s most trusted construction companies. His vision for sustainable, innovative building practices has earned numerous industry awards.',
-    linkedin: '#',
-  },
-  {
-    name: 'Ananya Deshmukh',
-    role: 'Chief Value Officer',
-    img: teamCVO,
-    bio: 'Ananya brings 18 years of expertise in value engineering and client relations. She ensures every project maximizes value for clients while maintaining the highest standards of quality, sustainability, and design excellence.',
-    linkedin: '#',
-  },
-]
-
-function TeamSection() {
-  const headerRef = useScrollReveal({ y: 40 })
-  const cardsRef  = useStaggerReveal('.team-card', { stagger: 0.2, y: 60 })
-
-  return (
-    <section className="section-padding bg-white relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, #1A1A1A 1px, transparent 0)',
-        backgroundSize: '40px 40px'
-      }} />
-
-      <div className="container-narrow relative z-10">
-        <div ref={headerRef} className="text-center mb-20">
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Our Leadership</p>
-          <h2 className="text-balance gradient-text">The Visionaries Behind LeanBuild</h2>
-          <p className="mt-5 max-w-2xl mx-auto text-warm-gray leading-relaxed">
-            Our leadership team combines decades of industry expertise with a passion for 
-            innovation, ensuring every project reflects our commitment to excellence.
-          </p>
-        </div>
-
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-          {teamMembers.map((member, i) => (
-            <div
-              key={member.name}
-              className={`team-card group relative rounded-3xl overflow-hidden bg-offwhite border border-light-gray/60 transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 ${i % 2 === 0 ? 'tilt-card' : 'tilt-card tilt-card-reverse'}`}
-            >
-              {/* Image area */}
-              <div className="relative h-80 overflow-hidden">
-                <OptimizedImage
-                  src={member.img}
-                  alt={member.name}
-                  className="w-full h-full object-cover object-top transition-transform duration-[1.4s] ease-out group-hover:scale-110"
-                  wrapperClassName="w-full h-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                
-                {/* Floating role badge */}
-                <div className="absolute top-5 left-5 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-charcoal">
-                    {member.role}
-                  </span>
-                </div>
-
-                {/* Name overlay on image */}
-                <div className="absolute bottom-5 left-6 right-6">
-                  <h3 className="text-2xl font-heading font-bold text-white tracking-tight">
-                    {member.name}
-                  </h3>
-                </div>
-              </div>
-
-              {/* Content area */}
-              <div className="p-7">
-                <p className="text-sm text-warm-gray leading-[1.85]">
-                  {member.bio}
-                </p>
-                <div className="mt-6 flex items-center gap-3">
-                  <a
-                    href={member.linkedin}
-                    className="w-9 h-9 rounded-full border border-light-gray flex items-center justify-center text-warm-gray hover:text-charcoal hover:border-charcoal transition-all duration-300"
-                    aria-label={`${member.name} LinkedIn`}
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                  </a>
-                  <div className="w-8 h-px bg-light-gray" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
+/* ─── HOME PAGE ─── */
 export default function Home() {
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <HeroSection />
       <IntroSection />
-      <WhyChooseUs />
-      <TeamSection />
-      <VisionMission />
-      <StatsSection />
+      <ProjectsSection />
+      <LeanBuildStatsSection />
+      <ExploreServicesSection />
+      <CTASection />
       <TestimonialsSection />
     </motion.div>
   )
