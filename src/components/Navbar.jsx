@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { name: 'About Us',  path: '/' },
+  { name: 'Home',      path: '/' },
+  { name: 'About Us',  path: '/about' },
   { name: 'Services',  path: '/services' },
   { name: 'Projects',  path: '/projects' },
 ]
@@ -14,7 +15,7 @@ export default function Navbar() {
   const location = useLocation()
 
   // Pages with a dark hero that need white nav text initially
-  const darkHero = ['/', '/services', '/projects', '/contact'].includes(location.pathname)
+  const darkHero = ['/', '/about', '/services', '/projects', '/contact'].includes(location.pathname)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
