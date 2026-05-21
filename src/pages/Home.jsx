@@ -1,12 +1,11 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { useScrollReveal, useStaggerReveal, useCountUp } from '../hooks/useScrollAnimations'
-import { useEffect, useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { useScrollReveal, useStaggerReveal, useCountUp, useParallax } from '../hooks/useScrollAnimations'
 import { Link } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
+import ContactCTA from '../components/ContactCTA'
 
 // Assets
 import heroBg from '../assets/hero_bg.webp'
-import svcInterior from '../assets/svc_interior.webp'
 import imgMultifamily1 from '../assets/proj_multifamily_1.webp'
 import imgWarehouse1 from '../assets/proj_warehouse_1.webp'
 import imgRetail1 from '../assets/proj_retail_1.webp'
@@ -26,61 +25,20 @@ const pageVariants = {
 }
 
 /* ─────────────────────────────────────────────
-   VIDEO HERO
-   Free Pexels architecture / construction videos
-   (multiple clips cycle for interior + exterior)
+   HERO
 ───────────────────────────────────────────── */
-const videoSources = [
-  // Pexels: luxury modern home exterior
-  'https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_25fps.mp4',
-  // Pexels: modern house interior / living room
-  'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_25fps.mp4',
-  // Pexels: building construction exterior
-  'https://videos.pexels.com/video-files/3252564/3252564-hd_1920_1080_24fps.mp4',
-]
-
 function HeroSection() {
-  const [videoIdx, setVideoIdx] = useState(0)
-  const [loaded, setLoaded] = useState(false)
-  const videoRef = useRef(null)
-
-  // Cycle videos
-  const handleVideoEnd = () => {
-    setVideoIdx(i => (i + 1) % videoSources.length)
-  }
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.load()
-      videoRef.current.play().catch(() => { })
-    }
-  }, [videoIdx])
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#000000]">
 
-      {/* ── VIDEO BACKGROUND ── */}
       <div className="absolute inset-0 z-0">
-        {/* Fallback image shown before video loads */}
         <img
           src={heroBg}
           alt=""
           aria-hidden="true"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${loaded ? 'opacity-0' : 'opacity-100'}`}
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <video
-          ref={videoRef}
-          key={videoSources[videoIdx]}
-          muted
-          autoPlay
-          playsInline
-          onCanPlayThrough={() => setLoaded(true)}
-          onEnded={handleVideoEnd}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-          style={{ willChange: 'opacity' }}
-        >
-          <source src={videoSources[videoIdx]} type="video/mp4" />
-        </video>
 
         {/* Multi-layer dark overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
@@ -112,7 +70,7 @@ function HeroSection() {
             className="text-white leading-[1.08] text-balance"
             style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)', letterSpacing: '-0.03em', fontWeight: 700 }}
           >
-            Building Modern Spaces With Precision & Excellence
+            Building Modern Spaces With Innovation & Precision
           </motion.h1>
 
           {/* Subtitle */}
@@ -121,10 +79,9 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.75 }}
             className="mt-7 text-white/65 leading-relaxed max-w-xl"
-            style={{ fontSize: 'clamp(1rem, 1.5vw, 1.15rem)' }}
+            style={{ fontSize: 'clamp(1.125rem, 2vw, 1.25rem)' }}
           >
-            We craft architectural masterpieces that blend innovation with timeless design,
-            delivering spaces that inspire and endure for generations.
+            We are a design-build company delivering intelligent construction solutions that enhance value, performance, and long-term impact.
           </motion.p>
 
           {/* CTAs */}
@@ -149,24 +106,7 @@ function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Stats bar at bottom */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.3 }}
-          className="mt-24 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-6"
-        >
-          {[
-            { n: '40+', label: 'Years in Market' },
-            { n: '80+', label: 'Loyalty Customers' },
-            { n: '100+', label: 'Completed Projects' },
-          ].map(stat => (
-            <div key={stat.label}>
-              <div className="text-2xl font-heading font-bold text-white">{stat.n}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/40">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
+
       </div>
 
       {/* Scroll indicator */}
@@ -184,61 +124,11 @@ function HeroSection() {
         />
       </motion.div>
 
-      {/* Video dot indicators */}
-      <div className="absolute bottom-10 right-8 flex gap-2 z-10">
-        {videoSources.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => { setVideoIdx(i); setLoaded(false) }}
-            aria-label={`Video ${i + 1}`}
-            className={`h-1 rounded-full transition-all duration-500 ${videoIdx === i ? 'w-6 bg-white' : 'w-2 bg-white/25 hover:bg-white/50'}`}
-          />
-        ))}
-      </div>
     </section>
   )
 }
 
-/* ─── Who We Are ─── */
-function IntroSection() {
-  const tagRef = useScrollReveal({ y: 20, delay: 0.05 })
-  const titleRef = useScrollReveal({ y: 45, delay: 0.15 })
-  const bodyRef = useScrollReveal({ y: 35, delay: 0.3 })
-  const divRef = useScrollReveal({ y: 0, delay: 0.45, duration: 0.8 })
-  const imgRef = useScrollReveal({ y: 30, delay: 0.2 })
 
-  return (
-    <section className="section-padding bg-white">
-      <div className="container-narrow grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <p ref={tagRef} className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-5">Who We Are</p>
-          <h2 ref={titleRef} className="text-balance leading-[1.12]">A Legacy of Architectural Excellence</h2>
-          <p ref={bodyRef} className="mt-7 leading-[1.85] text-warm-gray text-[1.025rem]">
-            With over two decades of expertise, we transform ambitious visions into stunning
-            realities. Our commitment to precision engineering, sustainable practices, and
-            timeless aesthetics has made us a trusted name in modern construction.
-          </p>
-          <div ref={divRef} className="mt-10 w-12 h-px bg-light-gray" />
-        </div>
-
-        {/* Interior design image */}
-        <div ref={imgRef} className="relative h-[420px] rounded-2xl overflow-hidden">
-          <OptimizedImage
-            src={svcInterior}
-            alt="Premium interior design by LeanBuild"
-            className="w-full h-full object-cover"
-            wrapperClassName="w-full h-full"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-          <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3">
-            <p className="text-xs font-semibold text-charcoal">Interior Excellence</p>
-            <p className="text-[10px] text-warm-gray mt-0.5">Precision in every detail</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
 /* ─── PROJECTS SECTORS ─── */
 const projectCategories = [
@@ -303,10 +193,9 @@ function ProjectsSection() {
 
       <div className="container-narrow relative z-10">
         <div ref={headerReveal} className="text-center mb-20">
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">// SELECT PORTFOLIO</p>
-          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">Our Core Project Sectors</h2>
-          <p className="mt-5 max-w-xl mx-auto text-warm-gray text-sm leading-relaxed">
-            Delivering structural excellence across a diverse spectrum of build typologies. Meticulously designed, structurally sound.
+          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">Projects</h2>
+          <p className="mt-5 max-w-xl mx-auto text-charcoal/70 text-lg md:text-xl font-medium leading-relaxed">
+            We have offered our Engineering & Construction services to multiple sectors.
           </p>
         </div>
 
@@ -343,13 +232,10 @@ function ProjectsSection() {
 
                 {/* Content side */}
                 <div className={`lg:col-span-5 flex flex-col justify-center ${isReversed ? 'lg:order-1' : ''}`}>
-                  <span className="text-[10px] font-mono font-bold text-warm-gray tracking-widest block mb-3">
-                    // {item.num}. {item.id.toUpperCase()}
-                  </span>
                   <h3 className="text-2xl md:text-3xl font-bold text-charcoal tracking-tight mb-4">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-warm-gray leading-[1.85] font-light mb-8">
+                  <p className="text-lg text-charcoal/65 leading-[1.85] font-medium mb-8">
                     {item.desc}
                   </p>
                   <div>
@@ -398,7 +284,7 @@ function LeanBuildStatsItem({ value, suffix, label, desc, index }) {
         <span className="text-4xl font-heading font-bold text-charcoal">{suffix}</span>
       </div>
       <h4 className="text-base font-semibold text-charcoal tracking-tight mb-3">{label}</h4>
-      <p className="text-xs text-warm-gray leading-relaxed font-light">{desc}</p>
+      <p className="text-base text-charcoal/60 leading-relaxed font-medium">{desc}</p>
     </div>
   )
 }
@@ -420,11 +306,7 @@ function LeanBuildStatsSection() {
 
       <div className="container-narrow relative z-10">
         <div ref={headerReveal} className="text-center mb-20">
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">// LEAN BUILD</p>
-          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">Precision & Performance Metrics</h2>
-          <p className="mt-5 max-w-xl mx-auto text-warm-gray text-sm leading-relaxed">
-            By optimizing resource allocation and eliminating operational waste, we deliver unmatched value without compromising architectural beauty.
-          </p>
+          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">LEAN BUILD</h2>
         </div>
 
         <div ref={gridReveal} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -443,31 +325,31 @@ const servicesList = [
     num: '01',
     title: 'Designing',
     img: imgDesign,
-    desc: 'Transforming custom conceptual ideas into structural blueprints and full 3D visualizations.',
+    desc: 'We assist you in transforming conceptual ideas into detailed blueprints.',
   },
   {
     num: '02',
     title: 'Engineering',
     img: imgEngineering,
-    desc: 'Advanced structural calculations, mechanical, electrical, and value-engineering analysis.',
+    desc: 'We have an experienced team that can provide customized innovative engineering solutions.',
   },
   {
     num: '03',
-    title: 'Space Planning',
+    title: 'Construction',
     img: imgInterior,
-    desc: 'Optimization of functional layout zones and structural traffic flow for maximum utility.',
+    desc: 'We offer our clients consulting services with our highly qualified and experienced construction specialists.',
   },
   {
     num: '04',
     title: 'Re-Modeling',
     img: imgRenovation,
-    desc: 'Comprehensive structural restoration, interior transformations, and adaptive reuse.',
+    desc: 'Our skilled team of designers help in Re-modeling projects as per client\'s requirements.',
   },
   {
     num: '05',
-    title: 'Prefabrication Solutions',
+    title: 'Pre-Fabricated Solutions',
     img: imgCommercial,
-    desc: 'Feasibility analysis, off-site modular prefabrication, and high-efficiency installation.',
+    desc: 'We work with the client needs and pre-fabrication companies to provide the feasibility of the project.',
   },
 ]
 
@@ -489,9 +371,9 @@ function ExploreServicesSection() {
       <div className="container-narrow relative z-10">
         <div ref={headerReveal} className="text-center mb-16">
           <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">// EXPLORE OUR SERVICES</p>
-          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">Our Professional Capabilities</h2>
-          <p className="mt-5 max-w-xl mx-auto text-warm-gray text-sm leading-relaxed">
-            From the initial blueprint to the final modular handover, we deliver tailored building solutions.
+          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">EXPLORE OUR SERVICES</h2>
+          <p className="mt-5 max-w-2xl mx-auto text-charcoal/70 text-lg md:text-xl font-medium leading-relaxed">
+            We Provide Planning, designing, consultation and construction services for ground-up or renovation projects.
           </p>
         </div>
 
@@ -520,7 +402,7 @@ function ExploreServicesSection() {
                 </div>
                 <span className="text-[10px] font-mono text-warm-gray tracking-widest block mb-2">// SERVICE_0{svc.num}</span>
                 <h4 className="text-lg font-bold text-charcoal mb-3">{svc.title}</h4>
-                <p className="text-xs text-warm-gray leading-relaxed font-light">{svc.desc}</p>
+                <p className="text-base text-charcoal/60 leading-relaxed font-medium">{svc.desc}</p>
               </div>
 
               <div className="mt-8 pt-4 border-t border-dashed border-light-gray flex justify-between items-center">
@@ -557,7 +439,7 @@ function ExploreServicesSection() {
                 </div>
                 <span className="text-[10px] font-mono text-warm-gray tracking-widest block mb-2">// SERVICE_0{svc.num}</span>
                 <h4 className="text-lg font-bold text-charcoal mb-3">{svc.title}</h4>
-                <p className="text-xs text-warm-gray leading-relaxed font-light">{svc.desc}</p>
+                <p className="text-base text-charcoal/60 leading-relaxed font-medium">{svc.desc}</p>
               </div>
 
               <div className="mt-8 pt-4 border-t border-dashed border-light-gray flex justify-between items-center">
@@ -574,96 +456,15 @@ function ExploreServicesSection() {
   )
 }
 
-/* ─── READY TO BUILD CTA ─── */
-function CTASection() {
-  const ref = useScrollReveal({ y: 40 })
-  return (
-    <section className="section-padding bg-charcoal">
-      <div ref={ref} className="container-narrow text-center max-w-xl mx-auto">
-        <h2 className="text-white text-balance">Ready to Build Your Vision?</h2>
-        <p className="mt-5 text-white/50 leading-relaxed">
-          Let's discuss your project and create something extraordinary together.
-        </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <a href="/contact" className="px-10 py-4 bg-white text-charcoal text-sm font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5">
-            Start a Conversation
-          </a>
-          <Link to="/projects" className="px-10 py-4 border border-white/25 text-white text-sm font-medium rounded-full transition-all duration-300 hover:border-white/60 hover:bg-white/10">
-            View Our Work
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── TESTIMONIALS ─── */
-const testimonials = [
-  { name: 'Rajesh Kumar', role: 'Homeowner', initials: 'RK', text: 'LeanBuild transformed our dream home into reality. Their attention to detail and commitment to timelines was truly exceptional.' },
-  { name: 'Priya Sharma', role: 'Business Owner', initials: 'PS', text: "Outstanding work on our commercial complex. The team's professionalism and innovative approach set them apart from any builder we've worked with." },
-  { name: 'Anand Reddy', role: 'Real Estate Developer', initials: 'AR', text: 'Partnering with LeanBuild has been a game-changer. Superior quality, on-time delivery, and exceptional design sensibility throughout.' },
-]
-
-function TestimonialsSection() {
-  const [current, setCurrent] = useState(0)
-  const wrapperRef = useScrollReveal({ y: 40 })
-
-  useEffect(() => {
-    const id = setInterval(() => setCurrent(p => (p + 1) % testimonials.length), 5500)
-    return () => clearInterval(id)
-  }, [])
-
-  return (
-    <section className="section-padding bg-white">
-      <div className="container-narrow max-w-3xl mx-auto text-center">
-        <div ref={wrapperRef}>
-          <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Testimonials</p>
-          <h2 className="text-balance">What Our Clients Say</h2>
-        </div>
-        <div className="mt-14 relative" style={{ minHeight: 220 }}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <p className="text-lg lg:text-xl text-dark-slate leading-[1.75] italic">
-                "{testimonials[current].text}"
-              </p>
-              <div className="mt-8">
-                <div className="w-11 h-11 mx-auto rounded-full bg-light-gray flex items-center justify-center text-warm-gray font-heading font-semibold text-xs">
-                  {testimonials[current].initials}
-                </div>
-                <p className="mt-3 font-heading font-semibold text-charcoal">{testimonials[current].name}</p>
-                <p className="text-xs text-warm-gray mt-1">{testimonials[current].role}</p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-        <div className="mt-8 flex justify-center gap-2">
-          {testimonials.map((_, i) => (
-            <button key={i} onClick={() => setCurrent(i)} aria-label={`Testimonial ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-400 ${current === i ? 'w-7 bg-charcoal' : 'w-2 bg-light-gray hover:bg-medium-gray'}`} />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 /* ─── HOME PAGE ─── */
 export default function Home() {
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <HeroSection />
-      <IntroSection />
       <ProjectsSection />
       <LeanBuildStatsSection />
       <ExploreServicesSection />
-      <CTASection />
-      <TestimonialsSection />
+      <ContactCTA />
     </motion.div>
   )
 }

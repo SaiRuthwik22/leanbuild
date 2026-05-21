@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import logoImg from '../assets/image.png'
+import logoImgWhite from '../assets/logo_white.png'
 
 const navLinks = [
   { name: 'Home',      path: '/' },
@@ -29,8 +31,7 @@ export default function Navbar() {
   const isLight = darkHero && !scrolled          // white text when not scrolled on dark hero
   const textBase   = isLight ? 'text-white/70'   : 'text-warm-gray'
   const textActive = isLight ? 'text-white'      : 'text-charcoal'
-  const barColor   = isLight ? 'bg-white'        : 'bg-charcoal'
-  const logoColor  = isLight ? 'text-white'      : 'text-charcoal'
+  const barColor   = (isLight && !mobileOpen) ? 'bg-white' : 'bg-charcoal'
 
   return (
     <>
@@ -46,10 +47,12 @@ export default function Navbar() {
       >
         <div className="container-narrow flex items-center justify-between h-[72px]">
           {/* Logo */}
-          <Link to="/" className="relative z-10 shrink-0">
-            <span className={`font-heading text-lg font-semibold tracking-tight select-none transition-colors duration-500 ${logoColor}`}>
-              Lean<span className="font-light">Build</span>
-            </span>
+          <Link to="/" className="relative z-10 shrink-0 flex items-center">
+            <img 
+              src={isLight ? logoImgWhite : logoImg} 
+              alt="LeanBuild Logo" 
+              className="h-[52px] w-auto object-contain transition-all duration-500"
+            />
           </Link>
 
           {/* Desktop links */}
@@ -58,13 +61,18 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-[0.8125rem] font-heading font-medium tracking-wide transition-colors duration-500 ${
+                className={`group relative text-base font-heading font-semibold tracking-wide transition-colors duration-500 py-1 ${
                   location.pathname === link.path ? textActive : `${textBase} hover:${textActive}`
                 }`}
               >
                 {link.name}
+                {/* Active underline */}
                 {location.pathname === link.path && (
-                  <motion.span layoutId="nav-underline" className={`block mt-0.5 h-[1.5px] ${barColor} rounded-full`} />
+                  <motion.span layoutId="nav-underline" className={`absolute -bottom-1 left-0 w-full h-[2px] ${barColor} rounded-full`} />
+                )}
+                {/* Hover underline */}
+                {location.pathname !== link.path && (
+                  <span className={`absolute -bottom-1 left-0 w-full h-[2px] ${barColor} rounded-full opacity-0 scale-x-50 group-hover:scale-x-100 group-hover:opacity-100 transition-all duration-300 origin-left`} />
                 )}
               </Link>
             ))}
@@ -72,10 +80,10 @@ export default function Navbar() {
             {/* CTA button adapts too */}
             <Link
               to="/contact"
-              className={`px-6 py-2.5 text-[0.8125rem] font-heading font-medium rounded-full transition-all duration-500 ${
+              className={`px-7 py-3 text-base font-heading font-bold rounded-full transition-all duration-300 ${
                 isLight
-                  ? 'bg-white text-charcoal hover:bg-white/90'
-                  : 'bg-charcoal text-white hover:bg-dark-slate hover:shadow-lg'
+                  ? 'bg-white text-charcoal hover:bg-white hover:-translate-y-0.5 hover:shadow-lg'
+                  : 'bg-charcoal text-white hover:bg-black hover:-translate-y-0.5 hover:shadow-lg'
               }`}
             >
               Contact Us
@@ -115,7 +123,7 @@ export default function Navbar() {
               >
                 <Link
                   to={link.path}
-                  className={`text-3xl font-heading font-medium tracking-tight transition-colors ${
+                  className={`text-lg font-heading font-bold tracking-wide transition-colors ${
                     location.pathname === link.path ? 'text-charcoal' : 'text-warm-gray hover:text-charcoal'
                   }`}
                 >

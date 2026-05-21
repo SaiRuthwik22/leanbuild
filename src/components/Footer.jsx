@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import logoImgWhite from '../assets/logo_white.png'
 
 const quickLinks = [
   { name: 'Home', path: '/' },
@@ -34,10 +35,12 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="md:col-span-5">
-            <span className="font-heading text-lg font-semibold text-white tracking-tight select-none">
-              Lean<span className="font-light">Build</span>
-            </span>
-            <p className="mt-4 text-[0.875rem] leading-relaxed text-white/45 max-w-xs">
+            <img 
+              src={logoImgWhite} 
+              alt="LeanBuild Logo" 
+              className="h-16 w-auto object-contain" 
+            />
+            <p className="mt-6 text-[0.875rem] leading-relaxed text-white/45 max-w-xs">
               Crafting modern spaces with precision, quality, and timeless design excellence.
             </p>
             {/* Socials */}
@@ -60,7 +63,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {quickLinks.map(link => (
                 <li key={link.path}>
-                  <Link to={link.path} className="text-[0.875rem] text-white/45 hover:text-white/80 transition-colors duration-300">
+                  <Link to={link.path} className="text-base text-white/45 hover:text-white/80 transition-colors duration-300">
                     {link.name}
                   </Link>
                 </li>
@@ -71,10 +74,10 @@ export default function Footer() {
           {/* Contact */}
           <div className="md:col-span-4">
             <h5 className="text-[0.65rem] font-semibold text-white uppercase tracking-[0.25em] mb-5">Contact</h5>
-            <ul className="space-y-3 text-[0.875rem] text-white/45">
+            <ul className="space-y-3 text-base text-white/45">
               <li><a href="mailto:hello@leanbuild.com" className="hover:text-white/80 transition-colors duration-300">hello@leanbuild.com</a></li>
-              <li><a href="tel:+919876543210" className="hover:text-white/80 transition-colors duration-300">+91 98765 43210</a></li>
-              <li className="leading-relaxed">42 Jubilee Hills,<br />Hyderabad, Telangana 500033</li>
+              <li><a href="tel:+15124563654" className="hover:text-white/80 transition-colors duration-300">+1 (512) 456-3654</a></li>
+              <li className="leading-relaxed">8751 Collin McKinney Pkwy Suite 1102 #542<br />McKinney, TX 75070</li>
             </ul>
           </div>
         </div>

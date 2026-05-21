@@ -1,15 +1,13 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect, useRef, useMemo } from 'react'
-import { useScrollReveal, useStaggerReveal, useParallax } from '../hooks/useScrollAnimations'
+import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { useScrollReveal } from '../hooks/useScrollAnimations'
 import OptimizedImage from '../components/OptimizedImage'
+import ContactCTA from '../components/ContactCTA'
 
 /* Hero images (unchanged) */
 import imgHorizon from '../assets/proj_horizon.webp'
 import imgSerene from '../assets/proj_serene.webp'
 import imgMeridian from '../assets/proj_meridian.webp'
-import imgLotus from '../assets/proj_lotus.webp'
-import imgUrban from '../assets/proj_urban.webp'
-import imgSkyline from '../assets/proj_skyline.webp'
 import projectsHeroBg from '../assets/projects_hero_bg.webp'
 
 /* ─── Portfolio category images ─── */
@@ -180,22 +178,7 @@ function ProjectsHero() {
                 Start Your Project
               </a>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1.3 }}
-              className="mt-12 pt-8 border-t border-white/10 flex gap-8"
-            >
-              {[
-                { n: '6+', label: 'Landmark Projects' },
-                { n: '3', label: 'Cities' },
-              ].map(s => (
-                <div key={s.label}>
-                  <div className="text-2xl font-heading font-bold text-white">{s.n}</div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/40">{s.label}</div>
-                </div>
-              ))}
-            </motion.div>
+
           </div>
 
           {/* Right: Mosaic image grid — hovered card pops to front */}
@@ -322,18 +305,18 @@ function CategoryProjectCard({ project, index }) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
             </svg>
-            <span className="text-white/90 text-sm font-medium">{project.location}</span>
+            <span className="text-white/90 text-base font-medium">{project.location}</span>
           </div>
         </div>
       </div>
 
       {/* Text info */}
       <div className="mt-4 px-1">
-        <h4 className="text-sm font-heading font-semibold text-charcoal leading-snug group-hover:text-dark-slate transition-colors duration-300 line-clamp-2">
+        <h4 className="text-lg font-heading font-semibold text-charcoal leading-snug group-hover:text-dark-slate transition-colors duration-300 line-clamp-2">
           {project.title}{project.status && <span className="font-normal text-warm-gray"> ({project.status})</span>}
         </h4>
         {project.area && (
-          <p className="mt-1.5 text-xs text-warm-gray">{project.area}</p>
+          <p className="mt-1.5 text-sm text-warm-gray">{project.area}</p>
         )}
       </div>
     </motion.div>
@@ -372,7 +355,7 @@ function CategorySection({ category, index }) {
             </div>
             <div className="h-px flex-1 bg-light-gray" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-heading font-bold text-charcoal tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">
             {category.title}
           </h2>
           <p className="mt-2 text-sm text-warm-gray">
@@ -437,7 +420,7 @@ function PortfolioSection() {
           <div className="max-w-2xl">
             <p className="text-[10px] uppercase tracking-[0.4em] text-warm-gray mb-3">Portfolio</p>
             <h2 className="text-balance">Explore Our Portfolio</h2>
-            <p className="mt-4 text-warm-gray leading-relaxed">
+            <p className="mt-4 text-charcoal/70 text-base md:text-lg font-medium leading-relaxed">
               From multifamily residences to large-scale industrial infrastructure, our work spans every sector of modern construction.
             </p>
           </div>
@@ -455,34 +438,13 @@ function PortfolioSection() {
   )
 }
 
-/* ─── CTA ─── */
-function CTASection() {
-  const ref = useScrollReveal({ y: 40 })
-  return (
-    <section className="section-padding bg-charcoal">
-      <div ref={ref} className="container-narrow text-center max-w-xl mx-auto">
-        <h2 className="text-white text-balance">Have a Project in Mind?</h2>
-        <p className="mt-5 text-white/50 leading-relaxed">
-          Whether it's a dream home or a commercial landmark, we'd love to hear your vision.
-        </p>
-        <a
-          href="/contact"
-          className="inline-block mt-10 px-12 py-4 bg-white text-charcoal text-sm font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5"
-        >
-          Start Your Project
-        </a>
-      </div>
-    </section>
-  )
-}
-
 /* ─── PROJECTS PAGE ─── */
 export default function Projects() {
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <ProjectsHero />
       <PortfolioSection />
-      <CTASection />
+      <ContactCTA />
     </motion.div>
   )
 }

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useScrollReveal, useStaggerReveal, useParallax } from '../hooks/useScrollAnimations'
+import { useScrollReveal, useParallax } from '../hooks/useScrollAnimations'
 import { useState } from 'react'
 
 import contactHeroBg from '../assets/contact_hero_bg.webp'
@@ -162,11 +162,10 @@ function ContactForm() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold mb-1">Head Office</h4>
-                  <p className="text-sm text-warm-gray leading-relaxed">
-                    42, Jubilee Hills Road No. 36,<br />
-                    Jubilee Hills, Hyderabad,<br />
-                    Telangana 500033, India
+                  <h4 className="text-base font-semibold mb-1">Head Office</h4>
+                  <p className="text-base text-warm-gray leading-relaxed">
+                    8751 Collin McKinney Pkwy Suite 1102 #542<br />
+                    McKinney, TX 75070
                   </p>
                 </div>
               </div>
@@ -179,13 +178,9 @@ function ContactForm() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold mb-1">Phone</h4>
-                  <a href="tel:+919876543210" className="text-sm text-warm-gray hover:text-charcoal transition-colors reveal-underline">
-                    +91 98765 43210
-                  </a>
-                  <br />
-                  <a href="tel:+914023456789" className="text-sm text-warm-gray hover:text-charcoal transition-colors reveal-underline">
-                    +91 40 2345 6789
+                  <h4 className="text-base font-semibold mb-1">Phone</h4>
+                  <a href="tel:+15124563654" className="text-base text-warm-gray hover:text-charcoal transition-colors reveal-underline">
+                    +1 (512) 456-3654
                   </a>
                 </div>
               </div>
@@ -198,12 +193,12 @@ function ContactForm() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold mb-1">Email</h4>
-                  <a href="mailto:hello@leanbuild.com" className="text-sm text-warm-gray hover:text-charcoal transition-colors reveal-underline">
+                  <h4 className="text-base font-semibold mb-1">Email</h4>
+                  <a href="mailto:hello@leanbuild.com" className="text-base text-warm-gray hover:text-charcoal transition-colors reveal-underline">
                     hello@leanbuild.com
                   </a>
                   <br />
-                  <a href="mailto:projects@leanbuild.com" className="text-sm text-warm-gray hover:text-charcoal transition-colors reveal-underline">
+                  <a href="mailto:projects@leanbuild.com" className="text-base text-warm-gray hover:text-charcoal transition-colors reveal-underline">
                     projects@leanbuild.com
                   </a>
                 </div>
@@ -217,8 +212,8 @@ function ContactForm() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold mb-1">Working Hours</h4>
-                  <p className="text-sm text-warm-gray leading-relaxed">
+                  <h4 className="text-base font-semibold mb-1">Working Hours</h4>
+                  <p className="text-base text-warm-gray leading-relaxed">
                     Mon – Fri: 9:00 AM – 6:00 PM<br />
                     Saturday: 10:00 AM – 2:00 PM<br />
                     Sunday: Closed
@@ -260,8 +255,8 @@ function MapSection() {
         <div ref={ref} className="text-center mb-12">
           <p className="text-xs uppercase tracking-[0.35em] text-warm-gray mb-4">Find Us</p>
           <h2 className="text-balance">Visit Our Office</h2>
-          <p className="mt-4 max-w-lg mx-auto text-warm-gray leading-relaxed">
-            Located in the heart of Jubilee Hills, Hyderabad — drop by for a coffee and a conversation about your next project.
+          <p className="mt-4 max-w-lg mx-auto text-warm-gray text-base leading-relaxed">
+            Drop by for a coffee and a conversation about your next project at our McKinney office.
           </p>
         </div>
 
@@ -292,10 +287,10 @@ function CTASection() {
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
-            href="tel:+919876543210"
-            className="px-10 py-4 bg-white text-charcoal text-sm font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5"
+            href="tel:+15124563654"
+            className="px-10 py-4 bg-white text-charcoal text-base font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5"
           >
-            Call Now: +91 98765 43210
+            Call Now: +1 (512) 456-3654
           </a>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import { useMemo } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import Layout from './layouts/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -8,6 +8,7 @@ import Services from './pages/Services'
 import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import PageLoader from './components/PageLoader'
+import SplashScreen from './components/SplashScreen'
 import { useImagePreloader } from './hooks/useImagePreloader'
 
 // Critical above-the-fold images — preloaded per route
@@ -27,6 +28,10 @@ const routeImages = {
 
 function App() {
   const location = useLocation()
+
+  // First-visit splash screen state
+  const [splashDone, setSplashDone] = useState(false)
+  const handleSplashComplete = useCallback(() => setSplashDone(true), [])
 
   // Determine which images to preload for the current route
   const imagesToPreload = useMemo(
@@ -51,6 +56,11 @@ function App() {
       return
     }
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }
+
+  // Show splash screen on first visit
+  if (!splashDone) {
+    return <SplashScreen onComplete={handleSplashComplete} />
   }
 
   return (
