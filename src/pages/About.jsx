@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import OptimizedImage from '../components/OptimizedImage'
 
 // Assets
-import aboutHeroBg from '../assets/about_hero_bg.png'
+import aboutHeroBg from '../assets/about_hero_bg.webp'
 import teamPresident from '../assets/president.png'
 import teamCVO from '../assets/cvo.png'
 

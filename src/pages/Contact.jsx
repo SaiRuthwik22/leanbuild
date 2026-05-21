@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { useScrollReveal, useStaggerReveal, useParallax } from '../hooks/useScrollAnimations'
 import { useState } from 'react'
 
-import contactHeroBg from '../assets/contact_hero_bg.png'
+import contactHeroBg from '../assets/contact_hero_bg.webp'
 
 const pageVariants = {
   initial: { opacity: 0 },

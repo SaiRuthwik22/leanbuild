@@ -11,11 +11,11 @@ import PageLoader from './components/PageLoader'
 import { useImagePreloader } from './hooks/useImagePreloader'
 
 // Critical above-the-fold images — preloaded per route
-import heroBg from './assets/hero_bg.jpg'
-import aboutHeroBg from './assets/about_hero_bg.png'
-import servicesHeroBg from './assets/services_hero_bg.png'
-import projectsHeroBg from './assets/projects_hero_bg.png'
-import contactHeroBg from './assets/contact_hero_bg.png'
+import heroBg from './assets/hero_bg.webp'
+import aboutHeroBg from './assets/about_hero_bg.webp'
+import servicesHeroBg from './assets/services_hero_bg.webp'
+import projectsHeroBg from './assets/projects_hero_bg.webp'
+import contactHeroBg from './assets/contact_hero_bg.webp'
 
 const routeImages = {
   '/':         [heroBg],

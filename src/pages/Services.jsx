@@ -5,15 +5,15 @@ import { useState, useEffect, useRef } from 'react'
 import OptimizedImage from '../components/OptimizedImage'
 
 // Service images
-import imgResidential from '../assets/svc_residential.jpg'
-import imgCommercial from '../assets/svc_commercial.jpg'
-import imgInterior from '../assets/svc_interior.jpg'
-import imgRenovation from '../assets/svc_renovation.jpg'
-import imgDesign from '../assets/svc_design.png'
-import imgEngineering from '../assets/svc_engineering.png'
-import imgHorizon from '../assets/proj_horizon.jpg'
-import imgSerene from '../assets/proj_serene.jpg'
-import servicesHeroBg from '../assets/services_hero_bg.png'
+import imgResidential from '../assets/svc_residential.webp'
+import imgCommercial from '../assets/svc_commercial.webp'
+import imgInterior from '../assets/svc_interior.webp'
+import imgRenovation from '../assets/svc_renovation.webp'
+import imgDesign from '../assets/svc_design.webp'
+import imgEngineering from '../assets/svc_engineering.webp'
+import imgHorizon from '../assets/proj_horizon.webp'
+import imgSerene from '../assets/proj_serene.webp'
+import servicesHeroBg from '../assets/services_hero_bg.webp'
 
 const pageVariants = {
   initial: { opacity: 0 },
