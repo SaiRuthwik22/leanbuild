@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import logoImg from '../assets/image.png'
@@ -8,16 +8,27 @@ const navLinks = [
   { name: 'Home',      path: '/' },
   { name: 'About Us',  path: '/about' },
   { name: 'Services',  path: '/services' },
+  {
+    name: 'Products',
+    path: '/products',
+    children: [
+      { name: 'MorphX', path: '/products#morphx' },
+      { name: 'MorphX Steel Structures', path: '/products#morphx-steel' },
+    ],
+  },
   { name: 'Projects',  path: '/projects' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(null) // tracks which dropdown is open (by path)
+  const [mobileExpanded, setMobileExpanded] = useState(null) // mobile accordion
   const location = useLocation()
+  const dropdownTimeout = useRef(null)
 
   // Pages with a dark hero that need white nav text initially
-  const darkHero = ['/', '/about', '/services', '/projects', '/contact'].includes(location.pathname)
+  const darkHero = ['/', '/about', '/services', '/products', '/projects', '/contact'].includes(location.pathname)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -25,13 +36,29 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => { setMobileOpen(false) }, [location.pathname])
+  useEffect(() => { setMobileOpen(false); setMobileExpanded(null) }, [location.pathname])
 
   // Decide text / icon color based on scroll + darkHero
   const isLight = darkHero && !scrolled          // white text when not scrolled on dark hero
   const textBase   = isLight ? 'text-white/70'   : 'text-warm-gray'
   const textActive = isLight ? 'text-white'      : 'text-charcoal'
   const barColor   = (isLight && !mobileOpen) ? 'bg-white' : 'bg-charcoal'
+
+  const handleDropdownEnter = (path) => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current)
+    setDropdownOpen(path)
+  }
+
+  const handleDropdownLeave = () => {
+    dropdownTimeout.current = setTimeout(() => setDropdownOpen(null), 150)
+  }
+
+  const isActivePath = (link) => {
+    if (link.path === '/products') {
+      return location.pathname === '/products'
+    }
+    return location.pathname === link.path
+  }
 
   return (
     <>
@@ -58,23 +85,59 @@ export default function Navbar() {
           {/* Desktop links */}
           <nav className="hidden md:flex items-center gap-9">
             {navLinks.map(link => (
-              <Link
+              <div
                 key={link.path}
-                to={link.path}
-                className={`group relative text-base font-heading font-semibold tracking-wide transition-colors duration-500 py-1 ${
-                  location.pathname === link.path ? textActive : `${textBase} hover:${textActive}`
-                }`}
+                className="relative"
+                onMouseEnter={link.children ? () => handleDropdownEnter(link.path) : undefined}
+                onMouseLeave={link.children ? handleDropdownLeave : undefined}
               >
-                {link.name}
-                {/* Active underline */}
-                {location.pathname === link.path && (
-                  <motion.span layoutId="nav-underline" className={`absolute -bottom-1 left-0 w-full h-[2px] ${barColor} rounded-full`} />
-                )}
-                {/* Hover underline */}
-                {location.pathname !== link.path && (
-                  <span className={`absolute -bottom-1 left-0 w-full h-[2px] ${barColor} rounded-full opacity-0 scale-x-50 group-hover:scale-x-100 group-hover:opacity-100 transition-all duration-300 origin-left`} />
-                )}
-              </Link>
+                <Link
+                  to={link.path}
+                  className={`group relative text-base font-heading font-semibold tracking-wide transition-colors duration-500 py-1 flex items-center gap-1 ${
+                    isActivePath(link) ? textActive : `${textBase} hover:${textActive}`
+                  }`}
+                >
+                  {link.name}
+                  {link.children && (
+                    <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${dropdownOpen === link.path ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  )}
+                  {/* Active underline */}
+                  {isActivePath(link) && (
+                    <motion.span layoutId="nav-underline" className={`absolute -bottom-1 left-0 w-full h-[2px] ${barColor} rounded-full`} />
+                  )}
+                  {/* Hover underline */}
+                  {!isActivePath(link) && (
+                    <span className={`absolute -bottom-1 left-0 w-full h-[2px] ${barColor} rounded-full opacity-0 scale-x-50 group-hover:scale-x-100 group-hover:opacity-100 transition-all duration-300 origin-left`} />
+                  )}
+                </Link>
+
+                {/* Dropdown */}
+                <AnimatePresence>
+                  {link.children && dropdownOpen === link.path && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-60 bg-white rounded-xl shadow-xl border border-black/[0.06] overflow-hidden"
+                    >
+                      <div className="py-2">
+                        {link.children.map(child => (
+                          <Link
+                            key={child.path}
+                            to={child.path}
+                            className="block px-5 py-3 text-sm font-heading font-medium text-warm-gray hover:text-charcoal hover:bg-offwhite transition-all duration-200"
+                          >
+                            {child.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ))}
 
             {/* CTA button adapts too */}
@@ -112,7 +175,7 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 bg-offwhite z-50 flex flex-col items-center justify-center gap-10 md:hidden"
+            className="fixed inset-0 bg-offwhite z-50 flex flex-col items-center justify-center gap-8 md:hidden"
           >
             {navLinks.map((link, i) => (
               <motion.div
@@ -120,15 +183,53 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.07, duration: 0.45 }}
+                className="flex flex-col items-center"
               >
-                <Link
-                  to={link.path}
-                  className={`text-lg font-heading font-bold tracking-wide transition-colors ${
-                    location.pathname === link.path ? 'text-charcoal' : 'text-warm-gray hover:text-charcoal'
-                  }`}
-                >
-                  {link.name}
-                </Link>
+                {link.children ? (
+                  <>
+                    <button
+                      onClick={() => setMobileExpanded(mobileExpanded === link.path ? null : link.path)}
+                      className={`flex items-center gap-2 text-lg font-heading font-bold tracking-wide transition-colors ${
+                        isActivePath(link) ? 'text-charcoal' : 'text-warm-gray hover:text-charcoal'
+                      }`}
+                    >
+                      {link.name}
+                      <svg className={`w-4 h-4 transition-transform duration-300 ${mobileExpanded === link.path ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <AnimatePresence>
+                      {mobileExpanded === link.path && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden flex flex-col items-center gap-3 mt-3"
+                        >
+                          {link.children.map(child => (
+                            <Link
+                              key={child.path}
+                              to={child.path}
+                              className="text-base font-heading font-medium text-warm-gray hover:text-charcoal transition-colors"
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                ) : (
+                  <Link
+                    to={link.path}
+                    className={`text-lg font-heading font-bold tracking-wide transition-colors ${
+                      location.pathname === link.path ? 'text-charcoal' : 'text-warm-gray hover:text-charcoal'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                )}
               </motion.div>
             ))}
             <motion.div

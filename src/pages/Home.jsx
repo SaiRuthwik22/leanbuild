@@ -3,6 +3,7 @@ import { useScrollReveal, useStaggerReveal, useCountUp, useParallax } from '../h
 import { Link } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
+import Testimonials from '../components/Testimonials'
 
 // Assets
 import heroBg from '../assets/hero_bg.webp'
@@ -464,6 +465,7 @@ export default function Home() {
       <ProjectsSection />
       <LeanBuildStatsSection />
       <ExploreServicesSection />
+      <Testimonials />
       <ContactCTA />
     </motion.div>
   )

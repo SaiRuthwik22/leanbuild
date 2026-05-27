@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollAnimations'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
+import Testimonials from '../components/Testimonials'
 
 // Assets
 import aboutHeroBg from '../assets/about_hero_bg.webp'
@@ -290,12 +291,109 @@ function TeamSection() {
   )
 }
 
+/* ─── Partnerships Section ─── */
+const partnerships = {
+  institutions: [
+    { name: 'ETTL Engineers & Consultants', short: 'ETTL' },
+    { name: 'ECL – Engineering Consultants Ltd', short: 'ECL' },
+    { name: 'Texas Board of Professional Engineers', short: 'TBPE' },
+    { name: 'American Institute of Architects', short: 'AIA' },
+    { name: 'International Code Council', short: 'ICC' },
+    { name: 'OSHA Safety Partners', short: 'OSHA' },
+  ],
+  inspectors: [
+    { name: 'ETTL – Third Party Inspections', short: 'ETTL' },
+    { name: 'ECL – Quality Assurance', short: 'ECL' },
+    { name: 'Bureau Veritas', short: 'BV' },
+    { name: 'Intertek Testing Services', short: 'ITS' },
+    { name: 'SGS Inspection Services', short: 'SGS' },
+    { name: 'TÜV Rheinland', short: 'TÜV' },
+  ],
+}
+
+function PartnershipsSection() {
+  const headerRef = useScrollReveal({ y: 40 })
+  const containerRef = useRef(null)
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+  
+  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"])
+  const x2 = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"])
+
+  const allInstitutions = [...partnerships.institutions, ...partnerships.institutions, ...partnerships.institutions]
+  const allInspectors = [...partnerships.inspectors, ...partnerships.inspectors, ...partnerships.inspectors]
+
+  return (
+    <section ref={containerRef} className="section-padding bg-offwhite relative overflow-hidden">
+      <div className="container-narrow relative z-10">
+        <div ref={headerRef} className="text-center mb-16">
+          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">
+            Trusted Partners
+          </h2>
+          <p className="mt-5 max-w-xl mx-auto text-charcoal/60 text-lg md:text-xl font-medium leading-relaxed">
+            We collaborate with leading institutions, architects, and third-party inspectors to ensure the highest standards.
+          </p>
+        </div>
+      </div>
+
+      {/* Institutions & Architects */}
+      <div className="mb-14 relative">
+        <div className="container-narrow relative z-10 mb-6 flex justify-center md:justify-start">
+          <p className="text-xs uppercase tracking-[0.25em] text-warm-gray font-semibold">Institutions & Architects</p>
+        </div>
+        <motion.div style={{ x: x1 }} className="flex gap-5 w-max px-4">
+          {allInstitutions.map((partner, i) => (
+            <div
+              key={`inst-${i}`}
+              className="w-[260px] md:w-[300px] flex-shrink-0 group flex flex-col items-center justify-center py-8 px-6 rounded-2xl bg-white hover:bg-charcoal transition-all duration-500 cursor-default shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]"
+            >
+              <span className="text-2xl md:text-3xl font-heading font-extrabold text-charcoal/25 group-hover:text-white transition-colors duration-500 tracking-tighter">
+                {partner.short}
+              </span>
+              <p className="text-[10px] text-charcoal/35 group-hover:text-white/60 mt-2 transition-colors duration-500 text-center leading-tight font-medium">
+                {partner.name}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Third-Party Inspectors */}
+      <div className="relative">
+        <div className="container-narrow relative z-10 mb-6 flex justify-center md:justify-end">
+          <p className="text-xs uppercase tracking-[0.25em] text-warm-gray font-semibold">Third-Party Inspectors</p>
+        </div>
+        <motion.div style={{ x: x2 }} className="flex gap-5 w-max px-4">
+          {allInspectors.map((partner, i) => (
+            <div
+              key={`insp-${i}`}
+              className="w-[260px] md:w-[300px] flex-shrink-0 group flex flex-col items-center justify-center py-8 px-6 rounded-2xl bg-white hover:bg-charcoal transition-all duration-500 cursor-default shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]"
+            >
+              <span className="text-2xl md:text-3xl font-heading font-extrabold text-charcoal/25 group-hover:text-white transition-colors duration-500 tracking-tighter">
+                {partner.short}
+              </span>
+              <p className="text-[10px] text-charcoal/35 group-hover:text-white/60 mt-2 transition-colors duration-500 text-center leading-tight font-medium">
+                {partner.name}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
 export default function About() {
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <AboutHero />
       <TeamSection />
       <ExperienceSection />
+      <PartnershipsSection />
+      <Testimonials />
       <ContactCTA />
     </motion.div>
   )

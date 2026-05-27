@@ -7,14 +7,14 @@ gsap.registerPlugin(ScrollTrigger)
 /**
  * Hook for GSAP ScrollTrigger reveal animations
  * @param {object} options - Animation options
- * @param {number} options.y - Initial Y offset (default: 60)
- * @param {number} options.duration - Animation duration (default: 1)
+ * @param {number} options.y - Initial Y offset (default: 40)
+ * @param {number} options.duration - Animation duration (default: 0.7)
  * @param {number} options.delay - Animation delay (default: 0)
- * @param {string} options.start - ScrollTrigger start position (default: 'top 85%')
+ * @param {string} options.start - ScrollTrigger start position (default: 'top 95%')
  */
 export function useScrollReveal(options = {}) {
   const ref = useRef(null)
-  const { y = 60, duration = 1, delay = 0, start = 'top 85%' } = options
+  const { y = 40, duration = 0.7, delay = 0, start = 'top 95%' } = options
 
   useEffect(() => {
     const el = ref.current
@@ -54,7 +54,7 @@ export function useScrollReveal(options = {}) {
  */
 export function useStaggerReveal(childSelector = '.stagger-item', options = {}) {
   const ref = useRef(null)
-  const { y = 40, duration = 0.8, stagger = 0.15, start = 'top 85%' } = options
+  const { y = 40, duration = 0.6, stagger = 0.1, start = 'top 95%' } = options
 
   useEffect(() => {
     const el = ref.current
