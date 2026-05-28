@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollAnimations'
 import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
@@ -27,6 +28,58 @@ import imgIndustrial4 from '../assets/proj_industrial_4.webp'
 import imgIndustrial5 from '../assets/proj_industrial_5.webp'
 import imgInstitutional1 from '../assets/proj_institutional_1.webp'
 
+import luxury1 from '../assets/luxuryapartment1.png'
+import luxury2 from '../assets/luxuryapartment2.png'
+import luxury3 from '../assets/luxuryapartmentt3.png'
+
+import pinnacle1 from '../assets/pinnacleacademy1.png'
+import pinnacle2 from '../assets/pinnacleacademy2.png'
+import pinnacle3 from '../assets/pinnacleacademy3.png'
+import pinnacle4 from '../assets/pinnacleacademy4.png'
+
+import cornhill1 from '../assets/cornhill1.png'
+import cornhill2 from '../assets/cornhill2.png'
+import cornhill3 from '../assets/cornhill3.png'
+
+
+
+import pinnacletx1 from '../assets/pinnacletx1.png'
+import pinnacletx2 from '../assets/pinnacletx2.png'
+import pinnacletx3 from '../assets/pinnacletx3.png'
+import pinnacletx4 from '../assets/pinnacletx4.png'
+import pinnacletx5 from '../assets/pinnacletx5.png'
+
+import velocity1 from '../assets/velocity1.png'
+import velocity2 from '../assets/velocity2.png'
+import velocity3 from '../assets/velocity3.png'
+import velocity4 from '../assets/velocity4.png'
+import velocity5 from '../assets/velocity5.png'
+import velocity6 from '../assets/velocity6.png'
+import velocity7 from '../assets/velocity7.png'
+
+import mamabros1 from '../assets/mamabros1.png'
+import mamabros2 from '../assets/mamabros2.png'
+import mamabros3 from '../assets/mamabros3.png'
+import mamabros4 from '../assets/mamabros4.png'
+
+import sitara1 from '../assets/sitara1.png'
+import sitara2 from '../assets/sitara2.png'
+import sitara3 from '../assets/sitara3.png'
+import sitara4 from '../assets/sitara4.png'
+
+import blake1 from '../assets/blake1.png'
+import blake2 from '../assets/blake2.png'
+import blake3 from '../assets/blake3.png'
+
+import godavari1 from '../assets/godavari1.png'
+import godavari2 from '../assets/godavari2.png'
+
+import sunrise1 from '../assets/sunrise1.png'
+import sunrise2 from '../assets/sunrise2.png'
+
+import flood1 from '../assets/flood1.png'
+import ground1 from '../assets/ground1.png'
+
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
@@ -36,33 +89,8 @@ const pageVariants = {
 /* ─── Portfolio data organised by category ─── */
 const portfolioCategories = [
   {
-    id: 'under-construction',
-    title: 'Under Construction',
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1M18 4l-8.49 8.49m3.49-3.49l5.1 5.1M6 20l8.49-8.49M3.99 11.01l8.49-8.49M20.01 12.99l-8.49 8.49" />
-      </svg>
-    ),
-    projects: [
-      { 
-        title: 'Commercial Complex - Cornhill Business Park', 
-        img: imgRetail1, 
-        location: 'Jarrell, TX', 
-        area: '23.78 Acres | 33,920 Sq.Ft.',
-        description: 'Project Costs:\n• Phase 1 - 2.5M\n• Phase 2 - 3.4M'
-      },
-      { 
-        title: 'School & Retail Space - Pinnacle Montessori Academy', 
-        img: imgInstitutional1, 
-        location: 'Oak Point, TX', 
-        area: '2.2 Acres | 17,500 Sq.Ft.',
-        description: 'Project Costs – 6M'
-      },
-    ],
-  },
-  {
-    id: 'ready-for-construction',
-    title: 'Ready for Construction',
+    id: 'multifamily',
+    title: 'Multifamily',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m7.5 0h2.25" />
@@ -70,39 +98,39 @@ const portfolioCategories = [
     ),
     projects: [
       { 
-        title: 'Landmark @31 Apartments', 
-        img: imgMultifamily1, 
-        location: 'Tyler, TX', 
-        description: 'Complete Land Entitled, our team is doing a design build development – working with city of Tyler on the Civil and Architectural plan approvals.\nProject to break ground in August 2025.\n\n• 8.772 acres - 3 Storied Garden Style Class A Apartments\n• 7 Apartment Buildings and a Clubhouse\n• 212 Units (21-Studio, 84-1-Bed 1-Bath and 107- 2-Bed 2-Bath)'
-      },
-      { 
         title: 'Luxury Apartment Complex', 
-        img: imgMultifamily2, 
+        img: luxury1, 
+        images: [luxury1, luxury2, luxury3],
         location: 'Berkman Drive, Austin, TX', 
         description: 'Complete Land Entitled, our team is doing a design build development – Working with city of Austin on the Civil and Architectural plan approvals.\nProject to break ground in January 2026.\n\n• 3 Storied Garden Style Class A Apartments\n• 6 Apartment Buildings & 1 Clubhouse Building\n• 305 Units\n• World class Amenities'
       },
+      { title: 'Landmark @31Apartments, Tyler, Texas', img: imgMultifamily1, location: 'Tyler, TX', status: 'In Design' },
+      { title: 'Florence Mixed Use Apartments, South Carolina', img: imgMultifamily2, location: 'South Carolina', status: 'In Design' },
+      { title: 'Canyon Creek Mixed Use Development, Temple, Texas', img: imgMultifamily3, location: 'Temple, TX', status: 'In Pipeline' },
     ],
   },
   {
-    id: 'design-stage',
-    title: 'Design Stage Projects',
+    id: 'warehouses',
+    title: 'Warehouses',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
       </svg>
     ),
     projects: [
       { 
-        title: 'Mixed Use Master Plan Community', 
-        img: imgTownhome1, 
-        location: 'Florence, SC', 
-        description: 'Mixed Use Development\n• 7+ Acres Commercial | 3 acres – Storage\n• Single Family – 84 units\n• Townhomes – 70 Units\n• Apartments – 216 units\n• Approx project estimation - $48M'
+        title: 'Rosenburg Business Center', 
+        img: imgWarehouse1, 
+        location: 'Rosenburg, TX', 
+        area: '25 Acres | 300,000 Sq.Ft.'
       },
+      { title: 'Deep Sea Technology, Houston, Texas', img: imgWarehouse2, location: 'Houston, TX', status: 'Completed' },
+      { title: 'Asian Completion Tools, Houston, Texas', img: imgWarehouse3, location: 'Houston, TX', status: 'Completed' },
     ],
   },
   {
-    id: 'pipeline',
-    title: 'Projects in Pipeline',
+    id: 'retail-office',
+    title: 'Retail & Office',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .414.336.75.75.75z" />
@@ -110,11 +138,69 @@ const portfolioCategories = [
     ),
     projects: [
       { 
-        title: 'Retail Complex Project', 
-        img: imgRetail2, 
-        location: 'Glenn Heights, TX', 
-        area: '4.26 Acres | 34,174 Sq.Ft.',
-        description: '• Parking lots – 187 Spaces\n• Project Cost – 6.8M'
+        title: 'Cornhill Business Park', 
+        img: cornhill1, 
+        images: [cornhill1, cornhill2, cornhill3],
+        location: 'Jarrell, TX', 
+        area: '23.78 Acres | 33,920 Sq.Ft.',
+        description: 'Project Costs:\n• Phase 1 - 2.5M\n• Phase 2 - 3.4M'
+      },
+      { 
+        title: 'Cedar Park Office Condos', 
+        img: imgRetail1, 
+        location: 'Baghdad Road, Cedar Park, TX', 
+        area: '3.5 Acres | Approx. 39,000 Sq.Ft.',
+        description: '• Unit Sizes Range - 1007 to 2077 Sqft\n• Parking lots - 161\n• Project Cost – 5.25M'
+      },
+      { title: 'Hallmark Office Park, Cedar Park, Texas', img: imgRetail1, location: 'Cedar Park, TX', status: 'In Construction' },
+      { title: 'Baghdad Road Office Condo, Cedar Park, Texas', img: imgRetail2, location: 'Cedar Park, TX', status: 'In Design' },
+      { title: 'Retail Complex Project, Glenn Heights, Texas', img: imgRetail2, location: 'Glenn Heights, TX' },
+    ],
+  },
+  {
+    id: 'townhomes',
+    title: 'Townhomes & Single Family',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+      </svg>
+    ),
+    projects: [
+      { title: 'Florence Mixed Use Project, South Carolina', img: imgTownhome1, location: 'South Carolina', status: 'In Design' },
+    ],
+  },
+  {
+    id: 'infra-industrial',
+    title: 'Infra – Industrial',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1M18 4l-8.49 8.49m3.49-3.49l5.1 5.1M6 20l8.49-8.49M3.99 11.01l8.49-8.49M20.01 12.99l-8.49 8.49" />
+      </svg>
+    ),
+    projects: [
+      { title: 'East Water Purification Plant, Houston, Texas', img: imgIndustrial1, location: 'Houston, TX' },
+      { title: 'Flood Gates, Houston, Texas', img: imgIndustrial2, location: 'Houston, TX' },
+      { title: 'Park One Pump Station, Houston, Texas', img: imgIndustrial3, location: 'Houston, TX' },
+      { title: 'Water Plant - City Of Frisco', img: imgIndustrial4, location: 'Frisco, TX' },
+      { title: 'Southwest Water Plant Expansion, Houston, Texas', img: imgIndustrial5, location: 'Houston, TX' },
+    ],
+  },
+  {
+    id: 'institutional',
+    title: 'Institutional',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+      </svg>
+    ),
+    projects: [
+      { 
+        title: 'Pinnacle Montessori Academy', 
+        img: pinnacle1, 
+        images: [pinnacle1, pinnacle2, pinnacle3, pinnacle4],
+        location: 'Oak Point, TX', 
+        area: '2.2 Acres | 17,500 Sq.Ft.',
+        description: 'Project Costs – 6M'
       },
       { 
         title: 'Montessori Academy Project', 
@@ -123,20 +209,7 @@ const portfolioCategories = [
         area: '1.72 Acres | 10,400 Sq.Ft.',
         description: '• Parking lots – 34 Spaces\n• Project Cost – 3.1M'
       },
-      { 
-        title: 'Cedar Park Office Condos', 
-        img: imgRetail1, 
-        location: 'Baghdad Road, Cedar Park, TX', 
-        area: '3.5 Acres | Approx. 39,000 Sq.Ft.',
-        description: '• Unit Sizes Range - 1007 to 2077 Sq.Ft.\n• Parking lots - 161\n• Project Cost – 5.25M'
-      },
-      { 
-        title: 'Rosenburg Business Center', 
-        img: imgWarehouse1, 
-        location: 'Rosenburg, TX', 
-        area: '25 Acres | 300,000 Sq.Ft.',
-        description: 'In the process Entitlement working with the city of Rosenburg Planning Department. Projected timelines for the project to start site work in December 2025.'
-      },
+      { title: 'Woodland Temple, Woodland, Texas', img: imgInstitutional1, location: 'Woodland, TX' },
     ],
   },
   {
@@ -144,108 +217,109 @@ const portfolioCategories = [
     title: 'Completed Projects',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     projects: [
-      { 
-        title: 'Pinnacle Montessori Academy (Day Care & Retail)', 
-        img: imgInstitutional1, 
-        location: 'Georgetown, TX', 
+      {
+        title: 'Pinnacle Montessori Academy',
+        img: pinnacletx1,
+        images: [pinnacletx1, pinnacletx2, pinnacletx3, pinnacletx4, pinnacletx5],
+        location: 'Georgetown, TX',
         area: '2 Acres | 17,500 Sq.Ft.',
-        description: '• Project Costs – 6M\n• Project Completion – Feb 2026'
+        description: 'Project Costs – 6M\nProject Completion – Feb 2026',
+        status: 'Completed'
       },
-      { 
-        title: 'Velocity Sports Complex', 
-        img: imgIndustrial1, 
-        location: 'McKinney, TX', 
-        area: '1.2 Acres | Approx. 23,500 Sq.Ft.',
-        description: '• Total units – 26 (Sizes: 1007 to 2077 Sq.Ft.)\n• Total Parking Spaces – 52\n• Project Costs – 6M\n• Project Completion: 2025'
+      {
+        title: 'Velocity Sports',
+        img: velocity1,
+        images: [velocity1, velocity2, velocity3, velocity4, velocity5, velocity6, velocity7],
+        location: 'Mckinney, TX',
+        area: '1.2 Acres | 23,500 Sq.Ft.',
+        description: 'Total units – 26\nUnit Sizes Range - 1007 to 2077 Sqft\nTotal Parking Spaces – 52\nProject Costs – 6M\nProject Completion: 2025',
+        status: 'Completed'
       },
-      { 
-        title: 'Mama Bros Restaurant and Banquets', 
-        img: imgRetail2, 
-        location: '801 Wells Branch Pkwy, Pflugerville, TX', 
+      {
+        title: 'Mama Bros Restaurant and Banquets',
+        img: mamabros1,
+        images: [mamabros1, mamabros2, mamabros3, mamabros4],
+        location: '801 Wells Branch Pkwy, Pflugerville, TX - 78660',
         area: 'Approx. 7,800 Sq.Ft.',
-        description: '• Project Type: Restaurant & Banquet Space\n• Project Costs – 1.3M'
+        description: 'Project Type: Restaurant & Banquet Space\nProject Costs – 1.3M',
+        status: 'Completed'
       },
-      { 
-        title: 'New Sitara Restaurant', 
-        img: imgRetail1, 
-        location: '1779 Wells Branch Pkwy, Austin, TX', 
-        area: 'Approx. 6,300 Sq.Ft.',
-        description: '• Project Type: Restaurant Space\n• Project Costs – 1.15M'
+      {
+        title: 'New Sitara Restaurant',
+        img: sitara1,
+        images: [sitara1, sitara2, sitara3, sitara4],
+        location: '1779 Wells Branch Pkwy, Austin, TX 78728',
+        area: 'Approx. 6300 Sq.Ft.',
+        description: 'Project Type: Restaurant & Banquet Space\nProject Costs – 1.15M',
+        status: 'Completed'
       },
-      { 
-        title: 'The Emery Village Apartments', 
-        img: imgMultifamily3, 
-        location: '174 Emery Ave, Concord, NC', 
-        description: '• Project Type: 132 Unit Apartments with Clubhouse.\n• Partnered with Collins & Galyon Constructions'
+      {
+        title: 'The Blake',
+        img: blake1,
+        images: [blake1, blake2, blake3],
+        location: '457 W Broadway, South Boston, MA',
+        area: '',
+        description: 'Podium style construction with two floors of parking with concrete, Ground floor steel – commercial and Four floor stick-built luxury Condominiums.\nPartnered with Brenco Constructions LLC',
+        status: 'Completed'
       },
-      { 
-        title: 'The Blake Condominiums', 
-        img: imgMultifamily2, 
-        location: '457 W Broadway, South Boston, MA', 
-        description: '• Podium style construction with two floors of parking with concrete, Ground floor steel – commercial and Four floor stick-built luxury Condominiums.\n• Partnered with Brenco Constructions LLC'
+      {
+        title: 'The Emery Village Apartments',
+        img: imgMultifamily1,
+        images: [imgMultifamily1, imgMultifamily2, imgMultifamily3],
+        location: '174 Emery Ave, Concord, NC',
+        area: '',
+        description: 'Project Type: 132 Unit Apartments with Clubhouse\nPartnered with Collins & Galyon Constructions',
+        status: 'Completed / Leasing Now'
       },
-      { 
-        title: 'Plaza Midwood Townhomes', 
-        img: imgTownhome1, 
-        location: '3916 The Plaza, Charlotte NC', 
-        description: '• Project Type: Townhomes – 4 Units\n• Partnered with KB holdings LLC'
+      {
+        title: 'Plaza Midwood Townhomes',
+        img: imgTownhome1,
+        images: [imgTownhome1, imgMultifamily1],
+        location: '3916 The Plaza, Charlotte NC',
+        area: '',
+        description: 'Project Type: Townhomes – 4 Units\nPartnered with KB holdings LLC',
+        status: 'Completed / Sold'
       },
-      { 
-        title: 'Godavari Restaurant', 
-        img: imgRetail2, 
-        location: 'Austin, TX', 
-        area: '3,500 Sq.Ft.',
-        description: 'Turnkey Restaurant construction. Framing, Electrical, HVAC and Plumbing. Finished the interior from insulation, Drywall and Painting. Installed Doors, Lighting fixtures, Plumbing fixtures. We completed the Kitchen and Refrigerators with Walk-in coolers/Freezers.'
+      {
+        title: 'Godavari Restaurant',
+        img: godavari1,
+        images: [godavari1, godavari2],
+        location: 'Austin, TX',
+        area: '3500 Sq.Ft.',
+        description: 'Turnkey Restaurant construction.\nFraming, Electrical, HVAC and Plumbing. Finished the interior from insulation, Drywall and Painting. Installed Doors, Lighting fixtures, Plumbing fixtures. We completed the Kitchen and Refrigerators with Walking coolers/Freezers.',
+        status: 'Completed'
       },
-      { 
-        title: 'Temple Extension and Improvement', 
-        img: imgInstitutional1, 
-        location: 'Texas', 
-        area: '10 Acres',
-        description: 'Turnkey construction from site development to an operating Temple and facilities. Facility to include assembly hall, kitchen, event hall, classrooms and restrooms. Cleared heavy wooded lot to make room for new construction, complete infrastructure to accommodate future expansion.'
-      },
-      { 
-        title: 'Office & Industrial Manufacturing Facility', 
-        img: imgIndustrial2, 
-        location: 'Texas', 
-        area: '7.5 Acres | 20,000 Sq.Ft.',
-        description: 'Turnkey construction from site development. Office and industrial manufacturing facilities. Cleared heavy wooded lot, detention pond, water well and septic system, underground water, sanitary and storm water, cast-in-place concrete, structural steel framing, 50-ton bridge crane.'
-      },
-      { 
-        title: 'Sunrise Food Mart', 
-        img: imgRetail1, 
-        location: 'Sunrise Beach, TX', 
+      {
+        title: 'Sunrise Food Mart',
+        img: sunrise1,
+        images: [sunrise1, sunrise2],
+        location: 'Sunrise Beach, Texas',
         area: '0.5 Acres | Approx. 3,500 Sq.Ft.',
-        description: '• Project Cost – 1.55M'
+        description: 'Project Cost – 1.55M',
+        status: 'Completed'
       },
-      { 
-        title: 'Flood Management System - Concrete Wall & Flood Gate', 
-        img: imgIndustrial3, 
-        location: 'City of Houston, TX', 
-        description: 'Install flood prevention concrete wall and floodgate at the entry/exit of the City Annex garage near interstate 45 and the Mckinney Street bridge. Installed double submarine type doors, stainless steel dams, with all necessary structural supports.'
+      {
+        title: 'Flood Management System',
+        img: flood1,
+        images: [flood1],
+        location: 'City of Houston, Texas',
+        area: '',
+        description: 'Install flood prevention concrete wall and flood gate at the entry/exist of the City Annex garage near interstate 45 and the Mckinney Street bridge. Also, as a part of overall flood mitigation at most of the critical City buildings and facilities, installed double submarine type doors, stainless steel dams, with all necessary structural supports and electrical controls for City of Houston, Texas.',
+        status: 'Completed'
       },
-      { 
-        title: 'Ground Storage Tank - Parkglen-1 Pump Station', 
-        img: imgIndustrial4, 
-        location: 'City of Houston, TX', 
-        description: '5.0MG ground storage tank with heavy concrete foundation and detention pond with associated site work to include heavily wooded site clearing, large diameter underground above ground fill and suction lines, protective coatings.'
-      },
-      { 
-        title: 'Other Municipal & Industrial Infrastructure', 
-        img: imgIndustrial5, 
-        location: 'Texas', 
-        description: '• Construction of 1,000,000 & 500,000 Gallon shop painted bolted ground storage tanks for City of South Houston.\n• Furnished and Installed oil/water separator system for Metro’s Northwest Bus Operating Facility, Houston.\n• Repairs to storm water pump station screw pumps for Texas City.\n• Construction of interim sewage treatment plant (package), lift station, 24” influent piping for Fairfield Village, Harris County MUD No. 322.\n• Construction of water supply facility for Northgate Crossing MUD No. 1, Houston.\n• Installation of 3 phase, 15KV power lines across the Colorado River for Gulf Coast Intercoastal Waterways / Corps of Engineers.'
-      },
-      { 
-        title: 'Other Specialized Projects', 
-        img: imgWarehouse2, 
-        location: 'Houston, TX', 
-        description: '• Removal and replacement of existing High Vacuum Pumps in highly sensitive and restricted area at Building 7, Johnson Space Center, NASA, Houston, Texas.\n• Furnishing and installation of complete Dust Suppression System for Port of Houston.'
-      },
+      {
+        title: 'Ground Storage Tank',
+        img: ground1,
+        images: [ground1],
+        location: 'Parkglen-1 Pump station, City of Houston, Texas',
+        area: '',
+        description: '5.0MG ground storage tank with heavy concrete foundation and detention pond. Associated site work includes heavily wooded site clearing, large diameter underground/aboveground fill and suction lines, protective coatings, and miscellaneous site work necessary for completion of the project.',
+        status: 'Completed'
+      }
     ],
   },
 ]
@@ -263,14 +337,14 @@ function ProjectsHero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#000000]">
       {/* Static image background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-[#000000]">
         <img src={projectsHeroBg} alt="" aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.70] opacity-90"
         />
         {/* Multi-layer dark overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
         {/* Subtle vignette */}
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)' }} />
       </div>
 
       <div className="container-narrow relative z-10 pt-28 pb-32">
@@ -383,19 +457,19 @@ function ProjectsHero() {
 /* ─── CATEGORY NAV (sticky top bar) ─── */
 function CategoryNav({ activeCategory, onCategoryClick }) {
   return (
-    <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-light-gray/50">
+    <div className="hidden lg:block bg-white/95 backdrop-blur-xl border-b border-light-gray/50 shadow-sm py-4 transition-all duration-300">
       <div className="container-narrow">
-        <div className="flex items-center gap-1 overflow-x-auto py-4 scrollbar-hide -mx-2 px-2">
+        <div className="flex flex-wrap items-center gap-3">
           {portfolioCategories.map(cat => (
             <button
               key={cat.id}
               onClick={() => onCategoryClick(cat.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-heading font-medium whitespace-nowrap transition-all duration-400 ${activeCategory === cat.id
-                  ? 'bg-charcoal text-white shadow-lg shadow-charcoal/20'
-                  : 'bg-offwhite text-warm-gray hover:bg-light-gray hover:text-dark-slate'
+              className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-heading font-semibold whitespace-nowrap transition-all duration-300 border shadow-sm ${activeCategory === cat.id
+                ? 'bg-charcoal text-white border-charcoal shadow-charcoal/20'
+                : 'bg-white text-charcoal border-light-gray hover:border-charcoal hover:bg-offwhite hover:shadow-md'
                 }`}
             >
-              <span className={`transition-colors duration-300 ${activeCategory === cat.id ? 'text-white/80' : 'text-warm-gray/60'}`}>
+              <span className={`transition-colors duration-300 ${activeCategory === cat.id ? 'text-white/90' : 'text-charcoal/70'}`}>
                 {cat.icon}
               </span>
               {cat.title}
@@ -408,7 +482,7 @@ function CategoryNav({ activeCategory, onCategoryClick }) {
 }
 
 /* ─── SINGLE PROJECT CARD (for portfolio grid) ─── */
-function CategoryProjectCard({ project, index }) {
+function CategoryProjectCard({ project, index, onClick }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -416,6 +490,7 @@ function CategoryProjectCard({ project, index }) {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       className="group cursor-pointer"
+      onClick={onClick}
     >
       {/* Image */}
       <div className="relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500">
@@ -448,14 +523,7 @@ function CategoryProjectCard({ project, index }) {
           {project.title}{project.status && <span className="font-normal text-warm-gray"> ({project.status})</span>}
         </h4>
         {project.area && (
-          <p className="mt-2 text-[13px] font-semibold tracking-wide text-charcoal/70 uppercase">
-            {project.area}
-          </p>
-        )}
-        {project.description && (
-          <p className="mt-3 text-sm text-warm-gray leading-relaxed whitespace-pre-line">
-            {project.description}
-          </p>
+          <p className="mt-1.5 text-sm text-warm-gray">{project.area}</p>
         )}
       </div>
     </motion.div>
@@ -463,8 +531,9 @@ function CategoryProjectCard({ project, index }) {
 }
 
 /* ─── SINGLE CATEGORY SECTION ─── */
-function CategorySection({ category, index }) {
+function CategorySection({ category, index, onSelectProject }) {
   const isEven = index % 2 === 0
+  const isCompleted = category.id === 'completed'
 
   /* Determine grid layout depending on number of projects */
   const getGridCols = (count) => {
@@ -505,9 +574,27 @@ function CategorySection({ category, index }) {
         {/* Project cards grid */}
         <div className={`grid ${getGridCols(category.projects.length)} gap-6 md:gap-8`}>
           {category.projects.map((project, i) => (
-            <CategoryProjectCard key={project.title} project={project} index={i} />
+            <CategoryProjectCard key={project.title} project={project} index={i} onClick={() => onSelectProject(project)} />
           ))}
         </div>
+
+        {/* View More link — only inside Completed Projects */}
+        {isCompleted && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-12 flex justify-center"
+          >
+            <Link to="/other-projects" className="inline-flex items-center gap-3 px-8 py-4 bg-charcoal text-white rounded-full font-heading font-bold hover:bg-dark-slate transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300">
+              View all completed projects
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   )
@@ -516,13 +603,14 @@ function CategorySection({ category, index }) {
 /* ─── PORTFOLIO HEADER + ALL CATEGORIES ─── */
 function PortfolioSection() {
   const [activeCategory, setActiveCategory] = useState(portfolioCategories[0].id)
+  const [selectedProject, setSelectedProject] = useState(null)
   const headerRef = useScrollReveal({ y: 30 })
 
   const handleCategoryClick = (id) => {
     setActiveCategory(id)
     const el = document.getElementById(`portfolio-${id}`)
     if (el) {
-      const yOffset = -72 // account for sticky nav height
+      const yOffset = -140 // account for Navbar (72px) + CategoryNav (approx 68px)
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
@@ -538,7 +626,7 @@ function PortfolioSection() {
         const el = document.getElementById(`portfolio-${cat.id}`)
         if (!el) continue
         const rect = el.getBoundingClientRect()
-        const dist = Math.abs(rect.top - 80)
+        const dist = Math.abs(rect.top - 140)
         if (dist < closestDist) {
           closestDist = dist
           closestId = cat.id
@@ -571,9 +659,164 @@ function PortfolioSection() {
 
       {/* All category sections */}
       {portfolioCategories.map((cat, i) => (
-        <CategorySection key={cat.id} category={cat} index={i} />
+        <CategorySection key={cat.id} category={cat} index={i} onSelectProject={setSelectedProject} />
       ))}
+
+
+
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+        )}
+      </AnimatePresence>
     </>
+  )
+}
+
+
+
+/* ─── IMAGE SLIDER COMPONENT ─── */
+function ImageSlider({ images, alt, className }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  if (!images || images.length === 0) return null
+
+  if (images.length === 1) {
+    return (
+      <div className={`relative ${className}`}>
+        <OptimizedImage src={images[0]} alt={alt} className="w-full h-full object-cover" wrapperClassName="w-full h-full" />
+      </div>
+    )
+  }
+
+  const nextSlide = (e) => {
+    e.stopPropagation()
+    setCurrentIndex((prev) => (prev + 1) % images.length)
+  }
+  const prevSlide = (e) => {
+    e.stopPropagation()
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+  }
+
+  return (
+    <div className={`relative ${className}`} style={{ overflow: 'hidden' }}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <img src={images[currentIndex]} alt={`${alt} - ${currentIndex + 1}`} className="w-full h-full object-cover" loading="eager" />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Slider nav arrows — always visible */}
+      <button onClick={prevSlide} className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-black/60 hover:bg-black/80 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-transform hover:scale-110 z-[60] shadow-lg border border-white/10 cursor-pointer">
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button onClick={nextSlide} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-black/60 hover:bg-black/80 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-transform hover:scale-110 z-[60] shadow-lg border border-white/10 cursor-pointer">
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+      </button>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-[60] bg-black/40 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10">
+        {images.map((_, idx) => (
+          <button key={idx} onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx) }} className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${idx === currentIndex ? 'bg-white w-6' : 'bg-white/50 hover:bg-white/90 w-2'}`} />
+        ))}
+      </div>
+
+      {/* Slide counter */}
+      <div className="absolute top-4 right-14 sm:right-4 z-[60] bg-black/40 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/10">
+        {currentIndex + 1} / {images.length}
+      </div>
+    </div>
+  )
+}
+
+/* ─── PROJECT DETAILS MODAL ─── */
+function ProjectModal({ project, onClose }) {
+  // Prevent scrolling on body when modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [])
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+        className="bg-white rounded-2xl overflow-hidden shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="relative h-72 sm:h-80 md:h-96 shrink-0 bg-[#050505]">
+          <ImageSlider 
+            images={project.images && project.images.length > 0 ? project.images : [project.img]} 
+            alt={project.title} 
+            className="w-full h-full" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent pointer-events-none z-10" />
+          {/* Close button — always visible, high z-index for mobile/tablet */}
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 sm:w-10 sm:h-10 bg-black/50 hover:bg-black/80 active:bg-black/90 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all z-[100] shadow-xl border border-white/20 cursor-pointer"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="absolute bottom-6 left-6 right-6 text-white z-20">
+            <h3 className="text-2xl sm:text-3xl font-heading font-bold mb-2 leading-tight">{project.title}</h3>
+            <div className="flex flex-wrap gap-4 text-sm font-medium text-white/80">
+              {project.location && (
+                <span className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
+                  {project.location}
+                </span>
+              )}
+              {project.status && (
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-green-400" />
+                  {project.status}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="p-6 sm:p-8 overflow-y-auto">
+          {project.area && (
+            <div className="mb-6">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-warm-gray mb-2">Project Scale</h4>
+              <p className="text-charcoal font-medium">{project.area}</p>
+            </div>
+          )}
+          {project.description && (
+            <div className="mb-2">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-warm-gray mb-3">Project Details</h4>
+              <p className="text-charcoal/80 leading-relaxed whitespace-pre-line text-sm sm:text-base">
+                {project.description}
+              </p>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -583,7 +826,10 @@ export default function Projects() {
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <ProjectsHero />
       <PortfolioSection />
-      <ContactCTA />
+      {/* Override ContactCTA bg so it doesn't blend with Completed Projects section */}
+      <div className="[&>section]:bg-[#eaeaea]">
+        <ContactCTA />
+      </div>
     </motion.div>
   )
 }

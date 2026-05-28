@@ -10,10 +10,10 @@ const navLinks = [
   { name: 'Services',  path: '/services' },
   {
     name: 'Products',
-    path: '/products',
+    path: '#',
     children: [
-      { name: 'MorphX', path: '/products#morphx' },
-      { name: 'MorphX Steel Structures', path: '/products#morphx-steel' },
+      { name: 'MorphX', path: 'https://morphx.co', external: true },
+      { name: 'MorphX Steel Structures', path: 'https://morphx.co', external: true },
     ],
   },
   { name: 'Projects',  path: '/projects' },
@@ -28,7 +28,7 @@ export default function Navbar() {
   const dropdownTimeout = useRef(null)
 
   // Pages with a dark hero that need white nav text initially
-  const darkHero = ['/', '/about', '/services', '/products', '/projects', '/contact'].includes(location.pathname)
+  const darkHero = ['/', '/about', '/services', '/projects', '/contact'].includes(location.pathname)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -54,10 +54,7 @@ export default function Navbar() {
   }
 
   const isActivePath = (link) => {
-    if (link.path === '/products') {
-      return location.pathname === '/products'
-    }
-    return location.pathname === link.path
+    return location.pathname === link.path && link.path !== '#'
   }
 
   return (
@@ -93,6 +90,7 @@ export default function Navbar() {
               >
                 <Link
                   to={link.path}
+                  onClick={(e) => link.path === '#' && e.preventDefault()}
                   className={`group relative text-base font-heading font-semibold tracking-wide transition-colors duration-500 py-1 flex items-center gap-1 ${
                     isActivePath(link) ? textActive : `${textBase} hover:${textActive}`
                   }`}
@@ -125,13 +123,25 @@ export default function Navbar() {
                     >
                       <div className="py-2">
                         {link.children.map(child => (
-                          <Link
-                            key={child.path}
-                            to={child.path}
-                            className="block px-5 py-3 text-sm font-heading font-medium text-warm-gray hover:text-charcoal hover:bg-offwhite transition-all duration-200"
-                          >
-                            {child.name}
-                          </Link>
+                          child.external ? (
+                            <a
+                              key={child.name}
+                              href={child.path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block px-5 py-3 text-sm font-heading font-medium text-warm-gray hover:text-charcoal hover:bg-offwhite transition-all duration-200"
+                            >
+                              {child.name}
+                            </a>
+                          ) : (
+                            <Link
+                              key={child.name}
+                              to={child.path}
+                              className="block px-5 py-3 text-sm font-heading font-medium text-warm-gray hover:text-charcoal hover:bg-offwhite transition-all duration-200"
+                            >
+                              {child.name}
+                            </Link>
+                          )
                         ))}
                       </div>
                     </motion.div>
@@ -177,6 +187,17 @@ export default function Navbar() {
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 bg-offwhite z-50 flex flex-col items-center justify-center gap-8 md:hidden"
           >
+            {/* Close button for mobile/tablet */}
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="absolute top-5 right-5 w-11 h-11 rounded-full bg-charcoal/10 hover:bg-charcoal/20 active:bg-charcoal/30 flex items-center justify-center transition-all z-[60]"
+              aria-label="Close menu"
+            >
+              <svg className="w-6 h-6 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
             {navLinks.map((link, i) => (
               <motion.div
                 key={link.path}
@@ -208,13 +229,25 @@ export default function Navbar() {
                           className="overflow-hidden flex flex-col items-center gap-3 mt-3"
                         >
                           {link.children.map(child => (
-                            <Link
-                              key={child.path}
-                              to={child.path}
-                              className="text-base font-heading font-medium text-warm-gray hover:text-charcoal transition-colors"
-                            >
-                              {child.name}
-                            </Link>
+                            child.external ? (
+                              <a
+                                key={child.name}
+                                href={child.path}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-base font-heading font-medium text-warm-gray hover:text-charcoal transition-colors"
+                              >
+                                {child.name}
+                              </a>
+                            ) : (
+                              <Link
+                                key={child.name}
+                                to={child.path}
+                                className="text-base font-heading font-medium text-warm-gray hover:text-charcoal transition-colors"
+                              >
+                                {child.name}
+                              </Link>
+                            )
                           ))}
                         </motion.div>
                       )}
