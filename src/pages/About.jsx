@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollAnimations'
 import { useEffect, useState, useRef } from 'react'
 import OptimizedImage from '../components/OptimizedImage'
@@ -7,8 +7,11 @@ import Testimonials from '../components/Testimonials'
 
 // Assets
 import aboutHeroBg from '../assets/about_hero_bg.webp'
-import teamPresident from '../assets/president.png'
 import teamCVO from '../assets/cvo.png'
+import teamMember1 from '../assets/team_member_1.png'
+import teamMember2 from '../assets/team_member_2.png'
+import teamMember3 from '../assets/team_member_3.png'
+
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -179,22 +182,21 @@ function ExperienceSection() {
   )
 }
 
-/* ─── Our Leadership Team ─── */
-const teamMembers = [
-  {
-    name: 'Gopal Janapureddy',
-    role: 'President',
-    img: teamPresident,
-    bio: 'With over 25 years of experience in construction and architecture, Gopal Janapureddy has led LeanBuild from a small firm to one of India\'s most trusted construction companies.',
-    linkedin: '#',
-  },
-  {
-    name: 'Uday vedre',
-    role: 'Chief Value Officer',
-    img: teamCVO,
-    bio: 'Uday brings 18 years of expertise in value engineering and client relations. She ensures every project maximizes value for clients while maintaining the highest standards of quality, sustainability, and design excellence.',
-    linkedin: '#',
-  },
+const leaderMember = {
+  name: 'Uday Vedre',
+  role: 'Chief Value Officer',
+  img: teamCVO,
+  bio: 'Uday brings 18 years of expertise in value engineering and client relations. She ensures every project maximizes value for clients while maintaining the highest standards of quality, sustainability, and design excellence.',
+  linkedin: '#',
+}
+
+const teamGrid = [
+  { name: 'Rahul Kapoor', role: 'Project Manager', img: teamMember1 },
+  { name: 'Sarah Johnson', role: 'Lead Architect', img: teamMember2 },
+  { name: 'Vikram Patel', role: 'Structural Engineer', img: teamMember3 },
+  { name: 'Emily Chen', role: 'Interior Designer', img: null },
+  { name: 'Arjun Mehta', role: 'Site Supervisor', img: null },
+  { name: 'Lisa Rodriguez', role: 'Quality Assurance', img: null },
 ]
 
 function TeamSection() {
@@ -203,89 +205,110 @@ function TeamSection() {
 
   return (
     <section className="section-padding bg-white relative overflow-hidden">
-      {/* Technical Drafting / Stitched Blueprint Grid Pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
-      {/* Decorative vertical line */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-dashed border-charcoal/10 -translate-x-1/2 hidden lg:block" />
-
       <div className="container-narrow relative z-10">
         <div ref={headerRef} className="text-center mb-20">
           <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">
             The Minds Building the Future
           </h2>
           <p className="mt-5 max-w-xl mx-auto text-charcoal/70 text-lg md:text-xl font-medium leading-relaxed">
-            Our leadership combines architectural imagination with precision engineering. Engineered for high performance, built to endure.
+            Our leadership combines architectural imagination with precision engineering.
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
-          {teamMembers.map((member, i) => (
-            <div
-              key={member.name}
-              className="team-card group relative p-10 lg:p-12 bg-white border border-dashed border-black rounded-lg hover:border-black transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)]"
-            >
-              {/* Corner crosshairs for technical drafting look */}
-              <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-              <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-              <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-              <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-
-              {/* Asymmetric layout inside card */}
-              <div className="flex flex-col md:flex-row gap-8 items-start">
-
-                {/* Image Container with precise framing */}
-                <div className="relative w-full md:w-44 h-56 md:h-64 rounded bg-offwhite overflow-hidden border border-light-gray group-hover:border-charcoal/40 transition-colors duration-500 flex-shrink-0">
-                  <OptimizedImage
-                    src={member.img}
-                    alt={member.name}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                    wrapperClassName="w-full h-full"
-                  />
-                  {/* Outer accent "stitch" lines overlay */}
-                  <div className="absolute inset-2 border border-dashed border-black pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-
-                {/* Info and Bio section */}
-                <div className="flex-1 flex flex-col justify-between h-full min-h-[220px]">
-                  <div>
-                    {/* Name */}
-                    <h3 className="text-xl font-bold text-charcoal mb-4 tracking-tight group-hover:text-black transition-colors duration-300">
-                      {member.name}
-                    </h3>
-                    <p className="text-base text-charcoal/70 leading-[1.85] font-medium">
-                      {member.bio}
-                    </p>
-                  </div>
-
-                  {/* Stamp signature / LinkedIn link */}
-                  <div className="mt-8 pt-6 border-t border-dashed border-light-gray flex items-center justify-between">
-                    <a
-                      href={member.linkedin}
-                      className="group/btn flex items-center gap-3 text-[10px] uppercase font-mono tracking-widest text-charcoal hover:text-black transition-colors duration-300"
-                      aria-label={`${member.name} LinkedIn`}
-                    >
-                      <span className="w-6 h-6 rounded-full border border-charcoal/20 flex items-center justify-center group-hover/btn:border-charcoal group-hover/btn:bg-charcoal group-hover/btn:text-white transition-all duration-300">
-                        <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                        </svg>
-                      </span>
-                      <span>Connect Profile</span>
-                    </a>
-                  </div>
-
-                </div>
-
+        <div ref={cardsRef} className="max-w-2xl mx-auto mb-20">
+          <div className="team-card group relative p-10 lg:p-12 bg-white border border-charcoal/[0.08] rounded-2xl hover:border-charcoal/20 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="relative w-full md:w-44 h-56 md:h-64 rounded-xl bg-offwhite overflow-hidden flex-shrink-0">
+                <OptimizedImage
+                  src={leaderMember.img}
+                  alt={leaderMember.name}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                  wrapperClassName="w-full h-full"
+                />
               </div>
-
+              <div className="flex-1 flex flex-col justify-between h-full min-h-[220px]">
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-charcoal/35 font-bold block mb-2">
+                    {leaderMember.role}
+                  </span>
+                  <h3 className="text-2xl font-bold text-charcoal mb-4 tracking-tight">
+                    {leaderMember.name}
+                  </h3>
+                  <p className="text-base text-charcoal/60 leading-[1.85] font-medium">
+                    {leaderMember.bio}
+                  </p>
+                </div>
+                <div className="mt-8 pt-6 border-t border-charcoal/[0.06] flex items-center">
+                  <a href={leaderMember.linkedin} className="group/btn flex items-center gap-3 text-[10px] uppercase tracking-widest text-charcoal/50 hover:text-charcoal transition-colors duration-300">
+                    <span className="w-7 h-7 rounded-full border border-charcoal/15 flex items-center justify-center group-hover/btn:border-charcoal group-hover/btn:bg-charcoal group-hover/btn:text-white transition-all duration-300">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                    </span>
+                    <span>Connect</span>
+                  </a>
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
+
+        {teamGrid.length > 0 && (
+          <div className="mt-32">
+            <div className="flex items-center justify-center gap-4 mb-16">
+              <div className="h-px w-16 bg-charcoal/10"></div>
+              <h3 className="text-center text-sm font-bold text-charcoal/50 uppercase tracking-[0.2em]">Our Experts</h3>
+              <div className="h-px w-16 bg-charcoal/10"></div>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {teamGrid.map((member, idx) => (
+                <motion.div 
+                  key={member.name}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative bg-white rounded-[2.5rem] p-3 border border-charcoal/[0.04] shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:border-charcoal/10 transition-all duration-500"
+                >
+                  <div className="relative h-80 sm:h-72 lg:h-80 rounded-[2rem] overflow-hidden bg-offwhite mb-6">
+                    {member.img ? (
+                      <OptimizedImage 
+                        src={member.img} 
+                        alt={member.name} 
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" 
+                        wrapperClassName="w-full h-full" 
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-charcoal/[0.02] to-charcoal/[0.08] group-hover:from-charcoal/[0.05] group-hover:to-charcoal/[0.12] transition-colors duration-500">
+                        <span className="text-5xl font-heading font-light text-charcoal/20 group-hover:text-charcoal/40 transition-colors duration-500">
+                          {member.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* Subtle inner shadow overlay */}
+                    <div className="absolute inset-0 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)] rounded-[2rem] pointer-events-none" />
+                  </div>
+                  
+                  <div className="px-5 pb-5 relative">
+                    <h4 className="text-xl font-heading font-bold text-charcoal tracking-tight mb-1">
+                      {member.name}
+                    </h4>
+                    <p className="text-sm text-charcoal/50 font-medium tracking-wide">
+                      {member.role}
+                    </p>
+                    
+                    {/* Decorative arrow that appears on hover */}
+                    <div className="absolute bottom-5 right-5 w-10 h-10 rounded-full bg-offwhite flex items-center justify-center opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-out">
+                      <svg className="w-4 h-4 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
@@ -313,21 +336,12 @@ const partnerships = {
 
 function PartnershipsSection() {
   const headerRef = useScrollReveal({ y: 40 })
-  const containerRef = useRef(null)
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  })
-  
-  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"])
-  const x2 = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"])
 
-  const allInstitutions = [...partnerships.institutions, ...partnerships.institutions, ...partnerships.institutions]
-  const allInspectors = [...partnerships.inspectors, ...partnerships.inspectors, ...partnerships.inspectors]
+  const allInstitutions = [...partnerships.institutions, ...partnerships.institutions]
+  const allInspectors = [...partnerships.inspectors, ...partnerships.inspectors]
 
   return (
-    <section ref={containerRef} className="section-padding bg-offwhite relative overflow-hidden">
+    <section className="section-padding bg-offwhite relative overflow-hidden">
       <div className="container-narrow relative z-10">
         <div ref={headerRef} className="text-center mb-16">
           <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">
@@ -339,48 +353,72 @@ function PartnershipsSection() {
         </div>
       </div>
 
-      {/* Institutions & Architects */}
+      {/* Institutions & Architects — auto-scroll left */}
       <div className="mb-14 relative">
         <div className="container-narrow relative z-10 mb-6 flex justify-center md:justify-start">
           <p className="text-xs uppercase tracking-[0.25em] text-warm-gray font-semibold">Institutions & Architects</p>
         </div>
-        <motion.div style={{ x: x1 }} className="flex gap-5 w-max px-4">
-          {allInstitutions.map((partner, i) => (
-            <div
-              key={`inst-${i}`}
-              className="w-[260px] md:w-[300px] flex-shrink-0 group flex flex-col items-center justify-center py-8 px-6 rounded-2xl bg-white hover:bg-charcoal transition-all duration-500 cursor-default shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]"
-            >
-              <span className="text-2xl md:text-3xl font-heading font-extrabold text-charcoal/25 group-hover:text-white transition-colors duration-500 tracking-tighter">
-                {partner.short}
-              </span>
-              <p className="text-[10px] text-charcoal/35 group-hover:text-white/60 mt-2 transition-colors duration-500 text-center leading-tight font-medium">
-                {partner.name}
-              </p>
-            </div>
-          ))}
-        </motion.div>
+        <div className="overflow-hidden">
+          <div className="marquee-track" style={{ '--marquee-duration': '35s' }}>
+            {allInstitutions.map((partner, i) => (
+              <div
+                key={`inst-${i}`}
+                className="w-[260px] md:w-[300px] flex-shrink-0 group flex flex-col items-center justify-center py-8 px-6 mx-2.5 rounded-2xl bg-white hover:bg-charcoal transition-all duration-500 cursor-default shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]"
+              >
+                {partner.logo ? (
+                  <div className="h-12 w-full flex items-center justify-center mb-2 overflow-hidden px-4">
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 group-hover:invert transition-all duration-500"
+                    />
+                  </div>
+                ) : (
+                  <span className="text-2xl md:text-3xl font-heading font-extrabold text-charcoal/25 group-hover:text-white transition-colors duration-500 tracking-tighter">
+                    {partner.short}
+                  </span>
+                )}
+                <p className="text-[10px] text-charcoal/35 group-hover:text-white/60 mt-2 transition-colors duration-500 text-center leading-tight font-medium">
+                  {partner.name}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Third-Party Inspectors */}
+      {/* Third-Party Inspectors — auto-scroll right (reverse) */}
       <div className="relative">
         <div className="container-narrow relative z-10 mb-6 flex justify-center md:justify-end">
           <p className="text-xs uppercase tracking-[0.25em] text-warm-gray font-semibold">Third-Party Inspectors</p>
         </div>
-        <motion.div style={{ x: x2 }} className="flex gap-5 w-max px-4">
-          {allInspectors.map((partner, i) => (
-            <div
-              key={`insp-${i}`}
-              className="w-[260px] md:w-[300px] flex-shrink-0 group flex flex-col items-center justify-center py-8 px-6 rounded-2xl bg-white hover:bg-charcoal transition-all duration-500 cursor-default shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]"
-            >
-              <span className="text-2xl md:text-3xl font-heading font-extrabold text-charcoal/25 group-hover:text-white transition-colors duration-500 tracking-tighter">
-                {partner.short}
-              </span>
-              <p className="text-[10px] text-charcoal/35 group-hover:text-white/60 mt-2 transition-colors duration-500 text-center leading-tight font-medium">
-                {partner.name}
-              </p>
-            </div>
-          ))}
-        </motion.div>
+        <div className="overflow-hidden">
+          <div className="marquee-track marquee-reverse" style={{ '--marquee-duration': '40s' }}>
+            {allInspectors.map((partner, i) => (
+              <div
+                key={`insp-${i}`}
+                className="w-[260px] md:w-[300px] flex-shrink-0 group flex flex-col items-center justify-center py-8 px-6 mx-2.5 rounded-2xl bg-white hover:bg-charcoal transition-all duration-500 cursor-default shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]"
+              >
+                {partner.logo ? (
+                  <div className="h-12 w-full flex items-center justify-center mb-2 overflow-hidden px-4">
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 group-hover:invert transition-all duration-500"
+                    />
+                  </div>
+                ) : (
+                  <span className="text-2xl md:text-3xl font-heading font-extrabold text-charcoal/25 group-hover:text-white transition-colors duration-500 tracking-tighter">
+                    {partner.short}
+                  </span>
+                )}
+                <p className="text-[10px] text-charcoal/35 group-hover:text-white/60 mt-2 transition-colors duration-500 text-center leading-tight font-medium">
+                  {partner.name}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

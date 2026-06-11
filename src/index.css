@@ -432,6 +432,10 @@
     animation-play-state: paused;
   }
 
+  .marquee-reverse {
+    animation-direction: reverse;
+  }
+
   /* ─── Vibrant CTA gradient animation ─── */
   @keyframes gradient-shift {
     0% { background-position: 0% 50%; }

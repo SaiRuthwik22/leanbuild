@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollAnimations'
 
 const testimonials = [
@@ -39,76 +40,82 @@ const testimonials = [
   },
 ]
 
-function TestimonialCard({ item }) {
-  return (
-    <div className="group relative flex-shrink-0 w-[340px] md:w-[400px] p-7 md:p-8 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/50 transition-all duration-500 hover:shadow-[0_16px_40px_rgba(0,0,0,0.04)] mx-3">
-      {/* Corner crosshairs */}
-      <div className="absolute -top-1.5 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-      <div className="absolute -top-1.5 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-      <div className="absolute -bottom-2 -left-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-      <div className="absolute -bottom-2 -right-1.5 text-xs text-charcoal/30 font-mono font-light select-none">+</div>
-
-      {/* Stars */}
-      <div className="flex gap-0.5 mb-4">
-        {[...Array(5)].map((_, i) => (
-          <svg key={i} className="w-3.5 h-3.5 text-charcoal" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        ))}
-      </div>
-
-      {/* Quote */}
-      <p className="text-base text-charcoal/75 leading-[1.8] font-medium mb-6">
-        "{item.quote}"
-      </p>
-
-      {/* Author */}
-      <div className="pt-5 border-t border-dashed border-light-gray">
-        <h4 className="text-sm font-bold text-charcoal tracking-tight">{item.name}</h4>
-        <p className="text-xs text-warm-gray mt-1 font-medium">{item.role}, {item.company}</p>
-      </div>
-    </div>
-  )
-}
-
 export default function Testimonials() {
   const headerRef = useScrollReveal({ y: 40 })
+  const [active, setActive] = useState(0)
+  const timerRef = useRef(null)
 
-  /* Duplicate the list so CSS marquee can loop seamlessly */
-  const doubledItems = [...testimonials, ...testimonials]
+  const resetTimer = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+    }
+    timerRef.current = setInterval(() => {
+      setActive((prev) => (prev + 1) % testimonials.length)
+    }, 5000)
+  }
+
+  useEffect(() => {
+    resetTimer()
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
+  }, [])
+
+  const handleDotClick = (index) => {
+    setActive(index)
+    resetTimer()
+  }
 
   return (
-    <section className="section-padding bg-offwhite relative overflow-hidden border-t border-dashed border-charcoal/10">
-      {/* Blueprint grid background */}
-      <div
-        className="absolute inset-0 opacity-[0.25]"
-        style={{
-          backgroundImage: 'linear-gradient(to right, rgba(26,26,26,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,26,26,0.035) 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
-
-      <div className="container-narrow relative z-10">
-        <div ref={headerRef} className="text-center mb-14">
-          <p className="text-[10px] font-mono text-warm-gray tracking-widest mb-4">// CLIENT TESTIMONIALS</p>
-          <h2 className="text-balance text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">
+    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+      <div className="container max-w-5xl mx-auto px-6 relative z-10">
+        {/* Header */}
+        <div ref={headerRef} className="text-center mb-16">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-charcoal/40 font-semibold block mb-4">
+            Testimonials
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-charcoal tracking-tight">
             What Our Clients Say
           </h2>
-          <p className="mt-5 max-w-xl mx-auto text-charcoal/70 text-lg md:text-xl font-medium leading-relaxed">
-            Trusted by developers, architects, and institutions across Texas.
-          </p>
         </div>
-      </div>
 
-      {/* Marquee wrapper — full width overflow hidden */}
-      <div className="relative overflow-hidden">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-offwhite to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-offwhite to-transparent z-10 pointer-events-none" />
+        {/* Featured Quote */}
+        <div className="max-w-3xl mx-auto text-center mb-14 min-h-[180px] flex items-center justify-center">
+          <div className="relative w-full">
+            {/* Quote mark */}
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-6xl text-charcoal/[0.06] font-serif leading-none select-none">"</span>
 
-        <div className="marquee-track" style={{ '--marquee-duration': '40s' }}>
-          {doubledItems.map((item, i) => (
-            <TestimonialCard key={`${item.name}-${i}`} item={item} />
+            <p className="text-xl md:text-2xl lg:text-[1.65rem] text-charcoal/80 leading-relaxed font-medium tracking-tight transition-all duration-500">
+              "{testimonials[active].quote}"
+            </p>
+
+            {/* Author */}
+            <div className="mt-8">
+              <p className="text-sm font-bold text-charcoal tracking-tight">
+                {testimonials[active].name}
+              </p>
+              <p className="text-xs text-charcoal/40 mt-1 font-medium">
+                {testimonials[active].role}, {testimonials[active].company}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation dots */}
+        <div className="flex items-center justify-center gap-2">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => handleDotClick(i)}
+              className={`rounded-full transition-all duration-300 ${
+                i === active
+                  ? 'w-8 h-2 bg-charcoal'
+                  : 'w-2 h-2 bg-charcoal/15 hover:bg-charcoal/30'
+              }`}
+              aria-label={`View testimonial ${i + 1}`}
+            />
           ))}
         </div>
       </div>
