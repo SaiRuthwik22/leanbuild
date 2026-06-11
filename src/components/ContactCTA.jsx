@@ -77,7 +77,7 @@ export default function ContactCTA() {
                   </a>
 
                   {/* Email */}
-                  <a href="mailto:hello@leanbuild.com" className="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-all duration-300">
+                  <a href="mailto:hello@leanbuildllc.com" className="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-all duration-300">
                     <div className="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -85,7 +85,7 @@ export default function ContactCTA() {
                     </div>
                     <div>
                       <p className="text-[9px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Email Support</p>
-                      <p className="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">hello@leanbuild.com</p>
+                      <p className="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">hello@leanbuildllc.com</p>
                     </div>
                   </a>
 

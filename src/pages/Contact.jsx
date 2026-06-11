@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { useScrollReveal, useParallax } from '../hooks/useScrollAnimations'
 import { useState } from 'react'
 
-import contactHeroBg from '../assets/contact_hero_bg.webp'
+import contactHeroBg from '../assets/hero_contact_new.png'
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -206,11 +206,11 @@ function ContactBody() {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-charcoal mb-1">Email</h4>
-                  <a href="mailto:hello@leanbuild.com" className="text-sm text-charcoal/60 hover:text-blue-600 transition-colors block">
-                    hello@leanbuild.com
+                  <a href="mailto:hello@leanbuildllc.com" className="text-sm text-charcoal/60 hover:text-blue-600 transition-colors block">
+                    hello@leanbuildllc.com
                   </a>
-                  <a href="mailto:projects@leanbuild.com" className="text-sm text-charcoal/40 hover:text-blue-600 transition-colors block mt-0.5">
-                    projects@leanbuild.com
+                  <a href="mailto:projects@leanbuildllc.com" className="text-sm text-charcoal/40 hover:text-blue-600 transition-colors block mt-0.5">
+                    projects@leanbuildllc.com
                   </a>
                 </div>
               </div>
@@ -253,7 +253,7 @@ function MapSection() {
 
         <div className="rounded-[24px] overflow-hidden border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] h-[450px] lg:h-[500px]">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.1189498263595!2d-96.71960242352458!3d33.125603773520555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c143922d0577d%3A0xe543c1626d70ff9c!2s8751%20Collin%20McKinney%20Pkwy%20%231102%2C%20McKinney%2C%20TX%2075070%2C%20USA!5e0!3m2!1sen!2sin!4v1716912345678!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.1189498263595!2d-96.71960242352458!3d33.125603773520555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c143922d0577d%3A0xe543c1626d70ff9c!2s8751%20Collin%20McKinney%20Pkwy%20Suite%201102%20%23542%2C%20McKinney%2C%20TX%2075070%2C%20USA!5e0!3m2!1sen!2sin!4v1716912345678!5m2!1sen!2sin"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

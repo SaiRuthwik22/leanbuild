@@ -6,7 +6,7 @@ import ContactCTA from '../components/ContactCTA'
 import Testimonials from '../components/Testimonials'
 
 // Assets
-import heroBg from '../assets/hero_bg.webp'
+import heroBg from '../assets/hero_home_new.png'
 import imgMultifamily1 from '../assets/proj_multifamily_1.webp'
 import imgWarehouse1 from '../assets/proj_warehouse_1.webp'
 import imgRetail1 from '../assets/proj_retail_1.webp'

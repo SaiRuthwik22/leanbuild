@@ -9,7 +9,7 @@ import ContactCTA from '../components/ContactCTA'
 import imgHorizon from '../assets/proj_horizon.webp'
 import imgSerene from '../assets/proj_serene.webp'
 import imgMeridian from '../assets/proj_meridian.webp'
-import projectsHeroBg from '../assets/projects_hero_bg.webp'
+import projectsHeroBg from '../assets/hero_projects_new.png'
 
 /* ─── Portfolio category images ─── */
 import imgMultifamily1 from '../assets/proj_multifamily_1.webp'
@@ -102,11 +102,14 @@ const portfolioCategories = [
         img: luxury1, 
         images: [luxury1, luxury2, luxury3],
         location: 'Berkman Drive, Austin, TX', 
-        description: 'Complete Land Entitled, our team is doing a design build development – Working with city of Austin on the Civil and Architectural plan approvals.\nProject to break ground in January 2026.\n\n• 3 Storied Garden Style Class A Apartments\n• 6 Apartment Buildings & 1 Clubhouse Building\n• 305 Units\n• World class Amenities'
+        totalUnits: '305 Units',
+        area: '6 Apartment Buildings & 1 Clubhouse Building',
+        description: 'Complete Land Entitled, our team is doing a design build development – Working with city of Austin on the Civil and Architectural plan approvals. Project to break ground in January 2026. Features 3 Storied Garden Style Class A Apartments and World class Amenities.',
+        status: 'Upcoming'
       },
-      { title: 'Landmark @31Apartments, Tyler, Texas', img: imgMultifamily1, location: 'Tyler, TX', status: 'In Design' },
-      { title: 'Florence Mixed Use Apartments, South Carolina', img: imgMultifamily2, location: 'South Carolina', status: 'In Design' },
-      { title: 'Canyon Creek Mixed Use Development, Temple, Texas', img: imgMultifamily3, location: 'Temple, TX', status: 'In Pipeline' },
+      { title: 'Landmark @31Apartments, Tyler, Texas', img: imgMultifamily1, location: 'Tyler, TX', status: 'Upcoming' },
+      { title: 'Florence Mixed Use Apartments, South Carolina', img: imgMultifamily2, location: 'South Carolina', status: 'Upcoming' },
+      { title: 'Canyon Creek Mixed Use Development, Temple, Texas', img: imgMultifamily3, location: 'Temple, TX', status: 'Upcoming' },
     ],
   },
   {
@@ -122,7 +125,8 @@ const portfolioCategories = [
         title: 'Rosenburg Business Center', 
         img: imgWarehouse1, 
         location: 'Rosenburg, TX', 
-        area: '25 Acres | 300,000 Sq.Ft.'
+        area: '25 Acres | 300,000 Sq.Ft.',
+        status: 'In Progress'
       },
       { title: 'Deep Sea Technology, Houston, Texas', img: imgWarehouse2, location: 'Houston, TX', status: 'Completed' },
       { title: 'Asian Completion Tools, Houston, Texas', img: imgWarehouse3, location: 'Houston, TX', status: 'Completed' },
@@ -143,18 +147,22 @@ const portfolioCategories = [
         images: [cornhill1, cornhill2, cornhill3],
         location: 'Jarrell, TX', 
         area: '23.78 Acres | 33,920 Sq.Ft.',
-        description: 'Project Costs:\n• Phase 1 - 2.5M\n• Phase 2 - 3.4M'
+        projectCost: '5.9M (Phase 1 & 2)',
+        status: 'In Progress'
       },
       { 
         title: 'Cedar Park Office Condos', 
         img: imgRetail1, 
         location: 'Baghdad Road, Cedar Park, TX', 
         area: '3.5 Acres | Approx. 39,000 Sq.Ft.',
-        description: '• Unit Sizes Range - 1007 to 2077 Sqft\n• Parking lots - 161\n• Project Cost – 5.25M'
+        totalUnits: 'Unit Sizes 1007 to 2077 Sq.Ft.',
+        parkingLots: '161',
+        projectCost: '5.25M',
+        status: 'In Progress'
       },
-      { title: 'Hallmark Office Park, Cedar Park, Texas', img: imgRetail1, location: 'Cedar Park, TX', status: 'In Construction' },
-      { title: 'Baghdad Road Office Condo, Cedar Park, Texas', img: imgRetail2, location: 'Cedar Park, TX', status: 'In Design' },
-      { title: 'Retail Complex Project, Glenn Heights, Texas', img: imgRetail2, location: 'Glenn Heights, TX' },
+      { title: 'Hallmark Office Park, Cedar Park, Texas', img: imgRetail1, location: 'Cedar Park, TX', status: 'In Progress' },
+      { title: 'Baghdad Road Office Condo, Cedar Park, Texas', img: imgRetail2, location: 'Cedar Park, TX', status: 'Upcoming' },
+      { title: 'Retail Complex Project, Glenn Heights, Texas', img: imgRetail2, location: 'Glenn Heights, TX', status: 'Upcoming' },
     ],
   },
   {
@@ -166,7 +174,7 @@ const portfolioCategories = [
       </svg>
     ),
     projects: [
-      { title: 'Florence Mixed Use Project, South Carolina', img: imgTownhome1, location: 'South Carolina', status: 'In Design' },
+      { title: 'Florence Mixed Use Project, South Carolina', img: imgTownhome1, location: 'South Carolina', status: 'Upcoming' },
     ],
   },
   {
@@ -178,11 +186,11 @@ const portfolioCategories = [
       </svg>
     ),
     projects: [
-      { title: 'East Water Purification Plant, Houston, Texas', img: imgIndustrial1, location: 'Houston, TX' },
-      { title: 'Flood Gates, Houston, Texas', img: imgIndustrial2, location: 'Houston, TX' },
-      { title: 'Park One Pump Station, Houston, Texas', img: imgIndustrial3, location: 'Houston, TX' },
-      { title: 'Water Plant - City Of Frisco', img: imgIndustrial4, location: 'Frisco, TX' },
-      { title: 'Southwest Water Plant Expansion, Houston, Texas', img: imgIndustrial5, location: 'Houston, TX' },
+      { title: 'East Water Purification Plant, Houston, Texas', img: imgIndustrial1, location: 'Houston, TX', status: 'Completed' },
+      { title: 'Flood Gates, Houston, Texas', img: imgIndustrial2, location: 'Houston, TX', status: 'Completed' },
+      { title: 'Park One Pump Station, Houston, Texas', img: imgIndustrial3, location: 'Houston, TX', status: 'Completed' },
+      { title: 'Water Plant - City Of Frisco', img: imgIndustrial4, location: 'Frisco, TX', status: 'Completed' },
+      { title: 'Southwest Water Plant Expansion, Houston, Texas', img: imgIndustrial5, location: 'Houston, TX', status: 'Completed' },
     ],
   },
   {
@@ -200,16 +208,19 @@ const portfolioCategories = [
         images: [pinnacle1, pinnacle2, pinnacle3, pinnacle4],
         location: 'Oak Point, TX', 
         area: '2.2 Acres | 17,500 Sq.Ft.',
-        description: 'Project Costs – 6M'
+        projectCost: '6M',
+        status: 'In Progress'
       },
       { 
         title: 'Montessori Academy Project', 
         img: imgInstitutional1, 
         location: 'Leander, TX', 
         area: '1.72 Acres | 10,400 Sq.Ft.',
-        description: '• Parking lots – 34 Spaces\n• Project Cost – 3.1M'
+        parkingLots: '34',
+        projectCost: '3.1M',
+        status: 'In Progress'
       },
-      { title: 'Woodland Temple, Woodland, Texas', img: imgInstitutional1, location: 'Woodland, TX' },
+      { title: 'Woodland Temple, Woodland, Texas', img: imgInstitutional1, location: 'Woodland, TX', status: 'Completed' },
     ],
   },
   {
@@ -227,7 +238,8 @@ const portfolioCategories = [
         images: [pinnacletx1, pinnacletx2, pinnacletx3, pinnacletx4, pinnacletx5],
         location: 'Georgetown, TX',
         area: '2 Acres | 17,500 Sq.Ft.',
-        description: 'Project Costs – 6M\nProject Completion – Feb 2026',
+        projectCost: '6M',
+        description: 'Project Completion – Feb 2026',
         status: 'Completed'
       },
       {
@@ -236,7 +248,10 @@ const portfolioCategories = [
         images: [velocity1, velocity2, velocity3, velocity4, velocity5, velocity6, velocity7],
         location: 'Mckinney, TX',
         area: '1.2 Acres | 23,500 Sq.Ft.',
-        description: 'Total units – 26\nUnit Sizes Range - 1007 to 2077 Sqft\nTotal Parking Spaces – 52\nProject Costs – 6M\nProject Completion: 2025',
+        totalUnits: '26 Units',
+        parkingLots: '52',
+        projectCost: '6M',
+        description: 'Unit Sizes Range - 1007 to 2077 Sqft\nProject Completion: 2025',
         status: 'Completed'
       },
       {
@@ -245,7 +260,8 @@ const portfolioCategories = [
         images: [mamabros1, mamabros2, mamabros3, mamabros4],
         location: '801 Wells Branch Pkwy, Pflugerville, TX - 78660',
         area: 'Approx. 7,800 Sq.Ft.',
-        description: 'Project Type: Restaurant & Banquet Space\nProject Costs – 1.3M',
+        projectCost: '1.3M',
+        description: 'Project Type: Restaurant & Banquet Space',
         status: 'Completed'
       },
       {
@@ -254,7 +270,8 @@ const portfolioCategories = [
         images: [sitara1, sitara2, sitara3, sitara4],
         location: '1779 Wells Branch Pkwy, Austin, TX 78728',
         area: 'Approx. 6300 Sq.Ft.',
-        description: 'Project Type: Restaurant & Banquet Space\nProject Costs – 1.15M',
+        projectCost: '1.15M',
+        description: 'Project Type: Restaurant & Banquet Space',
         status: 'Completed'
       },
       {
@@ -262,7 +279,6 @@ const portfolioCategories = [
         img: blake1,
         images: [blake1, blake2, blake3],
         location: '457 W Broadway, South Boston, MA',
-        area: '',
         description: 'Podium style construction with two floors of parking with concrete, Ground floor steel – commercial and Four floor stick-built luxury Condominiums.\nPartnered with Brenco Constructions LLC',
         status: 'Completed'
       },
@@ -271,18 +287,18 @@ const portfolioCategories = [
         img: imgMultifamily1,
         images: [imgMultifamily1, imgMultifamily2, imgMultifamily3],
         location: '174 Emery Ave, Concord, NC',
-        area: '',
+        totalUnits: '132',
         description: 'Project Type: 132 Unit Apartments with Clubhouse\nPartnered with Collins & Galyon Constructions',
-        status: 'Completed / Leasing Now'
+        status: 'Completed'
       },
       {
         title: 'Plaza Midwood Townhomes',
         img: imgTownhome1,
         images: [imgTownhome1, imgMultifamily1],
         location: '3916 The Plaza, Charlotte NC',
-        area: '',
-        description: 'Project Type: Townhomes – 4 Units\nPartnered with KB holdings LLC',
-        status: 'Completed / Sold'
+        totalUnits: '4',
+        description: 'Project Type: Townhomes\nPartnered with KB holdings LLC',
+        status: 'Completed'
       },
       {
         title: 'Godavari Restaurant',
@@ -299,7 +315,7 @@ const portfolioCategories = [
         images: [sunrise1, sunrise2],
         location: 'Sunrise Beach, Texas',
         area: '0.5 Acres | Approx. 3,500 Sq.Ft.',
-        description: 'Project Cost – 1.55M',
+        projectCost: '1.55M',
         status: 'Completed'
       },
       {
@@ -307,7 +323,6 @@ const portfolioCategories = [
         img: flood1,
         images: [flood1],
         location: 'City of Houston, Texas',
-        area: '',
         description: 'Install flood prevention concrete wall and flood gate at the entry/exist of the City Annex garage near interstate 45 and the Mckinney Street bridge. Also, as a part of overall flood mitigation at most of the critical City buildings and facilities, installed double submarine type doors, stainless steel dams, with all necessary structural supports and electrical controls for City of Houston, Texas.',
         status: 'Completed'
       },
@@ -316,7 +331,6 @@ const portfolioCategories = [
         img: ground1,
         images: [ground1],
         location: 'Parkglen-1 Pump station, City of Houston, Texas',
-        area: '',
         description: '5.0MG ground storage tank with heavy concrete foundation and detention pond. Associated site work includes heavily wooded site clearing, large diameter underground/aboveground fill and suction lines, protective coatings, and miscellaneous site work necessary for completion of the project.',
         status: 'Completed'
       }
@@ -489,18 +503,30 @@ function CategoryProjectCard({ project, index, onClick }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group cursor-pointer"
+      className="group cursor-pointer relative"
       onClick={onClick}
     >
       {/* Image */}
       <div className="relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500">
-        <div className="aspect-[4/3] overflow-hidden">
+        <div className="aspect-[4/3] overflow-hidden relative">
           <OptimizedImage
             src={project.img}
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
             wrapperClassName="w-full h-full"
           />
+          
+          {/* Status Tag */}
+          {project.status && (
+            <div className="absolute top-4 left-4 z-20">
+              <span className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full shadow-md backdrop-blur-md border border-white/20
+                ${project.status === 'Completed' ? 'bg-green-500/90 text-white' : 
+                  project.status === 'In Progress' ? 'bg-blue-500/90 text-white' : 
+                  'bg-orange-500/90 text-white'}`}>
+                {project.status}
+              </span>
+            </div>
+          )}
         </div>
         {/* Gradient overlay — appears on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -520,7 +546,7 @@ function CategoryProjectCard({ project, index, onClick }) {
       {/* Text info */}
       <div className="mt-4 px-1">
         <h4 className="text-lg font-heading font-semibold text-charcoal leading-snug group-hover:text-dark-slate transition-colors duration-300 line-clamp-2">
-          {project.title}{project.status && <span className="font-normal text-warm-gray"> ({project.status})</span>}
+          {project.title}
         </h4>
         {project.area && (
           <p className="mt-1.5 text-sm text-warm-gray">{project.area}</p>
@@ -675,67 +701,6 @@ function PortfolioSection() {
 
 
 
-/* ─── IMAGE SLIDER COMPONENT ─── */
-function ImageSlider({ images, alt, className }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  if (!images || images.length === 0) return null
-
-  if (images.length === 1) {
-    return (
-      <div className={`relative ${className}`}>
-        <OptimizedImage src={images[0]} alt={alt} className="w-full h-full object-cover" wrapperClassName="w-full h-full" />
-      </div>
-    )
-  }
-
-  const nextSlide = (e) => {
-    e.stopPropagation()
-    setCurrentIndex((prev) => (prev + 1) % images.length)
-  }
-  const prevSlide = (e) => {
-    e.stopPropagation()
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
-  }
-
-  return (
-    <div className={`relative ${className}`} style={{ overflow: 'hidden' }}>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <img src={images[currentIndex]} alt={`${alt} - ${currentIndex + 1}`} className="w-full h-full object-cover" loading="eager" />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Slider nav arrows — always visible */}
-      <button onClick={prevSlide} className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-black/60 hover:bg-black/80 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-transform hover:scale-110 z-[60] shadow-lg border border-white/10 cursor-pointer">
-        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-      </button>
-      <button onClick={nextSlide} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-black/60 hover:bg-black/80 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-transform hover:scale-110 z-[60] shadow-lg border border-white/10 cursor-pointer">
-        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-      </button>
-
-      {/* Dot indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-[60] bg-black/40 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10">
-        {images.map((_, idx) => (
-          <button key={idx} onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx) }} className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${idx === currentIndex ? 'bg-white w-6' : 'bg-white/50 hover:bg-white/90 w-2'}`} />
-        ))}
-      </div>
-
-      {/* Slide counter */}
-      <div className="absolute top-4 right-14 sm:right-4 z-[60] bg-black/40 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/10">
-        {currentIndex + 1} / {images.length}
-      </div>
-    </div>
-  )
-}
-
 /* ─── PROJECT DETAILS MODAL ─── */
 function ProjectModal({ project, onClose }) {
   // Prevent scrolling on body when modal is open
@@ -746,12 +711,14 @@ function ProjectModal({ project, onClose }) {
     }
   }, [])
 
+  const imagesToDisplay = project.images && project.images.length > 0 ? project.images : [project.img]
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/80 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div
@@ -759,57 +726,94 @@ function ProjectModal({ project, onClose }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="bg-white rounded-2xl overflow-hidden shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col"
+        className="bg-white rounded-2xl overflow-hidden shadow-2xl w-full max-w-7xl max-h-[90vh] flex flex-col lg:flex-row relative"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative h-72 sm:h-80 md:h-96 shrink-0 bg-[#050505]">
-          <ImageSlider 
-            images={project.images && project.images.length > 0 ? project.images : [project.img]} 
-            alt={project.title} 
-            className="w-full h-full" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent pointer-events-none z-10" />
-          {/* Close button — always visible, high z-index for mobile/tablet */}
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 sm:w-10 sm:h-10 bg-black/50 hover:bg-black/80 active:bg-black/90 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all z-[100] shadow-xl border border-white/20 cursor-pointer"
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <div className="absolute bottom-6 left-6 right-6 text-white z-20">
-            <h3 className="text-2xl sm:text-3xl font-heading font-bold mb-2 leading-tight">{project.title}</h3>
-            <div className="flex flex-wrap gap-4 text-sm font-medium text-white/80">
-              {project.location && (
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                  </svg>
-                  {project.location}
-                </span>
-              )}
-              {project.status && (
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-green-400" />
-                  {project.status}
-                </span>
-              )}
-            </div>
+        {/* Close button — absolute top right */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 w-10 h-10 bg-black/5 hover:bg-black/10 active:bg-black/20 rounded-full flex items-center justify-center text-charcoal transition-all z-[100] cursor-pointer border border-black/5"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Left Side: Scrollable Image Gallery */}
+        <div className="lg:w-2/3 h-[50vh] lg:h-[90vh] bg-[#f8f8f8] overflow-y-auto scrollbar-hide relative border-b lg:border-b-0 lg:border-r border-charcoal/10">
+          <div className="flex flex-col">
+            {imagesToDisplay.map((img, idx) => (
+              <div key={idx} className="w-full relative border-b border-white/10 last:border-0">
+                <OptimizedImage 
+                  src={img} 
+                  alt={`${project.title} - ${idx + 1}`} 
+                  className="w-full h-auto object-cover min-h-[40vh] md:min-h-[60vh]" 
+                  wrapperClassName="w-full" 
+                />
+              </div>
+            ))}
           </div>
-        </div>
-        <div className="p-6 sm:p-8 overflow-y-auto">
-          {project.area && (
-            <div className="mb-6">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-warm-gray mb-2">Project Scale</h4>
-              <p className="text-charcoal font-medium">{project.area}</p>
-            </div>
+          {/* Scroll hint gradient */}
+          {imagesToDisplay.length > 1 && (
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
           )}
+        </div>
+
+        {/* Right Side: Project Data & Details */}
+        <div className="lg:w-1/3 h-[40vh] lg:h-[90vh] overflow-y-auto bg-white p-8 lg:p-10 flex flex-col">
+          <div className="mb-8 pr-8">
+            {project.status && (
+              <span className={`inline-block mb-4 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-sm
+                ${project.status === 'Completed' ? 'bg-green-100 text-green-700' : 
+                  project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' : 
+                  'bg-orange-100 text-orange-700'}`}>
+                {project.status}
+              </span>
+            )}
+            <h3 className="text-3xl lg:text-4xl font-heading font-bold text-charcoal mb-4 leading-tight">{project.title}</h3>
+            
+            {project.location && (
+              <p className="flex items-center gap-2 text-charcoal/60 font-medium">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                {project.location}
+              </p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 mb-10 pb-10 border-b border-charcoal/10 shrink-0">
+            {project.area && (
+              <div>
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-1.5">Project Scale</h4>
+                <p className="text-charcoal font-semibold text-sm leading-snug">{project.area}</p>
+              </div>
+            )}
+            {project.totalUnits && (
+              <div>
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-1.5">Total Units</h4>
+                <p className="text-charcoal font-semibold text-sm leading-snug">{project.totalUnits}</p>
+              </div>
+            )}
+            {project.parkingLots && (
+              <div>
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-1.5">Parking Lots</h4>
+                <p className="text-charcoal font-semibold text-sm leading-snug">{project.parkingLots}</p>
+              </div>
+            )}
+            {project.projectCost && (
+              <div>
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-1.5">Project Cost</h4>
+                <p className="text-charcoal font-semibold text-sm leading-snug">{project.projectCost}</p>
+              </div>
+            )}
+          </div>
+
           {project.description && (
-            <div className="mb-2">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-warm-gray mb-3">Project Details</h4>
-              <p className="text-charcoal/80 leading-relaxed whitespace-pre-line text-sm sm:text-base">
+            <div className="prose prose-sm prose-charcoal max-w-none shrink-0">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-3">Project Details</h4>
+              <p className="text-charcoal/70 leading-relaxed whitespace-pre-line text-[15px]">
                 {project.description}
               </p>
             </div>

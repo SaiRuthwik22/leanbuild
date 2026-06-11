@@ -76,7 +76,7 @@ export default function Footer() {
           <div className="md:col-span-4">
             <h5 className="text-[0.65rem] font-semibold text-white uppercase tracking-[0.25em] mb-5">Contact</h5>
             <ul className="space-y-3 text-base text-white/45">
-              <li><a href="mailto:hello@leanbuild.com" className="hover:text-white/80 transition-colors duration-300">hello@leanbuild.com</a></li>
+              <li><a href="mailto:hello@leanbuildllc.com" className="hover:text-white/80 transition-colors duration-300">hello@leanbuildllc.com</a></li>
               <li><a href="tel:+15124563654" className="hover:text-white/80 transition-colors duration-300">+1 (512) 456-3654</a></li>
               <li className="leading-relaxed">8751 Collin McKinney Pkwy Suite 1102 #542<br />McKinney, TX 75070</li>
             </ul>

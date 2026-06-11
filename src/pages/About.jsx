@@ -6,7 +6,7 @@ import ContactCTA from '../components/ContactCTA'
 import Testimonials from '../components/Testimonials'
 
 // Assets
-import aboutHeroBg from '../assets/about_hero_bg.webp'
+import aboutHeroBg from '../assets/hero_about_new.png'
 import teamCVO from '../assets/cvo.png'
 import teamMember1 from '../assets/team_member_1.png'
 import teamMember2 from '../assets/team_member_2.png'
