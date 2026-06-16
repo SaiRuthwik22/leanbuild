@@ -12,8 +12,8 @@ const navLinks = [
     name: 'Products',
     path: '#',
     children: [
-      { name: 'MorphX', path: 'https://morphx.co', external: true },
-      { name: 'MorphX Steel Structures', path: 'https://morphx.co', external: true },
+      { name: 'MorphX', path: 'https://morphx360.com/', external: true },
+      { name: 'MorphX Steel Structures', path: 'https://morphx360.com/', external: true },
     ],
   },
   { name: 'Projects',  path: '/projects' },

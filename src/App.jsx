@@ -7,6 +7,7 @@ import About from './pages/About'
 import Services from './pages/Services'
 
 import Projects from './pages/Projects'
+import ProjectDetail from './pages/ProjectDetail'
 import OtherProjects from './pages/OtherProjects'
 import Contact from './pages/Contact'
 import PageLoader from './components/PageLoader'
@@ -77,6 +78,7 @@ function App() {
             <Route path="/services" element={<Services />} />
 
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/other-projects" element={<OtherProjects />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

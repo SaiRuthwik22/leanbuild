@@ -8,9 +8,7 @@ import Testimonials from '../components/Testimonials'
 // Assets
 import aboutHeroBg from '../assets/hero_about_new.png'
 import teamCVO from '../assets/cvo.png'
-import teamMember1 from '../assets/team_member_1.png'
-import teamMember2 from '../assets/team_member_2.png'
-import teamMember3 from '../assets/team_member_3.png'
+
 
 
 const pageVariants = {
@@ -186,18 +184,11 @@ const leaderMember = {
   name: 'Uday Vedre',
   role: 'Chief Value Officer',
   img: teamCVO,
-  bio: 'Uday brings 18 years of expertise in value engineering and client relations. She ensures every project maximizes value for clients while maintaining the highest standards of quality, sustainability, and design excellence.',
+  bio: 'Uday brings 18 years of expertise in value engineering and client relations. He ensures every project maximizes value for clients while maintaining the highest standards of quality, sustainability, and design excellence.',
   linkedin: '#',
 }
 
-const teamGrid = [
-  { name: 'Rahul Kapoor', role: 'Project Manager', img: teamMember1 },
-  { name: 'Sarah Johnson', role: 'Lead Architect', img: teamMember2 },
-  { name: 'Vikram Patel', role: 'Structural Engineer', img: teamMember3 },
-  { name: 'Emily Chen', role: 'Interior Designer', img: null },
-  { name: 'Arjun Mehta', role: 'Site Supervisor', img: null },
-  { name: 'Lisa Rodriguez', role: 'Quality Assurance', img: null },
-]
+
 
 function TeamSection() {
   const headerRef = useScrollReveal({ y: 40 })
@@ -215,33 +206,44 @@ function TeamSection() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="max-w-2xl mx-auto mb-20">
-          <div className="team-card group relative p-10 lg:p-12 bg-white border border-charcoal/[0.08] rounded-2xl hover:border-charcoal/20 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              <div className="relative w-full md:w-44 h-56 md:h-64 rounded-xl bg-offwhite overflow-hidden flex-shrink-0">
+        <div ref={cardsRef} className="max-w-3xl mx-auto mb-20">
+          <div className="team-card group relative bg-charcoal rounded-[2rem] overflow-hidden shadow-2xl">
+            {/* Subtle glow effect behind */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+            
+            <div className="flex flex-col md:flex-row h-full">
+              {/* Image side */}
+              <div className="relative w-full md:w-[45%] h-72 sm:h-80 md:h-auto overflow-hidden">
                 <OptimizedImage
                   src={leaderMember.img}
                   alt={leaderMember.name}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
                   wrapperClassName="w-full h-full"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-transparent md:bg-gradient-to-r" />
               </div>
-              <div className="flex-1 flex flex-col justify-between h-full min-h-[220px]">
+
+              {/* Content side */}
+              <div className="relative flex-1 p-8 md:p-10 flex flex-col justify-center">
                 <div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-charcoal/35 font-bold block mb-2">
-                    {leaderMember.role}
-                  </span>
-                  <h3 className="text-2xl font-bold text-charcoal mb-4 tracking-tight">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="w-8 h-[2px] bg-white/30" />
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-bold">
+                      {leaderMember.role}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4 tracking-tight">
                     {leaderMember.name}
                   </h3>
-                  <p className="text-base text-charcoal/60 leading-[1.85] font-medium">
+                  <p className="text-sm md:text-base text-white/70 leading-[1.8] font-medium mb-6">
                     {leaderMember.bio}
                   </p>
                 </div>
-                <div className="mt-8 pt-6 border-t border-charcoal/[0.06] flex items-center">
-                  <a href={leaderMember.linkedin} className="group/btn flex items-center gap-3 text-[10px] uppercase tracking-widest text-charcoal/50 hover:text-charcoal transition-colors duration-300">
-                    <span className="w-7 h-7 rounded-full border border-charcoal/15 flex items-center justify-center group-hover/btn:border-charcoal group-hover/btn:bg-charcoal group-hover/btn:text-white transition-all duration-300">
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+
+                <div className="mt-auto pt-6 border-t border-white/10 flex items-center">
+                  <a href={leaderMember.linkedin} className="group/btn inline-flex items-center gap-3 text-[10px] uppercase tracking-widest text-white/60 hover:text-white transition-colors duration-300 font-bold">
+                    <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover/btn:border-white group-hover/btn:bg-white group-hover/btn:text-charcoal transition-all duration-300">
+                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
                     </span>
                     <span>Connect</span>
                   </a>
@@ -250,65 +252,6 @@ function TeamSection() {
             </div>
           </div>
         </div>
-
-        {teamGrid.length > 0 && (
-          <div className="mt-32">
-            <div className="flex items-center justify-center gap-4 mb-16">
-              <div className="h-px w-16 bg-charcoal/10"></div>
-              <h3 className="text-center text-sm font-bold text-charcoal/50 uppercase tracking-[0.2em]">Our Experts</h3>
-              <div className="h-px w-16 bg-charcoal/10"></div>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {teamGrid.map((member, idx) => (
-                <motion.div 
-                  key={member.name}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative bg-white rounded-[2.5rem] p-3 border border-charcoal/[0.04] shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:border-charcoal/10 transition-all duration-500"
-                >
-                  <div className="relative h-80 sm:h-72 lg:h-80 rounded-[2rem] overflow-hidden bg-offwhite mb-6">
-                    {member.img ? (
-                      <OptimizedImage 
-                        src={member.img} 
-                        alt={member.name} 
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" 
-                        wrapperClassName="w-full h-full" 
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-charcoal/[0.02] to-charcoal/[0.08] group-hover:from-charcoal/[0.05] group-hover:to-charcoal/[0.12] transition-colors duration-500">
-                        <span className="text-5xl font-heading font-light text-charcoal/20 group-hover:text-charcoal/40 transition-colors duration-500">
-                          {member.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                    )}
-                    
-                    {/* Subtle inner shadow overlay */}
-                    <div className="absolute inset-0 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)] rounded-[2rem] pointer-events-none" />
-                  </div>
-                  
-                  <div className="px-5 pb-5 relative">
-                    <h4 className="text-xl font-heading font-bold text-charcoal tracking-tight mb-1">
-                      {member.name}
-                    </h4>
-                    <p className="text-sm text-charcoal/50 font-medium tracking-wide">
-                      {member.role}
-                    </p>
-                    
-                    {/* Decorative arrow that appears on hover */}
-                    <div className="absolute bottom-5 right-5 w-10 h-10 rounded-full bg-offwhite flex items-center justify-center opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-out">
-                      <svg className="w-4 h-4 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   )

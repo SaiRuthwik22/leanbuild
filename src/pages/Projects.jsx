@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollAnimations'
@@ -86,8 +86,18 @@ const pageVariants = {
   exit: { opacity: 0, transition: { duration: 0.3 } },
 }
 
+/* ─── Slug helper ─── */
+function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim()
+}
+
 /* ─── Portfolio data organised by category ─── */
-const portfolioCategories = [
+export const portfolioCategories = [
   {
     id: 'multifamily',
     title: 'Multifamily',
@@ -496,15 +506,15 @@ function CategoryNav({ activeCategory, onCategoryClick }) {
 }
 
 /* ─── SINGLE PROJECT CARD (for portfolio grid) ─── */
-function CategoryProjectCard({ project, index, onClick }) {
+function CategoryProjectCard({ project, index }) {
+  const slug = generateSlug(project.title)
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group cursor-pointer relative"
-      onClick={onClick}
+      className="group relative"
     >
       {/* Image */}
       <div className="relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500">
@@ -543,7 +553,7 @@ function CategoryProjectCard({ project, index, onClick }) {
         </div>
       </div>
 
-      {/* Text info */}
+      {/* Text info + View Details */}
       <div className="mt-4 px-1">
         <h4 className="text-lg font-heading font-semibold text-charcoal leading-snug group-hover:text-dark-slate transition-colors duration-300 line-clamp-2">
           {project.title}
@@ -551,13 +561,22 @@ function CategoryProjectCard({ project, index, onClick }) {
         {project.area && (
           <p className="mt-1.5 text-sm text-warm-gray">{project.area}</p>
         )}
+        <Link
+          to={`/projects/${slug}`}
+          className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 text-xs font-heading font-bold uppercase tracking-wider text-charcoal bg-offwhite border border-charcoal/10 rounded-full hover:bg-charcoal hover:text-white hover:border-charcoal transition-all duration-300 shadow-sm hover:shadow-md"
+        >
+          View Details
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </Link>
       </div>
     </motion.div>
   )
 }
 
 /* ─── SINGLE CATEGORY SECTION ─── */
-function CategorySection({ category, index, onSelectProject }) {
+function CategorySection({ category, index }) {
   const isEven = index % 2 === 0
   const isCompleted = category.id === 'completed'
 
@@ -600,7 +619,7 @@ function CategorySection({ category, index, onSelectProject }) {
         {/* Project cards grid */}
         <div className={`grid ${getGridCols(category.projects.length)} gap-6 md:gap-8`}>
           {category.projects.map((project, i) => (
-            <CategoryProjectCard key={project.title} project={project} index={i} onClick={() => onSelectProject(project)} />
+            <CategoryProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
 
@@ -629,7 +648,6 @@ function CategorySection({ category, index, onSelectProject }) {
 /* ─── PORTFOLIO HEADER + ALL CATEGORIES ─── */
 function PortfolioSection() {
   const [activeCategory, setActiveCategory] = useState(portfolioCategories[0].id)
-  const [selectedProject, setSelectedProject] = useState(null)
   const headerRef = useScrollReveal({ y: 30 })
 
   const handleCategoryClick = (id) => {
@@ -685,144 +703,13 @@ function PortfolioSection() {
 
       {/* All category sections */}
       {portfolioCategories.map((cat, i) => (
-        <CategorySection key={cat.id} category={cat} index={i} onSelectProject={setSelectedProject} />
+        <CategorySection key={cat.id} category={cat} index={i} />
       ))}
-
-
-
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-        )}
-      </AnimatePresence>
     </>
   )
 }
 
 
-
-/* ─── PROJECT DETAILS MODAL ─── */
-function ProjectModal({ project, onClose }) {
-  // Prevent scrolling on body when modal is open
-  useEffect(() => {
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = 'auto'
-    }
-  }, [])
-
-  const imagesToDisplay = project.images && project.images.length > 0 ? project.images : [project.img]
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/80 backdrop-blur-md"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="bg-white rounded-2xl overflow-hidden shadow-2xl w-full max-w-7xl max-h-[90vh] flex flex-col lg:flex-row relative"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close button — absolute top right */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 bg-black/5 hover:bg-black/10 active:bg-black/20 rounded-full flex items-center justify-center text-charcoal transition-all z-[100] cursor-pointer border border-black/5"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        {/* Left Side: Scrollable Image Gallery */}
-        <div className="lg:w-2/3 h-[50vh] lg:h-[90vh] bg-[#f8f8f8] overflow-y-auto scrollbar-hide relative border-b lg:border-b-0 lg:border-r border-charcoal/10">
-          <div className="flex flex-col">
-            {imagesToDisplay.map((img, idx) => (
-              <div key={idx} className="w-full relative border-b border-white/10 last:border-0">
-                <OptimizedImage 
-                  src={img} 
-                  alt={`${project.title} - ${idx + 1}`} 
-                  className="w-full h-auto object-cover min-h-[40vh] md:min-h-[60vh]" 
-                  wrapperClassName="w-full" 
-                />
-              </div>
-            ))}
-          </div>
-          {/* Scroll hint gradient */}
-          {imagesToDisplay.length > 1 && (
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
-          )}
-        </div>
-
-        {/* Right Side: Project Data & Details */}
-        <div className="lg:w-1/3 h-[40vh] lg:h-[90vh] overflow-y-auto bg-white p-8 lg:p-10 flex flex-col">
-          <div className="mb-8 pr-8">
-            {project.status && (
-              <span className={`inline-block mb-4 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-sm
-                ${project.status === 'Completed' ? 'bg-green-100 text-green-700' : 
-                  project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' : 
-                  'bg-orange-100 text-orange-700'}`}>
-                {project.status}
-              </span>
-            )}
-            <h3 className="text-3xl lg:text-4xl font-heading font-bold text-charcoal mb-4 leading-tight">{project.title}</h3>
-            
-            {project.location && (
-              <p className="flex items-center gap-2 text-charcoal/60 font-medium">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                </svg>
-                {project.location}
-              </p>
-            )}
-          </div>
-
-          <div className="grid grid-cols-2 gap-x-6 gap-y-8 mb-10 pb-10 border-b border-charcoal/10 shrink-0">
-            {project.area && (
-              <div>
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-1.5">Project Scale</h4>
-                <p className="text-charcoal font-semibold text-sm leading-snug">{project.area}</p>
-              </div>
-            )}
-            {project.totalUnits && (
-              <div>
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-1.5">Total Units</h4>
-                <p className="text-charcoal font-semibold text-sm leading-snug">{project.totalUnits}</p>
-              </div>
-            )}
-            {project.parkingLots && (
-              <div>
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-1.5">Parking Lots</h4>
-                <p className="text-charcoal font-semibold text-sm leading-snug">{project.parkingLots}</p>
-              </div>
-            )}
-            {project.projectCost && (
-              <div>
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-1.5">Project Cost</h4>
-                <p className="text-charcoal font-semibold text-sm leading-snug">{project.projectCost}</p>
-              </div>
-            )}
-          </div>
-
-          {project.description && (
-            <div className="prose prose-sm prose-charcoal max-w-none shrink-0">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] text-charcoal/40 mb-3">Project Details</h4>
-              <p className="text-charcoal/70 leading-relaxed whitespace-pre-line text-[15px]">
-                {project.description}
-              </p>
-            </div>
-          )}
-        </div>
-      </motion.div>
-    </motion.div>
-  )
-}
 
 /* ─── PROJECTS PAGE ─── */
 export default function Projects() {

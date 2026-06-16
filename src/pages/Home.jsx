@@ -6,7 +6,7 @@ import ContactCTA from '../components/ContactCTA'
 import Testimonials from '../components/Testimonials'
 
 // Assets
-import heroBg from '../assets/hero_home_new.png'
+import heroBg from '../assets/hero_home_mobile_friendly.png'
 import imgMultifamily1 from '../assets/proj_multifamily_1.webp'
 import imgWarehouse1 from '../assets/proj_warehouse_1.webp'
 import imgRetail1 from '../assets/proj_retail_1.webp'
@@ -38,13 +38,13 @@ function HeroSection() {
           src={heroBg}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-[75%_center] md:object-center"
         />
 
         {/* Multi-layer dark overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
         {/* Subtle vignette */}
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)' }} />
       </div>
 
       {/* ── HERO CONTENT ── */}
