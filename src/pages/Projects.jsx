@@ -80,6 +80,24 @@ import sunrise2 from '../assets/sunrise2.png'
 import flood1 from '../assets/flood1.png'
 import ground1 from '../assets/ground1.png'
 
+import landmarkApartment from '../assets/landmark_apartment.png'
+import mixeduse1 from '../assets/mixeduse1.png'
+import mixeduse2 from '../assets/mixeduse2.png'
+import mixeduse3 from '../assets/mixeduse3.png'
+
+import glenn1 from '../assets/glenn1.png'
+import glenn2 from '../assets/glenn2.png'
+
+import rosenburg1 from '../assets/rosenburg1.png'
+import rosenburg2 from '../assets/rosenburg2.png'
+import rosenburg3 from '../assets/rosenburg3.png'
+
+import cedar1 from '../assets/cedar1.png'
+import cedar2 from '../assets/cedar2.png'
+
+import leander1 from '../assets/leander1.png'
+import leander2 from '../assets/leander2.png'
+
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
@@ -107,19 +125,41 @@ export const portfolioCategories = [
       </svg>
     ),
     projects: [
-      { 
-        title: 'Luxury Apartment Complex', 
-        img: luxury1, 
+      {
+        title: 'Luxury Apartment Complex',
+        img: luxury1,
         images: [luxury1, luxury2, luxury3],
-        location: 'Berkman Drive, Austin, TX', 
+        location: 'Berkman Drive, Austin, TX',
         totalUnits: '305 Units',
         area: '6 Apartment Buildings & 1 Clubhouse Building',
         description: 'Complete Land Entitled, our team is doing a design build development – Working with city of Austin on the Civil and Architectural plan approvals. Project to break ground in January 2026. Features 3 Storied Garden Style Class A Apartments and World class Amenities.',
         status: 'Upcoming'
       },
-      { title: 'Landmark @31Apartments, Tyler, Texas', img: imgMultifamily1, location: 'Tyler, TX', status: 'Upcoming' },
-      { title: 'Florence Mixed Use Apartments, South Carolina', img: imgMultifamily2, location: 'South Carolina', status: 'Upcoming' },
-      { title: 'Canyon Creek Mixed Use Development, Temple, Texas', img: imgMultifamily3, location: 'Temple, TX', status: 'Upcoming' },
+      {
+        title: 'Landmark @31Apartments',
+        img: landmarkApartment,
+        location: 'Tyler, TX',
+        totalUnits: 'TBD',
+        area: 'Standard Apartment Complex',
+        description: '• Modern standard multi-family apartment community\n• Features comfortable living spaces and essential amenities\n• Convenient access to local retail and dining in Tyler, Texas',
+        status: 'Upcoming'
+      },
+      {
+        title: 'Florence Mixed Use Apartments',
+        img: mixeduse1,
+        images: [mixeduse1, mixeduse2, mixeduse3],
+        location: 'South Carolina',
+        status: 'In Design',
+        description: '• 7+ Acres Commercial\n• 3 acres – Storage\n• Single Family – 84 units\n• Townhomes – 70 Units\n• Apartments – 216 units\n• Approx project estimation - $48M'
+      },
+      {
+        title: 'The Blake',
+        img: blake1,
+        images: [blake1, blake2, blake3],
+        location: '457 W Broadway, South Boston, MA',
+        description: 'Podium style construction with two floors of parking with concrete, Ground floor steel – commercial and Four floor stick-built luxury Condominiums.\nPartnered with Brenco Constructions LLC',
+        status: 'Completed'
+      },
     ],
   },
   {
@@ -131,15 +171,15 @@ export const portfolioCategories = [
       </svg>
     ),
     projects: [
-      { 
-        title: 'Rosenburg Business Center', 
-        img: imgWarehouse1, 
-        location: 'Rosenburg, TX', 
-        area: '25 Acres | 300,000 Sq.Ft.',
-        status: 'In Progress'
+      {
+        title: 'Sunrise Food Mart',
+        img: sunrise1,
+        images: [sunrise1, sunrise2],
+        location: 'Sunrise Beach, Texas',
+        area: '0.5 Acres | Approx. 3,500 Sq.Ft.',
+        projectCost: '1.55M',
+        status: 'Completed'
       },
-      { title: 'Deep Sea Technology, Houston, Texas', img: imgWarehouse2, location: 'Houston, TX', status: 'Completed' },
-      { title: 'Asian Completion Tools, Houston, Texas', img: imgWarehouse3, location: 'Houston, TX', status: 'Completed' },
     ],
   },
   {
@@ -151,28 +191,54 @@ export const portfolioCategories = [
       </svg>
     ),
     projects: [
-      { 
-        title: 'Cornhill Business Park', 
-        img: cornhill1, 
+      {
+        title: 'Cornhill Business Park',
+        img: cornhill1,
         images: [cornhill1, cornhill2, cornhill3],
-        location: 'Jarrell, TX', 
+        location: 'Jarrell, TX',
         area: '23.78 Acres | 33,920 Sq.Ft.',
         projectCost: '5.9M (Phase 1 & 2)',
         status: 'In Progress'
       },
-      { 
-        title: 'Cedar Park Office Condos', 
-        img: imgRetail1, 
-        location: 'Baghdad Road, Cedar Park, TX', 
+      {
+        title: 'Cedar Park Office Condos',
+        img: cedar1,
+        images: [cedar1, cedar2],
+        location: 'Baghdad Road, Cedar Park, Texas',
         area: '3.5 Acres | Approx. 39,000 Sq.Ft.',
-        totalUnits: 'Unit Sizes 1007 to 2077 Sq.Ft.',
-        parkingLots: '161',
+        totalUnits: 'Unit Sizes Range - 1007 to 2077 Sq.Ft.',
+        parkingLots: '161 Spaces',
         projectCost: '5.25M',
         status: 'In Progress'
       },
-      { title: 'Hallmark Office Park, Cedar Park, Texas', img: imgRetail1, location: 'Cedar Park, TX', status: 'In Progress' },
-      { title: 'Baghdad Road Office Condo, Cedar Park, Texas', img: imgRetail2, location: 'Cedar Park, TX', status: 'Upcoming' },
-      { title: 'Retail Complex Project, Glenn Heights, Texas', img: imgRetail2, location: 'Glenn Heights, TX', status: 'Upcoming' },
+      {
+        title: 'Retail Complex Project',
+        img: glenn1,
+        images: [glenn1, glenn2],
+        location: 'Glenn Heights, TX',
+        area: '4.26 Acres | 34,174 Sq.Ft.',
+        parkingLots: '187 Spaces',
+        projectCost: '6.8M',
+        status: 'In Pipeline'
+      },
+      {
+        title: 'Rosenburg Business Center',
+        img: rosenburg1,
+        images: [rosenburg1, rosenburg2, rosenburg3],
+        location: 'Rosenburg, Texas',
+        area: '25 Acres | 300,000 Sq.Ft.',
+        status: 'Upcoming'
+      },
+      {
+        title: 'Pinnacle Montessori Academy',
+        img: pinnacletx1,
+        images: [pinnacletx1, pinnacletx2, pinnacletx3, pinnacletx4, pinnacletx5],
+        location: 'Georgetown, TX',
+        area: '2 Acres | 17,500 Sq.Ft.',
+        projectCost: '6M',
+        description: 'Project Completion – Feb 2026',
+        status: 'Completed'
+      },
     ],
   },
   {
@@ -184,7 +250,25 @@ export const portfolioCategories = [
       </svg>
     ),
     projects: [
-      { title: 'Florence Mixed Use Project, South Carolina', img: imgTownhome1, location: 'South Carolina', status: 'Upcoming' },
+
+      {
+        title: 'The Emery Village Apartments',
+        img: imgTownhome1,
+        images: [imgMultifamily1, imgMultifamily2, imgMultifamily3],
+        location: '174 Emery Ave, Concord, NC',
+        totalUnits: '132',
+        description: '• Project Status: Completed / Leasing Now\n• Project Type: 132 Unit Apartments with Clubhouse.\n• Project Location: 174 Emery Ave, Concord, NC\n• Partnered with Collins & Galyon Constructions',
+        status: 'Completed'
+      },
+      {
+        title: 'Plaza Midwood Townhomes',
+        img: imgTownhome1,
+        images: [imgTownhome1, imgMultifamily1],
+        location: '3916 The Plaza, Charlotte NC',
+        totalUnits: '4',
+        description: '• Project Status: Completed / Sold\n• Project Type: Townhomes – 4 Units\n• Project Location: 3916 The Plaza, Charlotte NC\n• Partnered with KB holdings LLC',
+        status: 'Completed'
+      }
     ],
   },
   {
@@ -196,11 +280,22 @@ export const portfolioCategories = [
       </svg>
     ),
     projects: [
-      { title: 'East Water Purification Plant, Houston, Texas', img: imgIndustrial1, location: 'Houston, TX', status: 'Completed' },
-      { title: 'Flood Gates, Houston, Texas', img: imgIndustrial2, location: 'Houston, TX', status: 'Completed' },
-      { title: 'Park One Pump Station, Houston, Texas', img: imgIndustrial3, location: 'Houston, TX', status: 'Completed' },
-      { title: 'Water Plant - City Of Frisco', img: imgIndustrial4, location: 'Frisco, TX', status: 'Completed' },
-      { title: 'Southwest Water Plant Expansion, Houston, Texas', img: imgIndustrial5, location: 'Houston, TX', status: 'Completed' },
+      {
+        title: 'Ground Storage Tank',
+        img: ground1,
+        images: [ground1],
+        location: 'Parkglen-1 Pump station, City of Houston, Texas',
+        description: '5.0MG ground storage tank with heavy concrete foundation and detention pond. Associated site work includes heavily wooded site clearing, large diameter underground/aboveground fill and suction lines, protective coatings, and miscellaneous site work necessary for completion of the project.',
+        status: 'Completed'
+      },
+      {
+        title: 'Flood Management System',
+        img: flood1,
+        images: [flood1],
+        location: 'City of Houston, Texas',
+        description: 'Install flood prevention concrete wall and flood gate at the entry/exist of the City Annex garage near interstate 45 and the Mckinney Street bridge. Also, as a part of overall flood mitigation at most of the critical City buildings and facilities, installed double submarine type doors, stainless steel dams, with all necessary structural supports and electrical controls for City of Houston, Texas.',
+        status: 'Completed'
+      }
     ],
   },
   {
@@ -212,25 +307,25 @@ export const portfolioCategories = [
       </svg>
     ),
     projects: [
-      { 
-        title: 'Pinnacle Montessori Academy', 
-        img: pinnacle1, 
+      {
+        title: 'Pinnacle Montessori Academy',
+        img: pinnacle1,
         images: [pinnacle1, pinnacle2, pinnacle3, pinnacle4],
-        location: 'Oak Point, TX', 
+        location: 'Oak Point, TX',
         area: '2.2 Acres | 17,500 Sq.Ft.',
         projectCost: '6M',
         status: 'In Progress'
       },
-      { 
-        title: 'Montessori Academy Project', 
-        img: imgInstitutional1, 
-        location: 'Leander, TX', 
+      {
+        title: 'Montessori Academy Project',
+        img: leander1,
+        images: [leander1, leander2],
+        location: 'Leander, TX',
         area: '1.72 Acres | 10,400 Sq.Ft.',
-        parkingLots: '34',
+        parkingLots: '34 Spaces',
         projectCost: '3.1M',
         status: 'In Progress'
       },
-      { title: 'Woodland Temple, Woodland, Texas', img: imgInstitutional1, location: 'Woodland, TX', status: 'Completed' },
     ],
   },
   {
@@ -525,14 +620,14 @@ function CategoryProjectCard({ project, index }) {
             className="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
             wrapperClassName="w-full h-full"
           />
-          
+
           {/* Status Tag */}
           {project.status && (
             <div className="absolute top-4 left-4 z-20">
               <span className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full shadow-md backdrop-blur-md border border-white/20
-                ${project.status === 'Completed' ? 'bg-green-500/90 text-white' : 
-                  project.status === 'In Progress' ? 'bg-blue-500/90 text-white' : 
-                  'bg-orange-500/90 text-white'}`}>
+                ${project.status === 'Completed' ? 'bg-green-500/90 text-white' :
+                  project.status === 'In Progress' ? 'bg-blue-500/90 text-white' :
+                    'bg-orange-500/90 text-white'}`}>
                 {project.status}
               </span>
             </div>
@@ -558,8 +653,8 @@ function CategoryProjectCard({ project, index }) {
         <h4 className="text-lg font-heading font-semibold text-charcoal leading-snug group-hover:text-dark-slate transition-colors duration-300 line-clamp-2">
           {project.title}
         </h4>
-        {project.area && (
-          <p className="mt-1.5 text-sm text-warm-gray">{project.area}</p>
+        {project.location && (
+          <p className="mt-1.5 text-sm font-medium text-charcoal/60">{project.location}</p>
         )}
         <Link
           to={`/projects/${slug}`}

@@ -20,6 +20,11 @@ import imgRenovation from '../assets/svc_renovation.webp'
 import imgCommercial from '../assets/svc_commercial.webp'
 import imgPrefab from '../assets/prefab_solutions.png'
 
+import mixeduse1 from '../assets/mixeduse1.png'
+import sunrise1 from '../assets/sunrise1.png'
+import pinnacletx1 from '../assets/pinnacletx1.png'
+import ground1 from '../assets/ground1.png'
+
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
@@ -138,21 +143,21 @@ const projectCategories = [
     id: 'multifamily',
     num: '01',
     title: 'Multifamily',
-    img: imgMultifamily1,
+    img: mixeduse1,
     desc: 'High-density residential developments engineered for modern community living.',
   },
   {
     id: 'warehouses',
     num: '02',
     title: 'Warehouses',
-    img: imgWarehouse1,
+    img: sunrise1,
     desc: 'State-of-the-art logistics and storage facilities optimized for commercial efficiency.',
   },
   {
     id: 'retail-office',
     num: '03',
     title: 'Retail & Office',
-    img: imgRetail1,
+    img: pinnacletx1,
     desc: 'Premium commercial spaces designed to inspire collaboration and customer engagement.',
   },
   {
@@ -166,7 +171,7 @@ const projectCategories = [
     id: 'infra-industrial',
     num: '05',
     title: 'Infra – Industrial',
-    img: imgIndustrial1,
+    img: ground1,
     desc: 'Heavy-duty infrastructure engineering, purifying systems, and robust structural facilities.',
   },
   {

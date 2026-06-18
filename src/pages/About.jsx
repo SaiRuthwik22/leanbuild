@@ -184,7 +184,7 @@ const leaderMember = {
   name: 'Uday Vedre',
   role: 'Chief Value Officer',
   img: teamCVO,
-  bio: 'Uday brings 18 years of expertise in value engineering and client relations. He ensures every project maximizes value for clients while maintaining the highest standards of quality, sustainability, and design excellence.',
+  bio: "Uday brings over a decade of commercial real estate expertise, specializing in multifamily and mixed-use ground-up development with an $80M+ completed portfolio. A former VP of Acquisitions, he leads expansive pipelines across the US while mentoring developers and advising tech startups.",
   linkedin: '#',
 }
 
@@ -222,7 +222,7 @@ function TeamSection() {
               </div>
 
               {/* Minimalistic Typography & Content */}
-              <div className="relative w-full md:w-[60%] p-10 md:p-16 flex flex-col justify-center bg-white">
+              <div className="relative w-full md:w-[60%] p-10 md:p-12 flex flex-col justify-center bg-white">
                 {/* Decorative minimal dot */}
                 <div className="absolute top-10 right-10 flex gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />

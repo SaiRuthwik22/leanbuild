@@ -62,7 +62,7 @@ export default function OptimizedImage({
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
           onLoad={handleLoad}
-          className={`optimized-img ${isLoaded ? 'optimized-img--loaded' : ''} ${className}`}
+          className={`optimized-img will-change-transform ${isLoaded ? 'optimized-img--loaded' : ''} ${className}`}
           {...rest}
         />
       )}
