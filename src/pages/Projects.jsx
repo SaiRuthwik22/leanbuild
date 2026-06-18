@@ -499,9 +499,9 @@ function ProjectsHero() {
               transition={{ duration: 0.7, delay: 1.0 }}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <a href="/contact" className="px-8 py-3.5 bg-white text-[#000000] text-sm font-heading font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5">
+              <Link to="/contact" className="px-8 py-3.5 bg-white text-[#000000] text-sm font-heading font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5">
                 Start Your Project
-              </a>
+              </Link>
             </motion.div>
 
           </div>

@@ -24,6 +24,7 @@ import mixeduse1 from '../assets/mixeduse1.png'
 import sunrise1 from '../assets/sunrise1.png'
 import pinnacletx1 from '../assets/pinnacletx1.png'
 import ground1 from '../assets/ground1.png'
+import proj_institutional_new from '../assets/proj_institutional_new.png'
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -98,18 +99,18 @@ function HeroSection() {
             transition={{ duration: 0.7, delay: 1.0 }}
             className="mt-10 flex flex-wrap gap-4"
           >
-            <a
-              href="/projects"
+            <Link
+              to="/projects"
               className="px-8 py-3.5 bg-white text-[#000000] text-sm font-heading font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-xl hover:-translate-y-0.5"
             >
               View Projects
-            </a>
-            <a
-              href="/contact"
+            </Link>
+            <Link
+              to="/contact"
               className="px-8 py-3.5 border border-white/30 text-white text-sm font-heading font-medium rounded-full backdrop-blur-sm transition-all duration-300 hover:border-white/70 hover:bg-white/10"
             >
               Contact Us
-            </a>
+            </Link>
           </motion.div>
         </div>
 
@@ -178,7 +179,7 @@ const projectCategories = [
     id: 'institutional',
     num: '06',
     title: 'Institutional',
-    img: imgInstitutional1,
+    img: proj_institutional_new,
     desc: 'Community-centric public landmarks and temples built with deep civic pride and longevity.',
   },
 ]
