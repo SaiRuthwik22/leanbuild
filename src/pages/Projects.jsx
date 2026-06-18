@@ -9,7 +9,7 @@ import ContactCTA from '../components/ContactCTA'
 import imgHorizon from '../assets/proj_horizon.webp'
 import imgSerene from '../assets/proj_serene.webp'
 import imgMeridian from '../assets/proj_meridian.webp'
-import projectsHeroBg from '../assets/hero_projects_new.png'
+import projectsHeroBg from '../assets/hero_projects_v2.png'
 
 /* ─── Portfolio category images ─── */
 import imgMultifamily1 from '../assets/proj_multifamily_1.webp'

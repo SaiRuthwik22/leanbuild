@@ -153,7 +153,7 @@ export default function Navbar() {
             {/* CTA button adapts too */}
             <Link
               to="/contact"
-              className={`px-7 py-3 text-base font-heading font-bold rounded-full transition-all duration-300 ${
+              className={`px-5 py-2.5 text-sm font-heading font-bold rounded-full transition-all duration-300 ${
                 isLight
                   ? 'bg-white text-charcoal hover:bg-white hover:-translate-y-0.5 hover:shadow-lg'
                   : 'bg-charcoal text-white hover:bg-black hover:-translate-y-0.5 hover:shadow-lg'

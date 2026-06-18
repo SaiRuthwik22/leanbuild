@@ -8,7 +8,7 @@ import imgInterior from '../assets/svc_interior.webp'
 import imgRenovation from '../assets/svc_renovation.webp'
 import imgDesign from '../assets/svc_design.webp'
 import imgEngineering from '../assets/svc_engineering.webp'
-import servicesHeroBg from '../assets/hero_services_new.png'
+import servicesHeroBg from '../assets/hero_services_v3.png'
 
 const pageVariants = {
   initial: { opacity: 0 },

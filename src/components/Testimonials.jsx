@@ -69,7 +69,7 @@ export default function Testimonials() {
   }
 
   return (
-    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
       <div className="container max-w-5xl mx-auto px-6 relative z-10">
         {/* Header */}
         <div ref={headerRef} className="text-center mb-16">

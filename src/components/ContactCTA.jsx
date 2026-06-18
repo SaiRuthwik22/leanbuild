@@ -129,7 +129,7 @@ export default function ContactCTA() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Vikram Rangan"
+                      placeholder="John Doe"
                       className="w-full border border-blue-100 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50/50 placeholder-charcoal/30 text-charcoal"
                     />
                   </div>
@@ -140,7 +140,7 @@ export default function ContactCTA() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="vikram@example.com"
+                      placeholder="john@example.com"
                       className="w-full border border-blue-100 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50/50 placeholder-charcoal/30 text-charcoal"
                     />
                   </div>
@@ -196,7 +196,7 @@ export default function ContactCTA() {
                 <button
                   type="submit"
                   disabled={submitted}
-                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-emerald-500 text-white font-bold py-4 rounded-xl text-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.99] flex items-center justify-center gap-2"
+                  className="w-full bg-charcoal hover:bg-black disabled:bg-emerald-500 text-white font-bold py-4 rounded-xl text-sm transition-all duration-300 hover:shadow-lg hover:shadow-charcoal/20 active:scale-[0.99] flex items-center justify-center gap-2"
                 >
                   {submitted ? (
                     <>

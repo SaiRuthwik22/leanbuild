@@ -207,45 +207,49 @@ function TeamSection() {
         </div>
 
         <div ref={cardsRef} className="max-w-3xl mx-auto mb-20">
-          <div className="team-card group relative bg-charcoal rounded-[2rem] overflow-hidden shadow-2xl">
-            {/* Subtle glow effect behind */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-            
-            <div className="flex flex-col md:flex-row h-full">
-              {/* Image side */}
-              <div className="relative w-full md:w-[45%] h-72 sm:h-80 md:h-auto overflow-hidden">
+          <div className="team-card group relative bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-700">
+            {/* Inner Content Container */}
+            <div className="flex flex-col md:flex-row h-full relative">
+              {/* Image Container with precise cropping */}
+              <div className="relative w-full md:w-[40%] aspect-[4/5] sm:aspect-auto sm:h-96 md:h-auto overflow-hidden bg-offwhite md:border-r border-light-gray">
                 <OptimizedImage
                   src={leaderMember.img}
                   alt={leaderMember.name}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
+                  className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-[1.5s] ease-out filter contrast-[1.02] saturate-[0.95]"
                   wrapperClassName="w-full h-full"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-transparent md:bg-gradient-to-r" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
               </div>
 
-              {/* Content side */}
-              <div className="relative flex-1 p-8 md:p-10 flex flex-col justify-center">
+              {/* Minimalistic Typography & Content */}
+              <div className="relative w-full md:w-[60%] p-10 md:p-16 flex flex-col justify-center bg-white">
+                {/* Decorative minimal dot */}
+                <div className="absolute top-10 right-10 flex gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-charcoal/20" />
+                </div>
+
                 <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="w-8 h-[2px] bg-white/30" />
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-bold">
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="w-12 h-[1px] bg-charcoal" />
+                    <span className="text-xs uppercase tracking-[0.4em] text-charcoal font-semibold">
                       {leaderMember.role}
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4 tracking-tight">
+                  <h3 className="text-3xl md:text-5xl font-heading font-bold text-charcoal mb-6 tracking-tight leading-none">
                     {leaderMember.name}
                   </h3>
-                  <p className="text-sm md:text-base text-white/70 leading-[1.8] font-medium mb-6">
+                  <p className="text-base md:text-lg text-charcoal/70 leading-relaxed font-medium mb-10 max-w-lg">
                     {leaderMember.bio}
                   </p>
                 </div>
 
-                <div className="mt-auto pt-6 border-t border-white/10 flex items-center">
-                  <a href={leaderMember.linkedin} className="group/btn inline-flex items-center gap-3 text-[10px] uppercase tracking-widest text-white/60 hover:text-white transition-colors duration-300 font-bold">
-                    <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover/btn:border-white group-hover/btn:bg-white group-hover/btn:text-charcoal transition-all duration-300">
-                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                <div className="mt-auto">
+                  <a href={leaderMember.linkedin} className="inline-flex items-center gap-3 text-xs uppercase tracking-widest text-charcoal font-bold group/link">
+                    <span className="w-10 h-10 rounded-full border border-charcoal/20 flex items-center justify-center group-hover/link:border-charcoal group-hover/link:bg-charcoal group-hover/link:text-white transition-all duration-300">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
                     </span>
-                    <span>Connect</span>
+                    <span className="border-b border-transparent group-hover/link:border-charcoal pb-0.5 transition-all">Connect on LinkedIn</span>
                   </a>
                 </div>
               </div>
