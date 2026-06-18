@@ -18,6 +18,7 @@ import imgEngineering from '../assets/svc_engineering.webp'
 import imgInterior from '../assets/svc_interior.webp'
 import imgRenovation from '../assets/svc_renovation.webp'
 import imgCommercial from '../assets/svc_commercial.webp'
+import imgPrefab from '../assets/prefab_solutions.png'
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -349,7 +350,7 @@ const servicesList = [
   {
     num: '05',
     title: 'Pre-Fabricated Solutions',
-    img: imgCommercial,
+    img: imgPrefab,
     desc: 'We work with the client needs and pre-fabrication companies to provide the feasibility of the project.',
   },
 ]

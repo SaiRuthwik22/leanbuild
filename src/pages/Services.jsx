@@ -4,6 +4,7 @@ import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
 
 import imgCommercial from '../assets/svc_commercial.webp'
+import imgPrefab from '../assets/prefab_solutions.png'
 import imgInterior from '../assets/svc_interior.webp'
 import imgRenovation from '../assets/svc_renovation.webp'
 import imgDesign from '../assets/svc_design.webp'
@@ -51,7 +52,7 @@ const services = [
     title: 'Prefabrication Solutions',
     desc: 'We work with the client needs and pre-fabrication companies to provide the feasibility of the project.',
     features: ['Modular Construction', 'Offsite Fabrication', 'Cost Feasibility', 'Quality Control'],
-    img: imgCommercial,
+    img: imgPrefab,
   },
 ]
 
