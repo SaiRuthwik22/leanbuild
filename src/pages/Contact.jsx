@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion'
 import { useScrollReveal } from '../hooks/useScrollAnimations'
-import { useState } from 'react'
 
-import contactHeroBg from '../assets/hero_contact_new.png'
+import contactHeroBg from '../assets/hero_contact_new.webp'
 import ContactCTA from '../components/ContactCTA'
 
 const pageVariants = {

@@ -3,13 +3,12 @@ import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollAnimations'
 import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
 
-import imgCommercial from '../assets/svc_commercial.webp'
-import imgPrefab from '../assets/prefab_solutions.png'
+import imgPrefab from '../assets/prefab_solutions.webp'
 import imgInterior from '../assets/svc_interior.webp'
 import imgRenovation from '../assets/svc_renovation.webp'
 import imgDesign from '../assets/svc_design.webp'
 import imgEngineering from '../assets/svc_engineering.webp'
-import servicesHeroBg from '../assets/hero_services_v3.png'
+import servicesHeroBg from '../assets/hero_services_v3.webp'
 
 const pageVariants = {
   initial: { opacity: 0 },

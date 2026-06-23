@@ -5,8 +5,8 @@ import ContactCTA from '../components/ContactCTA'
 import Testimonials from '../components/Testimonials'
 
 // Assets
-import aboutHeroBg from '../assets/hero_about_new.png'
-import teamCVO from '../assets/cvo.png'
+import aboutHeroBg from '../assets/hero_about_new.webp'
+import teamCVO from '../assets/cvo.webp'
 
 
 
@@ -104,7 +104,7 @@ function AboutHero() {
 const experienceData = [
   {
     title: 'Experience',
-    desc: 'Over 10 years of commercial real estate experience, specializing in Multifamily and Mixed-Use Land Acquisition and Ground-Up Development. Uday has completed projects worth over $80.0 million in multi-family and mixed-use developments.'
+    desc: 'Over 20+ years of commercial real estate experience, specializing in Multifamily and Mixed-Use Land Acquisition and Ground-Up Development. Uday has completed projects worth over $80.0 million in multi-family and mixed-use developments.'
   },
   {
     title: 'History',

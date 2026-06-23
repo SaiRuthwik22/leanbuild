@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import logoImg from '../assets/image.png'
-import logoImgWhite from '../assets/logo_white.png'
+import logoImg from '../assets/image.webp'
+import logoImgWhite from '../assets/logo_white.webp'
 
 const navLinks = [
   { name: 'Home',      path: '/' },

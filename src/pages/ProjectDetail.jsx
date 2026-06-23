@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
 import { portfolioCategories } from './Projects'
 import { generateSlug } from '../utils/slugify'

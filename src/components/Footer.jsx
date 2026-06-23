@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import logoImgWhite from '../assets/logo_white.png'
+import logoImgWhite from '../assets/logo_white.webp'
 
 const quickLinks = [
   { name: 'Home', path: '/' },
