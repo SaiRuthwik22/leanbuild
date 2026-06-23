@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollAnimations'
-import { useEffect, useState, useRef } from 'react'
 import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
 import Testimonials from '../components/Testimonials'
@@ -105,23 +104,23 @@ function AboutHero() {
 const experienceData = [
   {
     title: 'Experience',
-    desc: 'Over 40 years of engineering and management experience, encompassing a wide breadth of expertise in electrical, mechanical, civil, warehousing, and industrial construction.'
+    desc: 'Over 10 years of commercial real estate experience, specializing in Multifamily and Mixed-Use Land Acquisition and Ground-Up Development. Uday has completed projects worth over $80.0 million in multi-family and mixed-use developments.'
   },
   {
     title: 'History',
-    desc: 'As president and owner of an electrical control systems manufacturing company and an engineering and construction company, he has personally overseen every aspect of the business, incorporating both technical know-how as well as considerable financial and business management experience.'
+    desc: 'Over 185,000 Sq.Ft. of commercial space and 175 units delivered. Currently in pipeline — 212 units in Tyler, Texas and 288 units in Florence, SC. Over 68,000 Sq.Ft. commercial in Austin and 300,000 Sq.Ft. of Flex Space in Houston.'
   },
   {
     title: 'Skills',
-    desc: 'This experience combined with his critical skill and keen attention to detail has led his advisory and consulting services to be sought out for various real estate ventures including multiple temples in Houston.'
+    desc: 'Exceptional interpersonal and leadership skills. Uday served as Vice President of Acquisitions at a leading financial institution. He currently serves as an Advisory Board Member of a few Silicon Valley tech start-ups and holds a Master\'s degree in Computer Science Engineering.'
   },
   {
     title: 'Clients',
-    desc: 'Mr. Jannapureddy Managed and Successfully executed numerous multi million-dollar projects across the state of Texas, possesses in-depth planning, estimating, and construction knowledge.'
+    desc: 'Uday is actively involved in many construction projects in Tyler, Austin, Denison, and Houston, Texas, as well as Charlotte, NC and Boston, MA. He offers mentorship to other property developers and is committed to delivering value across every engagement.'
   },
   {
     title: 'Work',
-    desc: 'Mr. Jannapureddy directly managed hands on several diversified projects totaling over $50 million required several disciplines.'
+    desc: 'Board Member of multiple Non-Profit organizations, Community organizations, NC International Minority Coalition, and organizations striving for affordable housing in Charlotte. Uday has also served on advisory boards of many software companies.'
   }
 ]
 

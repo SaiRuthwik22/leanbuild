@@ -5,7 +5,7 @@ const quickLinks = [
   { name: 'Home', path: '/' },
   { name: 'About Us', path: '/about' },
   { name: 'Services', path: '/services' },
-  { name: 'Products', path: '/products' },
+  { name: 'Products', path: 'https://morphx360.com/', external: true },
   { name: 'Projects', path: '/projects' },
   { name: 'Contact', path: '/contact' },
 ]
@@ -63,10 +63,16 @@ export default function Footer() {
             <h5 className="text-[0.65rem] font-semibold text-white uppercase tracking-[0.25em] mb-5">Quick Links</h5>
             <ul className="space-y-3">
               {quickLinks.map(link => (
-                <li key={link.path}>
-                  <Link to={link.path} className="text-base text-white/45 hover:text-white/80 transition-colors duration-300">
-                    {link.name}
-                  </Link>
+                <li key={link.name}>
+                  {link.external ? (
+                    <a href={link.path} target="_blank" rel="noopener noreferrer" className="text-base text-white/45 hover:text-white/80 transition-colors duration-300">
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link to={link.path} className="text-base text-white/45 hover:text-white/80 transition-colors duration-300">
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

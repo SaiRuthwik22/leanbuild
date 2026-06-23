@@ -366,7 +366,7 @@ export default function SplashScreen({ onComplete }) {
             transition={{ delay: 2.2, duration: 0.8 }}
           >
             <span className="text-[8px] uppercase tracking-[0.5em] text-white/12 font-mono">
-              © 2025 LeanBuild Construction
+              © {new Date().getFullYear()} LeanBuild Construction
             </span>
           </motion.div>
 

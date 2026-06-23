@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollAnimations'
 import OptimizedImage from '../components/OptimizedImage'
+import { generateSlug } from '../utils/slugify'
 import ContactCTA from '../components/ContactCTA'
 
 /* Hero images (unchanged) */
@@ -104,15 +105,7 @@ const pageVariants = {
   exit: { opacity: 0, transition: { duration: 0.3 } },
 }
 
-/* ─── Slug helper ─── */
-function generateSlug(title) {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim()
-}
+/* ─── Slug helper imported from ../utils/slugify ─── */
 
 /* ─── Portfolio data organised by category ─── */
 export const portfolioCategories = [
@@ -338,16 +331,6 @@ export const portfolioCategories = [
     ),
     projects: [
       {
-        title: 'Pinnacle Montessori Academy',
-        img: pinnacletx1,
-        images: [pinnacletx1, pinnacletx2, pinnacletx3, pinnacletx4, pinnacletx5],
-        location: 'Georgetown, TX',
-        area: '2 Acres | 17,500 Sq.Ft.',
-        projectCost: '6M',
-        description: 'Project Completion – Feb 2026',
-        status: 'Completed'
-      },
-      {
         title: 'Velocity Sports',
         img: velocity1,
         images: [velocity1, velocity2, velocity3, velocity4, velocity5, velocity6, velocity7],
@@ -380,32 +363,6 @@ export const portfolioCategories = [
         status: 'Completed'
       },
       {
-        title: 'The Blake',
-        img: blake1,
-        images: [blake1, blake2, blake3],
-        location: '457 W Broadway, South Boston, MA',
-        description: 'Podium style construction with two floors of parking with concrete, Ground floor steel – commercial and Four floor stick-built luxury Condominiums.\nPartnered with Brenco Constructions LLC',
-        status: 'Completed'
-      },
-      {
-        title: 'The Emery Village Apartments',
-        img: imgMultifamily1,
-        images: [imgMultifamily1, imgMultifamily2, imgMultifamily3],
-        location: '174 Emery Ave, Concord, NC',
-        totalUnits: '132',
-        description: 'Project Type: 132 Unit Apartments with Clubhouse\nPartnered with Collins & Galyon Constructions',
-        status: 'Completed'
-      },
-      {
-        title: 'Plaza Midwood Townhomes',
-        img: imgTownhome1,
-        images: [imgTownhome1, imgMultifamily1],
-        location: '3916 The Plaza, Charlotte NC',
-        totalUnits: '4',
-        description: 'Project Type: Townhomes\nPartnered with KB holdings LLC',
-        status: 'Completed'
-      },
-      {
         title: 'Godavari Restaurant',
         img: godavari1,
         images: [godavari1, godavari2],
@@ -414,31 +371,6 @@ export const portfolioCategories = [
         description: 'Turnkey Restaurant construction.\nFraming, Electrical, HVAC and Plumbing. Finished the interior from insulation, Drywall and Painting. Installed Doors, Lighting fixtures, Plumbing fixtures. We completed the Kitchen and Refrigerators with Walking coolers/Freezers.',
         status: 'Completed'
       },
-      {
-        title: 'Sunrise Food Mart',
-        img: sunrise1,
-        images: [sunrise1, sunrise2],
-        location: 'Sunrise Beach, Texas',
-        area: '0.5 Acres | Approx. 3,500 Sq.Ft.',
-        projectCost: '1.55M',
-        status: 'Completed'
-      },
-      {
-        title: 'Flood Management System',
-        img: flood1,
-        images: [flood1],
-        location: 'City of Houston, Texas',
-        description: 'Install flood prevention concrete wall and flood gate at the entry/exist of the City Annex garage near interstate 45 and the Mckinney Street bridge. Also, as a part of overall flood mitigation at most of the critical City buildings and facilities, installed double submarine type doors, stainless steel dams, with all necessary structural supports and electrical controls for City of Houston, Texas.',
-        status: 'Completed'
-      },
-      {
-        title: 'Ground Storage Tank',
-        img: ground1,
-        images: [ground1],
-        location: 'Parkglen-1 Pump station, City of Houston, Texas',
-        description: '5.0MG ground storage tank with heavy concrete foundation and detention pond. Associated site work includes heavily wooded site clearing, large diameter underground/aboveground fill and suction lines, protective coatings, and miscellaneous site work necessary for completion of the project.',
-        status: 'Completed'
-      }
     ],
   },
 ]
@@ -491,7 +423,7 @@ function ProjectsHero() {
               style={{ fontSize: 'clamp(1rem, 1.5vw, 1.15rem)' }}
             >
               A curated selection of our finest residential, commercial, and mixed-use
-              developments across India.
+              developments across Texas.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -676,12 +608,7 @@ function CategorySection({ category, index }) {
   const isCompleted = category.id === 'completed'
 
   /* Determine grid layout depending on number of projects */
-  const getGridCols = (count) => {
-    if (count === 1) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-    if (count === 2) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-    if (count <= 3) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-    return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-  }
+  const gridCols = 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
 
   return (
     <section
@@ -712,7 +639,7 @@ function CategorySection({ category, index }) {
         </motion.div>
 
         {/* Project cards grid */}
-        <div className={`grid ${getGridCols(category.projects.length)} gap-6 md:gap-8`}>
+        <div className={`grid ${gridCols} gap-6 md:gap-8`}>
           {category.projects.map((project, i) => (
             <CategoryProjectCard key={project.title} project={project} index={i} />
           ))}

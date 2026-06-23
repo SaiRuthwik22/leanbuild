@@ -118,7 +118,7 @@ export default function ContactCTA() {
               <h3 className="text-xl font-extrabold text-charcoal mb-2 tracking-tight">
                 Send Us a Message
               </h3>
-              <p className="text-charcoal/40 text-sm mb-8">Fill out the form below and we will react within one business day.</p>
+              <p className="text-charcoal/40 text-sm mb-8">Fill out the form below and we will reach out within one business day.</p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

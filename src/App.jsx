@@ -10,6 +10,7 @@ import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import OtherProjects from './pages/OtherProjects'
 import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
 import PageLoader from './components/PageLoader'
 import SplashScreen from './components/SplashScreen'
 import { useImagePreloader } from './hooks/useImagePreloader'
@@ -81,6 +82,7 @@ function App() {
             <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/other-projects" element={<OtherProjects />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
       </Layout>

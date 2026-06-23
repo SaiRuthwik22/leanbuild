@@ -4,21 +4,12 @@ import { useEffect, useState } from 'react'
 import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
 import { portfolioCategories } from './Projects'
+import { generateSlug } from '../utils/slugify'
 
 const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
   exit: { opacity: 0, transition: { duration: 0.3 } },
-}
-
-/* ─── Slug helper (must match Projects.jsx) ─── */
-function generateSlug(title) {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim()
 }
 
 /* ─── Find project by slug across all categories ─── */
