@@ -14,7 +14,7 @@ import imgInterior from '../assets/svc_interior.webp'
 import imgRenovation from '../assets/svc_renovation.webp'
 import imgPrefab from '../assets/prefab_solutions.webp'
 
-import mixeduse1 from '../assets/mixeduse1.webp'
+import multifamilyHome from '../assets/multifamily_home.png'
 import sunrise1 from '../assets/sunrise1.webp'
 import pinnacletx1 from '../assets/pinnacletx1.webp'
 import ground1 from '../assets/ground1.webp'
@@ -138,7 +138,7 @@ const projectCategories = [
     id: 'multifamily',
     num: '01',
     title: 'Multifamily',
-    img: mixeduse1,
+    img: multifamilyHome,
     desc: 'High-density residential developments engineered for modern community living.',
   },
   {

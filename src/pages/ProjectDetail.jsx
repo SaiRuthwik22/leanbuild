@@ -149,16 +149,16 @@ export default function ProjectDetail() {
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
 
       {/* Top bar with back link */}
-      <div className="bg-white border-b border-charcoal/5 pt-24 pb-6">
+      <div className="bg-white/80 backdrop-blur-md border-b border-charcoal/5 pt-24 pb-6 sticky top-0 z-30">
         <div className="container-narrow max-w-6xl mx-auto">
           <Link
-            to="/projects"
-            className="inline-flex items-center gap-2 text-charcoal/50 hover:text-charcoal transition-colors text-sm font-medium group"
+            to={`/projects#project-${slug}`}
+            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-charcoal/5 hover:bg-charcoal hover:text-white text-charcoal/70 transition-all duration-300 text-sm font-medium group hover:shadow-lg hover:shadow-charcoal/10"
           >
-            <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
-            Back to Portfolio
+            All Projects
           </Link>
         </div>
       </div>
@@ -248,18 +248,7 @@ export default function ProjectDetail() {
             </div>
           )}
 
-          {/* Back CTA */}
-          <div className="mt-16 pt-12 border-t border-charcoal/8">
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-charcoal text-white rounded-full font-heading font-bold hover:bg-dark-slate transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-              </svg>
-              Back to All Projects
-            </Link>
-          </div>
+
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollAnimations'
 import OptimizedImage from '../components/OptimizedImage'
 import { generateSlug } from '../utils/slugify'
@@ -526,6 +526,7 @@ function CategoryProjectCard({ project, index }) {
   const slug = generateSlug(project.title)
   return (
     <motion.div
+      id={`project-${slug}`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -724,6 +725,23 @@ function PortfolioSection() {
 
 /* ─── PROJECTS PAGE ─── */
 export default function Projects() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.hash) {
+      // Small delay to let the page and cards render before scrolling
+      const timer = setTimeout(() => {
+        const el = document.getElementById(location.hash.slice(1))
+        if (el) {
+          const yOffset = -160
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset
+          window.scrollTo({ top: y, behavior: 'smooth' })
+        }
+      }, 400)
+      return () => clearTimeout(timer)
+    }
+  }, [location.hash])
+
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <ProjectsHero />
