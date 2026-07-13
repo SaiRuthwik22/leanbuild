@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logoImgWhite from '../assets/logo_white.webp'
+import PolicyModal from './PolicyModal'
 
 const quickLinks = [
   { name: 'Home', path: '/' },
@@ -29,6 +31,7 @@ const socials = [
 ]
 
 export default function Footer() {
+  const [modalType, setModalType] = useState(null)
   return (
     <footer className="bg-charcoal text-white/70">
       <div className="container-narrow py-16 lg:py-20">
@@ -82,7 +85,7 @@ export default function Footer() {
           <div className="md:col-span-4">
             <h5 className="text-[0.65rem] font-semibold text-white uppercase tracking-[0.25em] mb-5">Contact</h5>
             <ul className="space-y-3 text-base text-white/45">
-              <li><a href="mailto:hello@leanbuildllc.com" className="hover:text-white/80 transition-colors duration-300">hello@leanbuildllc.com</a></li>
+              <li><a href="mailto:info@leanbuildllc.com" className="hover:text-white/80 transition-colors duration-300">info@leanbuildllc.com</a></li>
               <li><a href="tel:+15124563654" className="hover:text-white/80 transition-colors duration-300">+1 (512) 456-3654</a></li>
               <li className="leading-relaxed">8751 Collin McKinney Pkwy Suite 1102 #542<br />McKinney, TX 75070</li>
             </ul>
@@ -95,11 +98,12 @@ export default function Footer() {
             © {new Date().getFullYear()} LeanBuild. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-[0.75rem] text-white/25 hover:text-white/50 transition-colors">Privacy Policy</a>
-            <a href="#" className="text-[0.75rem] text-white/25 hover:text-white/50 transition-colors">Terms of Service</a>
+            <button onClick={() => setModalType('privacy')} className="text-[0.75rem] text-blue-400/60 hover:text-blue-300 transition-colors duration-300 cursor-pointer bg-transparent border-0 p-0 font-sans">Privacy Policy</button>
+            <button onClick={() => setModalType('terms')} className="text-[0.75rem] text-blue-400/60 hover:text-blue-300 transition-colors duration-300 cursor-pointer bg-transparent border-0 p-0 font-sans">Terms of Service</button>
           </div>
         </div>
       </div>
+      <PolicyModal isOpen={!!modalType} onClose={() => setModalType(null)} type={modalType} />
     </footer>
   )
 }

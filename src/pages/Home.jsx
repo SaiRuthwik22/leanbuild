@@ -1,24 +1,29 @@
 import { motion } from 'framer-motion'
-import { useScrollReveal, useStaggerReveal, useCountUp } from '../hooks/useScrollAnimations'
+import { useScrollReveal, useStaggerReveal, useCountUp, useParallax } from '../hooks/useScrollAnimations'
 import { Link } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
 import ContactCTA from '../components/ContactCTA'
 import Testimonials from '../components/Testimonials'
 
 // Assets
-import heroBg from '../assets/hero_home_mobile_friendly.webp'
+import heroBg from '../assets/hero_home_mobile_friendly.png'
+import imgMultifamily1 from '../assets/proj_multifamily_1.webp'
+import imgWarehouse1 from '../assets/proj_warehouse_1.webp'
+import imgRetail1 from '../assets/proj_retail_1.webp'
 import imgTownhome1 from '../assets/proj_townhome_1.webp'
+import imgIndustrial1 from '../assets/proj_industrial_1.webp'
+import imgInstitutional1 from '../assets/proj_institutional_1.webp'
 import imgDesign from '../assets/svc_design.webp'
 import imgEngineering from '../assets/svc_engineering.webp'
 import imgInterior from '../assets/svc_interior.webp'
 import imgRenovation from '../assets/svc_renovation.webp'
-import imgPrefab from '../assets/prefab_solutions.webp'
+import imgPrefab from '../assets/prefab_solutions.png'
 
-import multifamilyHome from '../assets/multifamily_home.png'
-import sunrise1 from '../assets/sunrise1.webp'
-import pinnacletx1 from '../assets/pinnacletx1.webp'
-import ground1 from '../assets/ground1.webp'
-import proj_institutional_new from '../assets/proj_institutional_new.webp'
+import mixeduse1 from '../assets/mixeduse1.png'
+import sunrise1 from '../assets/sunrise1.png'
+import pinnacletx1 from '../assets/pinnacletx1.png'
+import ground1 from '../assets/ground1.png'
+import proj_institutional_new from '../assets/proj_institutional_new.png'
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -138,7 +143,7 @@ const projectCategories = [
     id: 'multifamily',
     num: '01',
     title: 'Multifamily',
-    img: multifamilyHome,
+    img: mixeduse1,
     desc: 'High-density residential developments engineered for modern community living.',
   },
   {
@@ -381,7 +386,7 @@ function ExploreServicesSection() {
 
         <div ref={gridReveal} className="grid grid-cols-1 md:grid-cols-6 gap-8 max-w-6xl mx-auto">
           {/* Top 3 services */}
-          {servicesList.slice(0, 3).map((svc) => (
+          {servicesList.slice(0, 3).map((svc, i) => (
             <div
               key={svc.num}
               className="svc-card md:col-span-2 group relative p-6 bg-white border border-dashed border-charcoal/20 rounded-lg hover:border-charcoal/60 transition-all duration-500 hover:shadow-lg flex flex-col justify-between"
