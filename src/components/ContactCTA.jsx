@@ -98,7 +98,7 @@ export default function ContactCTA() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-[9px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Office Address</p>
+                      <p className="text-[9px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Mailing Address</p>
                       <p className="text-sm font-semibold text-slate-200">8751 Collin McKinney Pkwy</p>
                       <p className="text-xs text-slate-400 mt-0.5">Suite 1102 #542, McKinney, TX 75070</p>
                     </div>
